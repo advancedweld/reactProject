@@ -15,6 +15,9 @@ const baseConfig = {
     path: resolvePath("../dist"),
     filename: "[name].bundle.js",
   },
+  resolve: {
+    extensions: [".js", ".jsx", ".ts", ".tsx"],
+  },
   // 所有loader的配置都在 module.rules 中
   module: {
     rules: [

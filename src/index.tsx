@@ -13,15 +13,14 @@ import ReactDOM from "react-dom";
 import "./index.less";
 import logo from "./assets/logo.svg";
 
-function App() {
+import App from "./App/index";
+
+function AppCotainer() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1> Webpack V5 + xiangshangzhi+React </h1>
-      </header>
+      <App></App>
     </div>
   );
 }
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<AppCotainer />, document.getElementById("root"));
