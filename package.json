@@ -19,8 +19,10 @@
   },
   "homepage": "https://github.com/advancedweld/webpackProject#readme",
   "dependencies": {
+    "antd": "^4.21.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router": "^6.3.0",
     "redux": "^4.2.0",
     "yarn": "^1.22.19"
   },
