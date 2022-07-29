@@ -17,6 +17,9 @@ const baseConfig = {
   },
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx"],
+    alias: {
+      "@view": resolvePath("../src/App/views/"),
+    },
   },
   // 所有loader的配置都在 module.rules 中
   module: {
