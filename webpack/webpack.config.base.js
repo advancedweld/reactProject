@@ -5,7 +5,7 @@ const path = require("path");
 const resolvePath = (relativePath) => path.resolve(__dirname, relativePath);
 // HTML模板
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 // 基础配置
 const baseConfig = {
   // 入口文件
@@ -53,7 +53,15 @@ const baseConfig = {
       // 对ts|tsx文件的处理
       {
         test: /\.(ts|tsx)$/,
-        use: "babel-loader",
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"],
+            cacheDirectory: true,
+            // plugins: ['@babel/plugin-proposal-object-rest-spread']
+          },
+        },
       },
       // 对图片的处理
       {

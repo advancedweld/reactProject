@@ -9,9 +9,15 @@ function Login() {
     console.log("@@location in login is -----", location);
   });
   return (
-    <div className={style.wrap}>
-      <h1> login </h1>
-    </div>
+    <>
+      <div className={style.wrap}>
+        <h1> login </h1>
+      </div>
+
+      <div className="xiang">
+        <h1> login </h1>
+      </div>
+    </>
   );
 }
 

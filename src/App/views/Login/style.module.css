@@ -6,3 +6,7 @@
 .wrap {
   border: 1px solid red;
 }
+
+:global(.xiang) {
+  border: 1px solid red;
+}

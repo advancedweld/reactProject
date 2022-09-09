@@ -4,6 +4,9 @@
  * @FilePath: /webpackProject/webpack/webpack.config.dev.js
  */
 // 合并规则
+
+const isProductionMode = process.env.NODE_ENV === "production";
+
 const { merge } = require("webpack-merge");
 // 导入基础配置
 const { baseConfig } = require("./webpack.config.base");
