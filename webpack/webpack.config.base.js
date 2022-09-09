@@ -28,7 +28,22 @@ const baseConfig = {
       // use里的loader如果有多个的情况下，切记执行顺序是：从下到上（或者从右到左）
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"],
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              modules: {
+                // for development
+                // localIdentName: "[path][name]__[local]",
+                // for production
+                localIdentName: "[hash:base64]",
+              },
+              importLoaders: 1,
+            },
+          },
+          "postcss-loader",
+        ],
       },
       // 对less文件的处理
       {
