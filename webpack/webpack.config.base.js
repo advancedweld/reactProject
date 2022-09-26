@@ -1,24 +1,24 @@
 // webpack.config.base.js
 
-const path = require("path");
+const path = require('path')
 // 根据相对路径获取绝对路径
-const resolvePath = (relativePath) => path.resolve(__dirname, relativePath);
+const resolvePath = (relativePath) => path.resolve(__dirname, relativePath)
 // HTML模板
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 // 基础配置
 const baseConfig = {
   // 入口文件
-  entry: resolvePath("../src/index.tsx"),
+  entry: resolvePath('../src/index.tsx'),
   // 出口文件
   output: {
-    path: resolvePath("../dist"),
-    filename: "[name].bundle.js",
+    path: resolvePath('../dist'),
+    filename: '[name].bundle.js',
   },
   resolve: {
-    extensions: [".js", ".jsx", ".ts", ".tsx"],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
     alias: {
-      "@view": resolvePath("../src/App/views/"),
+      '@view': resolvePath('../src/App/views/'),
     },
   },
   // 所有loader的配置都在 module.rules 中
@@ -29,44 +29,44 @@ const baseConfig = {
       {
         test: /\.css$/,
         use: [
-          "style-loader",
+          'style-loader',
           {
-            loader: "css-loader",
+            loader: 'css-loader',
             options: {
               modules: {
                 // for development
-                // localIdentName: "[path][name]__[local]",
+                localIdentName: '[path][name]__[local]',
                 // for production
-                localIdentName: "[hash:base64]",
+                // localIdentName: "[hash:base64]",
               },
               importLoaders: 1,
             },
           },
-          "postcss-loader",
+          'postcss-loader',
         ],
       },
       // 对less文件的处理
       {
         test: /\.less$/,
-        use: ["style-loader", "css-loader", "less-loader"],
+        use: ['style-loader', 'css-loader', 'less-loader'],
       },
       // 对ts|tsx文件的处理
       {
         test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
-          options: {
-            presets: ["@babel/preset-env"],
-            cacheDirectory: true,
-            // plugins: ['@babel/plugin-proposal-object-rest-spread']
-          },
+          loader: 'babel-loader',
+          // options: {
+          //   presets: ["@babel/preset-env"],
+          //   cacheDirectory: true,
+          //   // plugins: ['@babel/plugin-proposal-object-rest-spread']
+          // },
         },
       },
       // 对图片的处理
       {
         test: /\.(svg|png|jpg|gif)$/,
-        type: "asset/resource",
+        type: 'asset/resource',
       },
     ],
   },
@@ -74,14 +74,14 @@ const baseConfig = {
   plugins: [
     new HtmlWebpackPlugin({
       // title 配置
-      title: "Webpack V5 + React",
+      title: 'Webpack V5 + React',
       // 模板导入
-      template: resolvePath("../public/index.html"),
+      template: resolvePath('../public/index.html'),
       // 名称为
-      filename: "index.html",
+      filename: 'index.html',
     }),
   ],
-};
+}
 module.exports = {
   baseConfig,
-};
+}
