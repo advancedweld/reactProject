@@ -11,7 +11,7 @@ function Login() {
   return (
     <>
       <div className={style.wrap}>
-        <h1> login </h1>
+        <h1> about </h1>
       </div>
 
       {/* <div className="xiang">
