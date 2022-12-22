@@ -1,0 +1,50 @@
+/*
+ * @Author: xiangshangzhi
+ * @Date: 2022-12-22 18:02:05
+ * @FilePath: /webpackProject/tsconfig_crm.json
+ */
+ 
+/* crm里的tsconfig 
+* 仅供参考
+*/
+
+{
+	"compilerOptions": {
+		"plugins": [
+			{
+				"transform": "ts-optchain/transform"
+			}
+		],
+		"module": "esnext",
+		"target": "es5",
+		"baseUrl": ".",
+		"rootDir": ".",
+		"paths": {
+			"foreignTradePlatform/*": ["shared/foreignTradePlatform/*"],
+			"formily-xtd/*": ["shared/foreignTradePlatform/formily-xtd/*"],
+			"test-utils": ["test/helpers/test-utils"],
+			"*": ["shared/*", "browser/*", "mobile/*", "server/*"]
+		},
+		"typeRoots": ["node_modules/@types", "src/types"],
+		"outDir": "build",
+		"jsx": "react",
+		"allowJs": true,
+		"strict": false,
+		"pretty": true,
+		"sourceMap": true,
+		"moduleResolution": "node",
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"noUnusedParameters": true,
+		"noUnusedLocals": true,
+		"strictNullChecks": true,
+		"noImplicitAny": true,
+		"suppressImplicitAnyIndexErrors": true,
+		"allowSyntheticDefaultImports": true,
+		"lib": ["es6", "es7", "es2017", "es2018", "es2019", "es2020", "es2021", "dom"],
+		"downlevelIteration": true,
+		"resolveJsonModule": true
+	},
+	"include": ["shared", "browser", "mobile", "server", "foreignTradePlatform", "enterpriseFinancing", "test"],
+	"exclude": ["static", "build", "node_modules"]
+}

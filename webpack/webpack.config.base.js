@@ -16,6 +16,9 @@ const baseConfig = {
     filename: '[name].bundle.js',
   },
   resolve: {
+    // modules: ['node_modules'],
+    modules: [resolvePath('../node_modules'), resolvePath('../src')],
+
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     alias: {
       '@view': resolvePath('../src/App/views/'),
