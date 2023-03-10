@@ -13,7 +13,14 @@ const baseConfig = {
   // 出口文件
   output: {
     path: resolvePath('../dist'),
-    filename: '[name].bundle.js',
+    // filename: '[name].bundle.js',
+    filename: '[contenthash].bundle.js',
+    clean: true,
+    /* 是否输出es6模块 */
+    module: true
+  },
+  experiments:{
+    outputModule: true
   },
   resolve: { extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'] },
   // 所有loader的配置都在 module.rules 中
