@@ -1,6 +1,7 @@
 // webpack.config.base.js
 
 const path = require('path')
+const WebpackBar = require('webpackbar')
 // 根据相对路径获取绝对路径
 const resolvePath = (relativePath) => path.resolve(__dirname, relativePath)
 // HTML模板
@@ -13,8 +14,15 @@ const baseConfig = {
   // 出口文件
   output: {
     path: resolvePath('../dist'),
+    // filename: '[contenthash].bundle.js',
     filename: '[name].bundle.js',
+    /* 是否输出es6模块 */
+    // module: true,
   },
+
+  // experiments: {
+  //   outputModule: true,
+  // },
   resolve: {
     // modules: ['node_modules'],
     modules: [resolvePath('../node_modules'), resolvePath('../src')],
@@ -83,8 +91,16 @@ const baseConfig = {
       // 名称为
       filename: 'index.html',
     }),
+    new WebpackBar({
+      color: '#85d', // 默认green，进度条颜色支持HEX
+      basic: false, // 默认true，启用一个简单的日志报告器
+      profile: false, // 默认false，启用探查器。
+    }),
   ],
 }
 module.exports = {
   baseConfig,
 }
+
+console.log('@@@@NODE_ENV', process.env.NODE_ENV)
+console.log('@@@@@BASE_ENV', process.env.BASE_ENV)

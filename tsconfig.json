@@ -105,3 +105,45 @@
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   }
 }
+
+
+// {
+// 	"compilerOptions": {
+// 		"plugins": [
+// 			{
+// 				"transform": "ts-optchain/transform"
+// 			}
+// 		],
+// 		"module": "esnext",
+// 		"target": "es5",
+// 		"baseUrl": ".",
+// 		"rootDir": ".",
+// 		"paths": {
+// 			"foreignTradePlatform/*": ["shared/foreignTradePlatform/*"],
+// 			"formily-xtd/*": ["shared/foreignTradePlatform/formily-xtd/*"],
+// 			"test-utils": ["test/helpers/test-utils"],
+// 			"*": ["shared/*", "browser/*", "mobile/*", "server/*"]
+// 		},
+// 		"typeRoots": ["node_modules/@types", "shared/types"],
+// 		"outDir": "build",
+// 		"jsx": "react",
+// 		"allowJs": true,
+// 		"strict": false,
+// 		"pretty": true,
+// 		"sourceMap": true,
+// 		"moduleResolution": "node",
+// 		"emitDecoratorMetadata": true,
+// 		"experimentalDecorators": true,
+// 		"noUnusedParameters": true,
+// 		"noUnusedLocals": true,
+// 		"strictNullChecks": true,
+// 		"noImplicitAny": true,
+// 		"suppressImplicitAnyIndexErrors": true,
+// 		"allowSyntheticDefaultImports": true,
+// 		"lib": ["es6", "es7", "es2017", "es2018", "es2019", "es2020", "dom"],
+// 		"downlevelIteration": true,
+// 		"resolveJsonModule": true
+// 	},
+// 	"include": ["shared", "browser", "mobile", "server", "foreignTradePlatform", "enterpriseFinancing", "test"],
+// 	"exclude": ["static", "build", "node_modules"]
+// }
