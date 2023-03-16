@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import {
   useLocation,
   Routes,
@@ -24,7 +24,7 @@ function App() {
       <Link to='/group'> group11</Link>
       <Link to='/about'> about11</Link>
 
-      <Card title='a标签'>
+      <Card title='a标签1111'>
         <Space>
           <a href='/about'> about11</a>
           <a href='/about' onClick={() => {}}>

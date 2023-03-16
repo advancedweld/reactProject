@@ -2,6 +2,7 @@
 
 const path = require('path')
 const WebpackBar = require('webpackbar')
+const webpack = require('webpack')
 // 根据相对路径获取绝对路径
 const resolvePath = (relativePath) => path.resolve(__dirname, relativePath)
 // HTML模板
@@ -96,11 +97,14 @@ const baseConfig = {
       basic: false, // 默认true，启用一个简单的日志报告器
       profile: false, // 默认false，启用探查器。
     }),
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(process.env),
+    }),
+    new webpack.ProvidePlugin({
+      React: 'react',
+    }),
   ],
 }
 module.exports = {
   baseConfig,
 }
-
-console.log('@@@@NODE_ENV', process.env.NODE_ENV)
-console.log('@@@@@BASE_ENV', process.env.BASE_ENV)
