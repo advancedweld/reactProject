@@ -7,11 +7,9 @@
 import Dashboard from 'App/Dashboard'
 
 function App() {
-  console.log('🚀 ~ file: index.tsx:5 ~ App ~ App', App)
   return (
     <div id='App'>
       <Dashboard />
-      {/* <>{routeObj.component}</> */}
     </div>
   )
 }

@@ -8,22 +8,21 @@
  */
 // webpack的入口文件：src/index.tsx
 
-import React from 'react'
+import { createRoot } from 'react-dom/client'
 import ReactDOM from 'react-dom'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, RouterProvider } from 'react-router-dom'
 import './index.less'
 import logo from './assets/logo.svg'
-
-import { createRoot } from 'react-dom/client'
-
+import { router } from './routes'
 import App from './App/index'
 
 function AppCotainer() {
   return (
     <div className='root'>
-      <BrowserRouter>
-        <App></App>
-      </BrowserRouter>
+      <RouterProvider router={router} />
+      {/* <BrowserRouter> */}
+      {/* <App></App> */}
+      {/* </BrowserRouter> */}
     </div>
   )
 }

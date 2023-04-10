@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import {
+  Outlet,
   useLocation,
   Routes,
   Route,
@@ -8,49 +9,25 @@ import {
   useNavigate,
 } from 'react-router-dom'
 import { Button, Card, Space } from 'antd'
+
+import ButtonLink from './ButtonLink'
+import LinkArea from './LinkArea'
 import routes from '../routes'
 
-function App() {
+function Dashboard() {
   const location = useLocation()
-  const navgate = useNavigate()
-  const [routeObj] = routes
+
   useEffect(() => {
     console.log('location is -----', location)
   })
 
   return (
-    <div className='App'>
+    <div className='Dashboard'>
       <h1> hello React </h1>
-      <Link to='/group'> group11</Link>
-      <Link to='/about'> about11</Link>
-
-      <Card title='a标签1111'>
-        <Space>
-          <a href='/about'> about11</a>
-          <a href='/about' onClick={() => {}}>
-            about11(preventdefault)
-          </a>
-          <a href='/group'> group</a>
-        </Space>
-      </Card>
-
-      <Card>
-        <Space>
-          <Button
-            type='primary'
-            onClick={() => {
-              navgate('/about')
-            }}>
-            about
-          </Button>
-          <Button
-            onClick={() => {
-              navgate('/group')
-            }}>
-            group
-          </Button>
-        </Space>
-      </Card>
+      <LinkArea />
+      <ButtonLink />
+      <Outlet />
+      <h1> ============分界线=================</h1>
       <Routes>
         {routes.map((route) => (
           <Route
@@ -65,4 +42,4 @@ function App() {
   )
 }
 
-export default App
+export default Dashboard
