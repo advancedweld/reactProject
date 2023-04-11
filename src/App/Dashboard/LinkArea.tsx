@@ -18,7 +18,9 @@ function LinkArea() {
         <h1>Link组件</h1>
         <Link to='/'> 首页</Link>
         <Link to='/group'> group</Link>
-        <Link to='/about'> about</Link>
+        <Link to='/about' target='_blink'>
+          about
+        </Link>
       </Card>
     </>
   )
