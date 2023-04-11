@@ -1,0 +1,12 @@
+/*
+ * @Author: xiangshangzhi
+ * @Date: 2022-09-09 11:37:36
+ * @FilePath: /webpackProject/src/App/views/Login/style.module.css
+ */
+.wrap {
+  border: 1px solid red;
+}
+
+:global(.xiang) {
+  border: 1px solid red;
+}

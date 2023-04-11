@@ -8,6 +8,8 @@ const resolvePath = (relativePath) => path.resolve(__dirname, relativePath)
 // HTML模板
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const BundleAnalyzerPlugin =
+  require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 // 基础配置
 const baseConfig = {
   // 入口文件
@@ -19,6 +21,7 @@ const baseConfig = {
     filename: '[name].bundle.js',
     /* 是否输出es6模块 */
     // module: true,
+    clean: true,
   },
 
   // experiments: {
@@ -82,6 +85,27 @@ const baseConfig = {
       },
     ],
   },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      minSize: 0,
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+          reuseExistingChunk: true,
+          name: 'vendors',
+        },
+
+        [`vendor_antd`]: {
+          name: `vendor_antd`,
+          chunks: 'all',
+          test: /[\\/]node_modules[\\/](antd|react-select|react-dropzone|recharts|react-copy-to-clipboard|numeral|reselect|react-click-outside|rc-.+|xt-design|@ant-design)[\\/]/,
+          priority: 18,
+        },
+      },
+    },
+  },
   // 插件的处理
   plugins: [
     new HtmlWebpackPlugin({
@@ -103,6 +127,7 @@ const baseConfig = {
     new webpack.ProvidePlugin({
       React: 'react',
     }),
+    new BundleAnalyzerPlugin(),
   ],
 }
 module.exports = {

@@ -4,12 +4,14 @@
  * @FilePath: /webpackProject/src/App/routes/index.tsx
  */
 
-import React from 'react'
+import { lazy, Suspense } from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 import Login from '@view/Login'
 import Group from '@view/Group'
 import About from '@view/About'
 import App from '../App'
+
+const LazyComponent = lazy(() => import('@view/LazyComponent'))
 
 const router = createBrowserRouter([
   {
@@ -29,6 +31,14 @@ const router = createBrowserRouter([
       {
         path: '/about',
         element: <About />,
+      },
+      {
+        path: '/lazy',
+        element: (
+          <Suspense>
+            <LazyComponent />
+          </Suspense>
+        ),
       },
     ],
   },

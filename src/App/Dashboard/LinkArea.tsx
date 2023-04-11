@@ -29,6 +29,7 @@ function LinkArea() {
               <Link to='/about' target='_blank'>
                 about(_blank新开页面)
               </Link>
+              <Link to='/lazy'>lazy</Link>
             </Space>
           </div>
         </Space>
