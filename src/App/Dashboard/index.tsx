@@ -23,9 +23,12 @@ function Dashboard() {
 
   return (
     <div className='Dashboard'>
-      <h1> hello React </h1>
-      <LinkArea />
-      <ButtonLink />
+      <h3> hello React </h3>
+      <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+        <LinkArea />
+        <ButtonLink />
+      </div>
+
       <Outlet />
       <h1> ============分界线=================</h1>
       <Routes>
