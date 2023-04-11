@@ -47,6 +47,8 @@ module.exports = {
 
     '@typescript-eslint/no-empty-function': 'off',
     'no-shadow': 'off',
+
+    'no-underscore-dangle': 0,
     // "@typescript-eslint/no-var-requires": "off"
     'import/extensions': [
       'error',

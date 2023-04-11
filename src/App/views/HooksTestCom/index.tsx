@@ -2,15 +2,18 @@ import React, { useState, useEffect } from 'react'
 import { Radio, RadioChangeEvent } from 'antd'
 
 import Latest from './useLatest'
+import Hover from './useHover'
 
 type IHOOKS = keyof typeof MAP_COM
 
 const MAP_COM = {
   USELATEST: (props: any) => <Latest {...props}></Latest>,
+  Hover: (props: any) => <Hover {...props}></Hover>,
   OTHER: () => <p>不存在。。。</p>,
 }
 const options = [
   { label: 'USELATEST', value: 'USELATEST' },
+  { label: 'Hover', value: 'Hover' },
   { label: 'OTHER', value: 'OTHER' },
 ]
 
