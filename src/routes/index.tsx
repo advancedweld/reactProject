@@ -9,6 +9,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import Login from '@view/Login'
 import Group from '@view/Group'
 import About from '@view/About'
+import Hooks from '@view/HooksTestCom'
 import App from '../App'
 
 const router = createBrowserRouter([
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: '/about',
         element: <About />,
+      },
+      {
+        path: '/hooks',
+        element: <Hooks />,
       },
     ],
   },

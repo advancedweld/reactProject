@@ -30,7 +30,7 @@ function Dashboard() {
       </div>
 
       <Outlet />
-      <h1> ============分界线=================</h1>
+      {/* <h1> ============分界线=================</h1>
       <Routes>
         {routes.map((route) => (
           <Route
@@ -38,9 +38,7 @@ function Dashboard() {
             key={route.path}
             element={route.component}></Route>
         ))}
-      </Routes>
-
-      {/* <>{routeObj.component}</> */}
+      </Routes> */}
     </div>
   )
 }
