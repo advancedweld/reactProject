@@ -4,6 +4,7 @@
   "description": "第一个项目 20220716",
   "main": "index.js",
   "scripts": {
+    "dev": "cross-env NODE_ENV=development BASE_ENV=development webpack serve -c webpack/webpack.config.dev.js",
     "dev:dev": "cross-env NODE_ENV=development BASE_ENV=development webpack serve -c webpack/webpack.config.dev.js",
     "dev:test": "cross-env NODE_ENV=development BASE_ENV=test webpack serve -c webpack/webpack.config.dev.js",
     "dev:pre": "cross-env NODE_ENV=development BASE_ENV=pre webpack serve -c webpack/webpack.config.dev.js",
