@@ -1,18 +1,10 @@
 import { useEffect } from 'react'
-import {
-  Outlet,
-  useLocation,
-  Routes,
-  Route,
-  RouteProps,
-  Link,
-  useNavigate,
-} from 'react-router-dom'
-import { Button, Card, Space } from 'antd'
+import { Outlet, useLocation } from 'react-router-dom'
 
 import ButtonLink from './ButtonLink'
 import LinkArea from './LinkArea'
-import routes from '../routes'
+
+import styles from './style.module.css'
 
 function Dashboard() {
   const location = useLocation()
@@ -29,7 +21,10 @@ function Dashboard() {
         <ButtonLink />
       </div>
 
-      <Outlet />
+      <div className={styles.wrap}>
+        <Outlet />
+      </div>
+
       {/* <h1> ============分界线=================</h1>
       <Routes>
         {routes.map((route) => (

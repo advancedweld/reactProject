@@ -1,8 +1,17 @@
+/*
+ * @Author: xiangshangzhi xiangshangzhi@163.com
+ * @Date: 2023-04-15 22:21:55
+ * @LastEditors: xiangshangzhi xiangshangzhi@163.com
+ * @LastEditTime: 2023-04-18 20:49:16
+ * @FilePath: \webpackProject\src\App\views\HooksTestCom\useDenounceValue.tsx
+ * @Description: xiangshangzhi写的文件
+ *
+ */
 import React, { useEffect, useRef, useState } from 'react'
 
 export function useDenounce<T>(value: T, delay: Number) {
   const timerRef = useRef<Number>()
-  const [innerValue, setInnerValue] = useState<T>()
+  const [innerValue, setInnerValue] = useState<T>(value)
 
   useEffect(() => {
     if (timerRef.current) {
@@ -29,8 +38,9 @@ export function useDenounce<T>(value: T, delay: Number) {
 export default () => {
   const [count, setCount] = useState(0)
   const denouncedCount = useDenounce(count, 1000)
+
   return (
-    <div>
+    <div >
       <p>{`count is ${count}`}</p>
       <p>{`denouncedCount is ${denouncedCount}`}</p>
       <button onClick={() => setCount(count + 1)}>count++</button>
