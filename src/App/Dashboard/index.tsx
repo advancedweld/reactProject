@@ -1,3 +1,12 @@
+/*
+ * @Author: xiangshangzhi xiangshangzhi@163.com
+ * @Date: 2023-04-03 19:13:51
+ * @LastEditors: xiangshangzhi xiangshangzhi@163.com
+ * @LastEditTime: 2023-04-22 14:42:26
+ * @FilePath: \webpackProject\src\App\Dashboard\index.tsx
+ * @Description: xiangshangzhi写的文件
+ *
+ */
 import { useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 
@@ -9,9 +18,9 @@ import styles from './style.module.css'
 function Dashboard() {
   const location = useLocation()
 
-  useEffect(() => {
-    console.log('location is -----', location)
-  })
+  // useEffect(() => {
+  //   console.log('location is -----', location)
+  // })
 
   return (
     <div className='Dashboard'>
