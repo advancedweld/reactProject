@@ -1,6 +1,15 @@
+/*
+ * @Author: xiangshangzhi xiangshangzhi@163.com
+ * @Date: 2023-04-10 20:32:41
+ * @LastEditors: xiangshangzhi xiangshangzhi@163.com
+ * @LastEditTime: 2023-04-26 11:38:25
+ * @FilePath: \webpackProject\src\App\Dashboard\LinkArea.tsx
+ * @Description: xiangshangzhi写的文件
+ *
+ */
 import { useNavigate, Link } from 'react-router-dom'
 import { Button, Card, Space } from 'antd'
-import routes from '../routes'
+import { LOGIN, APP, GROUP, ABOUT, HOOKS } from 'routes/constant'
 
 function LinkArea() {
   return (
@@ -13,23 +22,23 @@ function LinkArea() {
           <div>
             <h3>a标签</h3>
             <Space>
-              <a href='/about'> about</a>
-              <a href='/about' onClick={() => {}}>
+              <a href={ABOUT}> about</a>
+              <a href={ABOUT} onClick={() => {}}>
                 about11(preventdefault)
               </a>
-              <a href='/group'> group</a>
+              <a href={GROUP}> group</a>
             </Space>
           </div>
 
           <div>
             <h3>Link组件</h3>
             <Space>
-              <Link to='/'> 首页</Link>
-              <Link to='/group'> group</Link>
-              <Link to='/about' target='_blank'>
+              <Link to={APP}> 首页</Link>
+              <Link to={GROUP}> group</Link>
+              <Link to={GROUP} target='_blank'>
                 about(_blank新开页面)
               </Link>
-              <Link to='/hooks'> hooks</Link>
+              <Link to={HOOKS}> hooks</Link>
             </Space>
           </div>
         </Space>
