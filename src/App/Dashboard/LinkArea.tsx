@@ -2,14 +2,14 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-10 20:32:41
  * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2023-04-26 11:38:25
+ * @LastEditTime: 2023-04-26 18:19:20
  * @FilePath: \webpackProject\src\App\Dashboard\LinkArea.tsx
  * @Description: xiangshangzhi写的文件
  *
  */
 import { useNavigate, Link } from 'react-router-dom'
 import { Button, Card, Space } from 'antd'
-import { LOGIN, APP, GROUP, ABOUT, HOOKS } from 'routes/constant'
+import { LOGIN, APP, GROUP, ABOUT, HOOKS, COMPONENT } from 'routes/constant'
 
 function LinkArea() {
   return (
@@ -36,9 +36,10 @@ function LinkArea() {
               <Link to={APP}> 首页</Link>
               <Link to={GROUP}> group</Link>
               <Link to={GROUP} target='_blank'>
-                about(_blank新开页面)
+                about(_blank)
               </Link>
               <Link to={HOOKS}> hooks</Link>
+              <Link to={COMPONENT}> 自定义组件</Link>
             </Space>
           </div>
         </Space>

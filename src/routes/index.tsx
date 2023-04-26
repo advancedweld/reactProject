@@ -9,10 +9,11 @@ import { createBrowserRouter } from 'react-router-dom'
 import Group from '@view/Group'
 import About from '@view/About'
 import Hooks from '@view/HooksTestCom'
+import CustomerComponents from '@view/Components'
 import App from '../App'
 
+import { LOGIN, APP, GROUP, ABOUT, HOOKS, COMPONENT } from './constant'
 
-import {LOGIN, APP, GROUP,ABOUT,HOOKS} from './constant'
 const Login = React.lazy(() => import('@view/Login'))
 const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: HOOKS,
         element: <Hooks />,
+      },
+      {
+        path: COMPONENT,
+        element: <CustomerComponents />,
       },
     ],
   },
