@@ -1,23 +1,19 @@
 import React, { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
+import { Button, Input } from 'antd'
 
 import style from './style.module.css'
 
 function Login() {
   const location = useLocation()
-  useEffect(() => {
-    console.log('@@location in login is -----', location)
-  })
-  return (
-    <>
-      <div className={style.wrap}>
-        <h1> group </h1>
-      </div>
 
-      {/* <div className="xiang">
-        <h1> login </h1>
-      </div> */}
-    </>
+  return (
+    <div className={style.wrap}>
+      <input value={'shuru'}></input>
+      <Button>按钮</Button>
+
+      <Input.Search value='搜索哈哈' prefix={<span>ttg</span>}></Input.Search>
+    </div>
   )
 }
 
