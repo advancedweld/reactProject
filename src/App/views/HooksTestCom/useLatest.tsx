@@ -1,3 +1,12 @@
+/*
+ * @Author: xiangshangzhi xiangshangzhi@163.com
+ * @Date: 2023-04-22 11:22:11
+ * @LastEditors: xiangshangzhi xiangshangzhi@163.com
+ * @LastEditTime: 2023-04-27 20:57:46
+ * @FilePath: \webpackProject\src\App\views\HooksTestCom\useLatest.tsx
+ * @Description: xiangshangzhi写的文件
+ *
+ */
 import React, { useState, useEffect, useRef } from 'react'
 import { useLatest } from 'ahooks'
 
@@ -32,7 +41,8 @@ export default () => {
       // setCount(latestCountRef.current + 1)
 
       /* 方案2 */
-      setCount(ref.current + 3)
+      // setCount(ref.current + 3)
+      setCount((count) => count + 3)
     }, 1000)
     return () => clearInterval(interval)
   }, [])
