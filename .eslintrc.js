@@ -9,6 +9,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:import/recommended',
     'plugin:@typescript-eslint/recommended',
+    /* 解决eslint和prettier冲突问题 */
     'plugin:prettier/recommended',
   ],
   parser: '@typescript-eslint/parser',
@@ -28,7 +29,7 @@ module.exports = {
     ],
     'class-methods-use-this': 'off',
     'no-param-reassign': 'off',
-    'no-unused-expressions': 'off',
+    'no-unused-expressions': 'error',
     'no-plusplus': 0,
     'no-restricted-syntax': 0,
     'consistent-return': 0,
@@ -48,6 +49,7 @@ module.exports = {
     '@typescript-eslint/no-empty-function': 'off',
     'no-shadow': 'off',
 
+    'no-var': 'error',
     'no-underscore-dangle': 0,
     // "@typescript-eslint/no-var-requires": "off"
     'import/extensions': [
