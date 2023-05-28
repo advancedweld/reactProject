@@ -2,15 +2,16 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
  * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2023-05-28 17:52:18
+ * @LastEditTime: 2023-05-28 18:00:05
  * @FilePath: \webpackProject\src\App\Dashboard\index.tsx
  * @Description: xiangshangzhi写的文件
  *
  */
 import { useEffect, useRef } from 'react'
 import { Outlet, useLocation, useNavigate, useRoutes } from 'react-router-dom'
-
 import { routes } from 'routes'
+
+import XMenu  from './Menu'
 import ButtonLink from './ButtonLink'
 import LinkArea from './LinkArea'
 
@@ -29,8 +30,8 @@ function Dashboard() {
   })
 
   const ele = useRoutes(routes)
-  console.log("🚀 ~ file: index.tsx:32 ~ Dashboard ~ ele:", ele)
-  
+  console.log('🚀 ~ file: index.tsx:32 ~ Dashboard ~ ele:', ele)
+
   return (
     <div className='Dashboard'>
       <h3
@@ -40,13 +41,17 @@ function Dashboard() {
         }}>
         登录
       </h3>
-      <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+
+      {/* <div style={{ display: 'flex', justifyContent: 'space-around' }}>
         <LinkArea />
         <ButtonLink />
-      </div>
+      </div> */}
 
       <div className={styles.wrap}>
-        <Outlet />
+        <XMenu></XMenu>
+        <div className={styles.content}>
+          <Outlet />
+        </div>
       </div>
     </div>
   )
