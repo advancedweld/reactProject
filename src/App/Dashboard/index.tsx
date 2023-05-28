@@ -2,14 +2,15 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
  * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2023-04-26 13:05:16
+ * @LastEditTime: 2023-05-28 17:20:41
  * @FilePath: \webpackProject\src\App\Dashboard\index.tsx
  * @Description: xiangshangzhi写的文件
  *
  */
 import { useEffect, useRef } from 'react'
-import { Outlet, useLocation, useNavigate } from 'react-router-dom'
+import { Outlet, useLocation, useNavigate, useRoutes } from 'react-router-dom'
 
+import { routes } from 'routes'
 import ButtonLink from './ButtonLink'
 import LinkArea from './LinkArea'
 
@@ -27,6 +28,9 @@ function Dashboard() {
     }
   })
 
+  const ele = useRoutes(routes)
+  console.log("🚀 ~ file: index.tsx:32 ~ Dashboard ~ ele:", ele)
+  
   return (
     <div className='Dashboard'>
       <h3

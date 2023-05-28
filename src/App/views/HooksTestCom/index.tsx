@@ -2,13 +2,17 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-22 11:22:11
  * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2023-04-27 19:40:06
+ * @LastEditTime: 2023-05-28 17:21:19
  * @FilePath: \webpackProject\src\App\views\HooksTestCom\index.tsx
  * @Description: xiangshangzhi写的文件
  *
  */
 import React, { useState, useEffect } from 'react'
+import { useRoutes } from 'react-router-dom'
+
 import { Radio, RadioChangeEvent } from 'antd'
+
+import { routes } from 'routes'
 
 import Latest from './useLatest'
 import Hover from './useHover'
@@ -42,6 +46,9 @@ export default () => {
   const onChange = (e: RadioChangeEvent) => {
     setCurHook(e.target.value)
   }
+
+  const ele = useRoutes(routes)
+  console.log('🚀 ~ file: index.tsx:51 ~ ele:', ele)
 
   return (
     <>

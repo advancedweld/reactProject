@@ -9,7 +9,9 @@ import {
 } from 'react-router-dom'
 import style from './style.module.css'
 
-function Login() {
+function About(props) {
+  console.log('🚀 ~ file: index.tsx:13 ~ About ~ props:', props)
+
   const location = useLocation()
   const nav = useNavigate()
   // const history = useHistory()
@@ -43,4 +45,4 @@ function Login() {
   )
 }
 
-export default Login
+export default About

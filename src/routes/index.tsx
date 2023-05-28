@@ -10,12 +10,21 @@ import Group from '@view/Group'
 import About from '@view/About'
 import Hooks from '@view/HooksTestCom'
 import CustomerComponents from '@view/Components'
+import NoPermission from '@view/NoPermission'
 import App from '../App'
 
-import { LOGIN, APP, GROUP, ABOUT, HOOKS, COMPONENT } from './constant'
+import {
+  LOGIN,
+  APP,
+  GROUP,
+  ABOUT,
+  HOOKS,
+  COMPONENT,
+  NOPERMISSION,
+} from './constant'
 
 const Login = React.lazy(() => import('@view/Login'))
-const router = createBrowserRouter([
+const routes = [
   {
     path: '/',
     element: (
@@ -55,5 +64,11 @@ const router = createBrowserRouter([
       },
     ],
   },
-])
-export { router }
+  {
+    path: '*',
+    element: <NoPermission />,
+  },
+]
+
+const router = createBrowserRouter(routes)
+export { routes, router }
