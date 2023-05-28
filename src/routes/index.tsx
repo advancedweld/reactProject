@@ -47,6 +47,10 @@ const routes = [
     // errorElement: <ErrorPage />,
     children: [
       {
+        path: '',
+        element: <h1>APP首页</h1>,
+      },
+      {
         path: GROUP,
         element: <Group />,
       },

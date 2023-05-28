@@ -2,7 +2,7 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
  * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2023-05-28 17:20:41
+ * @LastEditTime: 2023-05-28 17:52:18
  * @FilePath: \webpackProject\src\App\Dashboard\index.tsx
  * @Description: xiangshangzhi写的文件
  *
@@ -38,7 +38,7 @@ function Dashboard() {
         style={{
           cursor: 'pointer',
         }}>
-        hello React
+        登录
       </h3>
       <div style={{ display: 'flex', justifyContent: 'space-around' }}>
         <LinkArea />
