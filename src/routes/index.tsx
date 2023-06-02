@@ -22,6 +22,10 @@ import {
   HOOKS,
   COMPONENT,
   NETREQUEST,
+  FRUIT,
+  BANANA,
+  APPLE,
+  ORANGE,
   NOPERMISSION,
 } from './constant'
 
@@ -52,7 +56,7 @@ const routes = [
     // errorElement: <ErrorPage />,
     children: [
       {
-        path: '',
+        path: '/app/home',
         label: '首页',
         element: <h1>APP首页</h1>,
       },
@@ -80,6 +84,58 @@ const routes = [
         path: ABOUT,
         label: 'ABOUT(切换页面拦截)',
         element: <About />,
+      },
+    ],
+  },
+  {
+    path: FRUIT,
+    label: '水果',
+    element: <App />,
+    // errorElement: <ErrorPage />,
+    children: [
+      {
+        path: `${FRUIT}/home`,
+        label: '首页',
+        element: <h1>水果首页</h1>,
+      },
+      {
+        path: BANANA,
+        label: 'banana',
+        element: <h1>香蕉</h1>,
+        children: [
+          {
+            path: `${BANANA}/list`,
+            label: '列表',
+            element: <h1>香蕉列表</h1>,
+          },
+          {
+            path: `${BANANA}/detail`,
+            label: '详情',
+            element: <h1>香蕉详情</h1>,
+          },
+        ],
+      },
+      {
+        path: APPLE,
+        label: 'apple',
+        element: <h1>苹果</h1>,
+      },
+      {
+        path: ORANGE,
+        label: 'orange',
+        element: <h1>橘子</h1>,
+      },
+    ],
+  },
+  {
+    path: '/car/home',
+    label: '汽车',
+    element: <App />,
+    children: [
+      {
+        path: '/car/home',
+        label: '首页',
+        element: <h1>汽车首页</h1>,
       },
     ],
   },

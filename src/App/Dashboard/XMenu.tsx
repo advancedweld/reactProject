@@ -2,7 +2,7 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
  * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2023-06-02 11:22:18
+ * @LastEditTime: 2023-06-02 15:12:57
  * @FilePath: \webpackProject\src\App\Dashboard\XMenu.tsx
  * @Description: xiangshangzhi写的文件
  *
@@ -32,10 +32,14 @@ type Route = {
 const getItem = (routes: Route[]): MenuItem[] => {
   return routes.map((route, index) => {
     const { path, label = 'label', children } = route
+    const _children =
+      children?.length && children?.length > 1
+        ? getItem(children as Route[])
+        : undefined
     return {
-      key: index,
+      key: path,
       path,
-      children: children ? getItem(children) : undefined,
+      children: _children,
       label: <Link to={path}>{label}</Link>,
     }
   })
@@ -48,6 +52,8 @@ const XMenu: React.FC = () => {
   const [openKeys, setOpenKeys] = useState(['sub1'])
 
   const onOpenChange: MenuProps['onOpenChange'] = (keys) => {
+    console.log('🚀 ~ file: XMenu.tsx:74 ~ keys:', keys)
+
     const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1)
     if (rootSubmenuKeys.indexOf(latestOpenKey!) === -1) {
       setOpenKeys(keys)
@@ -56,16 +62,19 @@ const XMenu: React.FC = () => {
     }
   }
 
+  const items = getItem(routes)
+  console.log('🚀 ~ file: XMenu.tsx:62 ~ items:', items)
+
   return (
     <Menu
       mode='inline'
       theme='dark'
-      openKeys={openKeys}
+      // openKeys={openKeys}
       onOpenChange={onOpenChange}
       style={{ width: 256, height: '100%' }}
       // style={{ width: 256, minHeight: 700 }}
 
-      items={getItem(routes)}
+      items={items}
     />
   )
 }
