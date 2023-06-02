@@ -8,6 +8,7 @@ import React, { Suspense } from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 import Group from '@view/Group'
 import About from '@view/About'
+import NetRequest from '@view/NetRequest'
 import Hooks from '@view/HooksTestCom'
 import CustomerComponents from '@view/Components'
 import NoPermission from '@view/NoPermission'
@@ -20,6 +21,7 @@ import {
   ABOUT,
   HOOKS,
   COMPONENT,
+  NETREQUEST,
   NOPERMISSION,
 } from './constant'
 
@@ -53,6 +55,11 @@ const routes = [
         path: '',
         label: '首页',
         element: <h1>APP首页</h1>,
+      },
+      {
+        path: NETREQUEST,
+        label: '网络请求',
+        element: <NetRequest />,
       },
       {
         path: GROUP,
