@@ -30,16 +30,7 @@ import {
 } from './constant'
 
 const Login = React.lazy(() => import('@view/Login'))
-const routes = [
-  {
-    path: '/',
-    label: '登录',
-    element: (
-      <Suspense>
-        <Login />
-      </Suspense>
-    ),
-  },
+export const baseRoutes = [
   {
     path: LOGIN,
     label: '登录',
@@ -140,11 +131,29 @@ const routes = [
     ],
   },
   {
+    // path: '*',
+    // label: '无权限页面',
+    // element: <NoPermission />,
+  },
+]
+
+const routes = [
+  {
+    path: '/',
+    label: '登录',
+    element: (
+      <Suspense>
+        <Login />
+      </Suspense>
+    ),
+  },
+
+  ...baseRoutes,
+  {
     path: '*',
     label: '无权限页面',
     element: <NoPermission />,
   },
 ]
-
 const router = createBrowserRouter(routes)
 export { routes, router }

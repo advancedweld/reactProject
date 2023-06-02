@@ -2,7 +2,7 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
  * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2023-06-02 15:12:57
+ * @LastEditTime: 2023-06-02 15:18:48
  * @FilePath: \webpackProject\src\App\Dashboard\XMenu.tsx
  * @Description: xiangshangzhi写的文件
  *
@@ -19,7 +19,7 @@ import React, { useState } from 'react'
 
 import { useNavigate, Link } from 'react-router-dom'
 
-import { routes } from 'routes'
+import { baseRoutes } from 'routes'
 
 type MenuItem = Required<MenuProps>['items'][number]
 
@@ -62,7 +62,7 @@ const XMenu: React.FC = () => {
     }
   }
 
-  const items = getItem(routes)
+  const items = getItem(baseRoutes)
   console.log('🚀 ~ file: XMenu.tsx:62 ~ items:', items)
 
   return (
