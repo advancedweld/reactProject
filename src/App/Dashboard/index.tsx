@@ -2,7 +2,7 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
  * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2023-05-28 18:00:05
+ * @LastEditTime: 2023-06-02 11:18:10
  * @FilePath: \webpackProject\src\App\Dashboard\index.tsx
  * @Description: xiangshangzhi写的文件
  *
@@ -11,7 +11,7 @@ import { useEffect, useRef } from 'react'
 import { Outlet, useLocation, useNavigate, useRoutes } from 'react-router-dom'
 import { routes } from 'routes'
 
-import XMenu  from './Menu'
+import XMenu from './XMenu'
 import ButtonLink from './ButtonLink'
 import LinkArea from './LinkArea'
 
@@ -34,14 +34,17 @@ function Dashboard() {
 
   return (
     <div className='Dashboard'>
-      <h3
-        onClick={() => nav('/')}
-        style={{
-          cursor: 'pointer',
-        }}>
-        登录
-      </h3>
+      <div className={styles.header}>
+        <h3
+          onClick={() => nav('/')}
+          style={{
+            cursor: 'pointer',
+          }}>
+          登录
+        </h3>
+      </div>
 
+      {/* 标签和按钮跳转 */}
       {/* <div style={{ display: 'flex', justifyContent: 'space-around' }}>
         <LinkArea />
         <ButtonLink />

@@ -2,8 +2,8 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
  * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2023-05-28 18:05:47
- * @FilePath: \webpackProject\src\App\Dashboard\Menu.tsx
+ * @LastEditTime: 2023-06-02 11:22:18
+ * @FilePath: \webpackProject\src\App\Dashboard\XMenu.tsx
  * @Description: xiangshangzhi写的文件
  *
  */
@@ -17,46 +17,29 @@ import type { MenuProps } from 'antd'
 import { Menu } from 'antd'
 import React, { useState } from 'react'
 
+import { useNavigate, Link } from 'react-router-dom'
+
+import { routes } from 'routes'
+
 type MenuItem = Required<MenuProps>['items'][number]
 
-function getItem(
-  label: React.ReactNode,
-  key: React.Key,
-  icon?: React.ReactNode,
-  children?: MenuItem[],
-  type?: 'group',
-): MenuItem {
-  return {
-    key,
-    icon,
-    children,
-    label,
-    type,
-  } as MenuItem
+type Route = {
+  path: string
+  element: React.ReactNode
+  label: string
+  children?: Route[]
 }
-
-const items: MenuItem[] = [
-  getItem('Navigation One', 'sub1', <MailOutlined />, [
-    getItem('Option 1', '1'),
-    getItem('Option 2', '2'),
-    getItem('Option 3', '3'),
-    getItem('Option 4', '4'),
-  ]),
-  getItem('Navigation Two', 'sub2', <AppstoreOutlined />, [
-    getItem('Option 5', '5'),
-    getItem('Option 6', '6'),
-    getItem('Submenu', 'sub3', null, [
-      getItem('Option 7', '7'),
-      getItem('Option 8', '8'),
-    ]),
-  ]),
-  getItem('Navigation Three', 'sub4', <SettingOutlined />, [
-    getItem('Option 9', '9'),
-    getItem('Option 10', '10'),
-    getItem('Option 11', '11'),
-    getItem('Option 12', '12'),
-  ]),
-]
+const getItem = (routes: Route[]): MenuItem[] => {
+  return routes.map((route, index) => {
+    const { path, label = 'label', children } = route
+    return {
+      key: index,
+      path,
+      children: children ? getItem(children) : undefined,
+      label: <Link to={path}>{label}</Link>,
+    }
+  })
+}
 
 // submenu keys of first level
 const rootSubmenuKeys = ['sub1', 'sub2', 'sub4']
@@ -76,10 +59,13 @@ const XMenu: React.FC = () => {
   return (
     <Menu
       mode='inline'
+      theme='dark'
       openKeys={openKeys}
       onOpenChange={onOpenChange}
-      style={{ width: 256 }}
-      items={items}
+      style={{ width: 256, height: '100%' }}
+      // style={{ width: 256, minHeight: 700 }}
+
+      items={getItem(routes)}
     />
   )
 }

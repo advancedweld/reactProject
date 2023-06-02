@@ -27,6 +27,7 @@ const Login = React.lazy(() => import('@view/Login'))
 const routes = [
   {
     path: '/',
+    label: '登录',
     element: (
       <Suspense>
         <Login />
@@ -35,6 +36,7 @@ const routes = [
   },
   {
     path: LOGIN,
+    label: '登录',
     element: (
       <Suspense>
         <Login />
@@ -43,33 +45,40 @@ const routes = [
   },
   {
     path: APP,
+    label: 'app',
     element: <App />,
     // errorElement: <ErrorPage />,
     children: [
       {
         path: '',
+        label: '首页',
         element: <h1>APP首页</h1>,
       },
       {
         path: GROUP,
+        label: 'GROUP',
         element: <Group />,
       },
       {
-        path: ABOUT,
-        element: <About />,
-      },
-      {
         path: HOOKS,
+        label: 'HOOKS',
         element: <Hooks />,
       },
       {
         path: COMPONENT,
+        label: '自定义组件',
         element: <CustomerComponents />,
+      },
+      {
+        path: ABOUT,
+        label: 'ABOUT(切换页面拦截)',
+        element: <About />,
       },
     ],
   },
   {
     path: '*',
+    label: '无权限页面',
     element: <NoPermission />,
   },
 ]
