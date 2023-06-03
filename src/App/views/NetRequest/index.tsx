@@ -20,6 +20,9 @@ function NetRequest() {
           <Button type='primary' onClick={fetchRequest}>
             发起请求
           </Button>
+          <Button type='primary' onClick={fetchRequest}>
+            再来一个请求sss
+          </Button>
         </Space>
       </div>
     </>

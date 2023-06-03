@@ -29,6 +29,17 @@ import {
   NOPERMISSION,
 } from './constant'
 
+const lazyLoad = (
+  importModule: () => Promise<{ default: React.ComponentType<any> }>,
+) => {
+  const Ele = React.lazy(importModule)
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Ele />
+    </Suspense>
+  )
+}
+
 const Login = React.lazy(() => import('@view/Login'))
 const baseRoutes = [
   {
@@ -59,7 +70,8 @@ const baseRoutes = [
       {
         path: GROUP,
         label: 'GROUP',
-        element: <Group />,
+        element: lazyLoad(() => import('@view/Group')),
+        // element: <Group />,
       },
       {
         path: HOOKS,

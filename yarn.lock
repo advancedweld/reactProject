@@ -1920,11 +1920,6 @@ amdefine@>=0.0.4:
   resolved "https://registry.npmmirror.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
   integrity sha512-S2Hw0TtNkMJhIabBwIojKL9YHO5T0n5eNqWJ7Lrlel/zDbftQpxpapi8tZs3X1HWa+u+QeydGmzzNU0m09+Rcg==
 
-an@^0.0.8:
-  version "0.0.8"
-  resolved "https://registry.npmmirror.com/an/-/an-0.0.8.tgz#c3c6f6fef82432a84e90a0398b46f307ecc8eadb"
-  integrity sha512-18qwQaen7UtxepvaGpzOXZECIj/akxEr0TaDLBzNc2CiQ6ZGZLRgowFpt7Gi0rQqqlTxPhmZNhQ6+uyRyIXBEA==
-
 ansi-html-community@^0.0.8:
   version "0.0.8"
   resolved "https://registry.npmmirror.com/ansi-html-community/-/ansi-html-community-0.0.8.tgz#69fbc4d6ccbe383f9736934ae34c3f8290f1bf41"
