@@ -46,6 +46,7 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-namespace': 'off', // 禁止使用自定义 TypeScript 模块和命名空间。
 
+    'import/no-named-as-default': 0,
     '@typescript-eslint/no-empty-function': 'off',
     'no-shadow': 'off',
 

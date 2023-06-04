@@ -2,12 +2,12 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-22 11:22:11
  * @LastEditors: engineMaster xiangshangzhi@gmail.com
- * @LastEditTime: 2023-06-04 17:03:04
+ * @LastEditTime: 2023-06-04 22:13:47
  * @FilePath: \webpackProject\src\App\views\HooksTestCom\index.tsx
  * @Description: xiangshangzhi写的文件
  *
  */
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useRoutes } from 'react-router-dom'
 
 import { Radio, RadioChangeEvent } from 'antd'
@@ -19,6 +19,7 @@ import Hover from './useHover'
 import ThrottleFn from './useThrotleFn'
 import DenounceValue from './useDenounceValue'
 import Count from './useCount'
+import GetVideo from './useGetVideo'
 
 type IHOOKS = keyof typeof MAP_COM
 
@@ -28,6 +29,7 @@ const MAP_COM = {
   ThrottleFn: (props: any) => <ThrottleFn {...props}></ThrottleFn>,
   DenounceValue: (props: any) => <DenounceValue {...props}></DenounceValue>,
   Count: (props: any) => <Count {...props}></Count>,
+  GetVideo: (props: any) => <GetVideo {...props}></GetVideo>,
   OTHER: () => <p>不存在。。。</p>,
 }
 const options = Object.keys(MAP_COM).map((key) => ({
