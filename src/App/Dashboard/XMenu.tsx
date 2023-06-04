@@ -1,8 +1,8 @@
 /*
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
- * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2023-06-02 15:24:08
+ * @LastEditors: engineMaster xiangshangzhi@gmail.com
+ * @LastEditTime: 2023-06-04 22:24:57
  * @FilePath: \webpackProject\src\App\Dashboard\XMenu.tsx
  * @Description: xiangshangzhi写的文件
  *
@@ -63,6 +63,7 @@ const XMenu: React.FC = () => {
   }
 
   const items = getItem(baseRoutes as Route[])
+  console.log('🚀 ~ file: XMenu.tsx:67 ~ baseRoutes:', baseRoutes)
   console.log('🚀 ~ file: XMenu.tsx:62 ~ items:', items)
 
   return (

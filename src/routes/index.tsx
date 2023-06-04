@@ -142,11 +142,11 @@ const baseRoutes = [
       },
     ],
   },
-  {
-    // path: '*',
-    // label: '无权限页面',
-    // element: <NoPermission />,
-  },
+  // {
+  //   path: '*',
+  //   label: '无权限页面',
+  //   element: <NoPermission />,
+  // },
 ]
 
 const routes = [

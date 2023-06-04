@@ -64,6 +64,8 @@ module.exports = {
         tsx: 'never',
       },
     ],
+
+    'import/no-cycle': 'off',
     // "no-var": "error", // 要求使用 let 或 const 而不是 var
     // "no-multiple-empty-lines": ["error", { max: 1 }], // 不允许多个空行
     // "no-use-before-define": "off", // 禁止在 函数/类/变量 定义之前使用它们
