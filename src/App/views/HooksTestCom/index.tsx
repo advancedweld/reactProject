@@ -1,8 +1,8 @@
 /*
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-22 11:22:11
- * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2023-05-28 17:21:19
+ * @LastEditors: engineMaster xiangshangzhi@gmail.com
+ * @LastEditTime: 2023-06-04 17:03:04
  * @FilePath: \webpackProject\src\App\views\HooksTestCom\index.tsx
  * @Description: xiangshangzhi写的文件
  *
@@ -30,14 +30,10 @@ const MAP_COM = {
   Count: (props: any) => <Count {...props}></Count>,
   OTHER: () => <p>不存在。。。</p>,
 }
-const options = [
-  { label: 'USELATEST', value: 'USELATEST' },
-  { label: 'Hover', value: 'Hover' },
-  { label: 'ThrottleFn', value: 'ThrottleFn' },
-  { label: 'DenounceValue', value: 'DenounceValue' },
-  { label: 'Count', value: 'Count' },
-  { label: 'OTHER', value: 'OTHER' },
-]
+const options = Object.keys(MAP_COM).map((key) => ({
+  label: key,
+  value: key,
+}))
 
 export default () => {
   // const [curHook, setCurHook] = useState<IHOOKS>('USELATEST')
