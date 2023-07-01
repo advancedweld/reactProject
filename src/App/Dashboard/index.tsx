@@ -2,7 +2,7 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
  * @LastEditors: engineMaster xiangshangzhi@gmail.com
- * @LastEditTime: 2023-07-01 18:13:19
+ * @LastEditTime: 2023-07-01 18:17:49
  * @FilePath: \webpackProject\src\App\Dashboard\index.tsx
  * @Description: xiangshangzhi写的文件
  *
@@ -39,15 +39,16 @@ function Dashboard() {
   return (
     <div className='Dashboard'>
       <div className={styles.header}>
-        <Space></Space>
-        <h3
-          onClick={() => nav('/')}
-          style={{
-            cursor: 'pointer',
-          }}>
-          登录
-        </h3>
-        <Button onClick={logout}>退出</Button>
+        <Space>
+          <h3
+            onClick={() => nav('/')}
+            style={{
+              cursor: 'pointer',
+            }}>
+            登录
+          </h3>
+          <Button onClick={logout}>退出</Button>
+        </Space>
       </div>
 
       {/* 标签和按钮跳转 */}
