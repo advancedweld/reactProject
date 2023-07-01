@@ -5,11 +5,15 @@
  */
 
 import Dashboard from 'App/Dashboard'
+import AuthWrap from './auth'
 
 function App() {
+  const isLogin = false
   return (
     <div id='App'>
-      <Dashboard />
+      <AuthWrap>
+        <Dashboard />
+      </AuthWrap>
     </div>
   )
 }

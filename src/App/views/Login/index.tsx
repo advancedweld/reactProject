@@ -1,26 +1,44 @@
 /*
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
- * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2023-04-26 13:40:30
+ * @LastEditors: engineMaster xiangshangzhi@gmail.com
+ * @LastEditTime: 2023-07-01 18:08:36
  * @FilePath: \webpackProject\src\App\views\Login\index.tsx
  * @Description: xiangshangzhi写的文件
  *
  */
 import React, { useEffect } from 'react'
+import { Button } from 'antd'
+
 import { useLocation, Link } from 'react-router-dom'
 import { LOGIN, APP, GROUP, ABOUT, HOOKS } from 'routes/constant'
+
+import useUserProfileStore from 'store/userProfile'
 
 import style from './style.module.css'
 
 function Login() {
   const location = useLocation()
+  const loginStatus = useUserProfileStore((state) => state.isLogin)
+  const login = useUserProfileStore((state) => state.login)
+  const logout = useUserProfileStore((state) => state.logout)
+  console.log('@@@login is -----', loginStatus)
   useEffect(() => {
     console.log('@@location in login is -----', location)
   })
   return (
     <>
       <div className={style.wrap}>
+        {loginStatus ? (
+          <>
+            <span>已登陆</span> <Button onClick={logout}>退出</Button>
+          </>
+        ) : (
+          <>
+            <span>请登陆</span>
+            <Button onClick={login}>登录</Button>
+          </>
+        )}
         <h1> login </h1>
         <Link to={APP}> 首页</Link>
       </div>
