@@ -3,7 +3,7 @@ import { Configuration, OpenAIApi } from 'openai'
 /* GPT KEY */
 const GPT_KEY = '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'
 
-const GPT_KEY_ZHY = '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'
+const GPT_KEY_ZHY = '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'
 const ORGANAZITION = 'org-710rWrUjqW0hgrsoSdY5baXh'
 
 const configuration = new Configuration({
@@ -24,7 +24,7 @@ const requestGpt = async (requestStr: string) => {
   const response = await openai.createCompletion({
     model: 'text-davinci-003',
     prompt: requestStr,
-    // max_tokens: 7,
+    max_tokens: 2000,
     temperature: 0,
   })
   return response

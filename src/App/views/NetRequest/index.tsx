@@ -14,12 +14,14 @@ function NetRequest() {
 
   const [requestStr, setRequestStr] = React.useState('')
   const [responseStr, setResponseStr] = React.useState('')
+  const [isLoading, setIsLoading] = React.useState(false)
 
   const onInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setRequestStr(e.target.value)
     console.log('@@@e.target.value is ----', e.target.value)
   }
   const onSendRequest = async () => {
+    setIsLoading(true)
     const response = await requestGpt(requestStr)
     console.log('@@@response is ----', response)
     const { data } = response
@@ -27,6 +29,7 @@ function NetRequest() {
     setResponseStr((prev) => `${prev}${res}`)
     /* 清空请求框 */
     setRequestStr('')
+    setIsLoading(false)
   }
   return (
     <>
@@ -54,7 +57,7 @@ function NetRequest() {
               placeholder='欢迎提问'
               value={requestStr}
               onChange={onInputChange}></Input.TextArea>
-            <Button type='primary' onClick={onSendRequest}>
+            <Button type='primary' onClick={onSendRequest} loading={isLoading}>
               发送
             </Button>
           </Space>
