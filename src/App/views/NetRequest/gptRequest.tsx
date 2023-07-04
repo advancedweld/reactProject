@@ -1,18 +1,18 @@
 import { Configuration, OpenAIApi } from 'openai'
 
 /* GPT KEY */
-const GPT_KEY = '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'
+const GPT_KEY = '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'
 
-const GPT_KEY_0618 = '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'
-
+const GPT_KEY_ZHY = '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'
 const ORGANAZITION = 'org-710rWrUjqW0hgrsoSdY5baXh'
 
 const configuration = new Configuration({
-  apiKey: GPT_KEY_0618,
+  // apiKey: GPT_KEY_0618,
+  apiKey: GPT_KEY_ZHY,
 })
 const openai = new OpenAIApi(configuration)
 
-const requestGpt = async () => {
+const requestGpt = async (requestStr: string) => {
   /* generate image */
   // const response = await openai.createImage({
   //   prompt: 'A cute baby sea otter',
@@ -23,11 +23,11 @@ const requestGpt = async () => {
   /* 完成 */
   const response = await openai.createCompletion({
     model: 'text-davinci-003',
-    prompt: 'Say this is a test',
-    max_tokens: 7,
+    prompt: requestStr,
+    // max_tokens: 7,
     temperature: 0,
   })
-  console.log(response)
+  return response
 }
 
 export { requestGpt }

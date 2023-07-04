@@ -1,8 +1,17 @@
 /*
  * @Author: xiangshangzhi
  * @Date: 2022-09-09 11:37:36
- * @FilePath: /webpackProject/src/App/views/Login/style.module.css
+ * @FilePath: \webpackProject\src\App\views\NetRequest\style.module.css
  */
 .wrap {
   /* border: 1px solid red; */
+  
+  width: 100%;
+}
+.gptWrap {
+  /* border: 1px solid red; */
+  width: 100%;
+  /* height: 100%; */
+  display: flex;
+  flex-direction: column;
 }

@@ -10,7 +10,8 @@
   padding: 8px;
   height: calc(100vh - 100px);
   .content {
-    padding: 8px;
+    padding-left: 8px;
+    width: 100%;
   }
 }
 
