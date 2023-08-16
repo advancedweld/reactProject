@@ -1,7 +1,7 @@
 /*
  * @Author: xiangshangzhi
  * @Date: 2022-12-19 13:01:28
- * @FilePath: \webpackProject\src\App\auth\index.tsx
+ * @FilePath: \reactProject\src\App\auth\index.tsx
  */
 
 import { Navigate, useLocation } from 'react-router-dom'
@@ -14,6 +14,7 @@ function AuthWrap(props) {
   console.log('@@@@@location', location)
   const { children } = props
 
-  return <>{loginStatus ? children : <Navigate to='/login' />}</>
+  // return <>{loginStatus ? children : <Navigate to='/login' />}</>
+  return <>{children }</>
 }
 export default AuthWrap

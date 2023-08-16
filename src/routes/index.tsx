@@ -1,7 +1,7 @@
 /*
  * @Author: xiangshangzhi
  * @Date: 2022-07-28 12:50:51
- * @FilePath: \webpackProject\src\routes\index.tsx
+ * @FilePath: \reactProject\src\routes\index.tsx
  */
 
 import React, { Suspense } from 'react'
@@ -12,6 +12,7 @@ import NetRequest from '@view/NetRequest'
 import Hooks from '@view/HooksTestCom'
 import CustomerComponents from '@view/Components'
 import NoPermission from '@view/NoPermission'
+import ImageEditor from '@view/ImageEditor'
 import App from '../App'
 
 import {
@@ -127,6 +128,18 @@ const baseRoutes = [
         path: ORANGE,
         label: 'orange',
         element: <h1>橘子</h1>,
+      },
+    ],
+  },
+  {
+    path: '/image-editor/home',
+    label: '图片编辑器',
+    element: <App />,
+    children: [
+      {
+        path: '/image-editor/home',
+        label: '首页',
+        element: <ImageEditor />,
       },
     ],
   },
