@@ -1,12 +1,16 @@
 /*
  * @Author: xiangshangzhi
  * @Date: 2022-09-09 11:37:36
- * @FilePath: /webpackProject/src/App/views/Login/style.module.css
+ * @FilePath: \reactProject\src\App\views\ImageEditor\style.module.css
  */
 .wrap {
   border: 1px solid red;
+  .canvasWrap{
+    min-height: 400px;
+    background-color: aqua;
+  }
 }
 
-:global(.xiang) {
+.stageWrap {
   border: 1px solid red;
 }
