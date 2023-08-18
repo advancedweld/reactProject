@@ -8,7 +8,6 @@ import {
   Text,
   Line,
 } from 'react-konva'
-import Konva from 'konva'
 
 import KonvaImage, { ImagePosRef } from './KonvaImage'
 import style from '../style.module.css'
@@ -21,11 +20,14 @@ type Line = {
   tool: string
 }
 const CanvasArea: React.FC<Iprops> = ({ imgUrl }) => {
-  const stageRef = React.useRef<Konva.Stage>(null)
+  // const stageRef = React.useRef<Konva.Stage>(null)
   const posRef = React.useRef<ImagePosRef>(null)
   const [tool, setTool] = React.useState('pen')
   const [lines, setLines] = React.useState<Line[]>([])
   const isDrawing = React.useRef(false)
+
+  const history = React.useRef<Line[][]>([])
+  const historyIndex = React.useRef(-1)
 
   const handleMouseDown = (e: any) => {
     const points = e.target.getStage().getPointerPosition()
@@ -36,6 +38,7 @@ const CanvasArea: React.FC<Iprops> = ({ imgUrl }) => {
       return
     }
     isDrawing.current = true
+    console.log('@@@@@newLinesmousedown', lines)
     setLines([...lines, { tool, points: [points.x, points.y] }])
   }
   const handleMouseMove = (e: any) => {
@@ -49,31 +52,46 @@ const CanvasArea: React.FC<Iprops> = ({ imgUrl }) => {
     if (point.x < posX || point.x > posX + size.width) {
       return
     }
-    const lastLine = lines.pop()
+    const lastLine = lines[lines.length - 1]
     if (lastLine) {
       lastLine.points = lastLine.points.concat([point.x, point.y])
-      const newLines = [...lines, lastLine]
+      const newLines = lines.slice(0, lines.length - 1).concat([lastLine])
+
+      history.current = history.current
+        .slice(0, historyIndex.current + 1)
+        .concat(newLines)
+      historyIndex.current = history.current.length - 1
+      console.log('@@@@@history', history.current)
+      console.log('@@@@@newLines', newLines)
       setLines(newLines)
     }
   }
-
   const handleMouseUp = () => {
     isDrawing.current = false
   }
 
-  useEffect(() => {
-    console.log('@@@@@line', lines)
-  }, [lines])
-
-  useEffect(() => {
-    console.log('@@@@@posRef.current', posRef.current)
-  }, [posRef.current])
+  const handleUndo = () => {
+    const index = historyIndex.current - 1
+    console.log('@@@@@undo', index)
+    if (index >= 0) {
+      historyIndex.current = index
+      setLines(history.current[index])
+    }
+  }
+  const handleRedo = () => {
+    const index = historyIndex.current + 1
+    console.log('@@@@@redo', index)
+    if (index < history.current.length) {
+      historyIndex.current = index
+      setLines(history.current[index])
+    }
+  }
   return (
     <div className={style.stageWrap}>
       <KonvaStage
         height={400}
         width={800}
-        ref={stageRef}
+        // ref={stageRef}
         onMouseDown={handleMouseDown}
         onMousemove={handleMouseMove}
         onMouseup={handleMouseUp}>
@@ -91,6 +109,8 @@ const CanvasArea: React.FC<Iprops> = ({ imgUrl }) => {
         </Layer>
         <Layer>
           <Text text='Just start drawing' x={5} y={30} />
+          <Text text='undo' x={5} y={50} onClick={handleUndo} />
+          <Text text='redo' x={5} y={70} onClick={handleRedo} />
           {lines.map((line, i) => (
             <Line
               key={i}
