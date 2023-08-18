@@ -5,7 +5,7 @@
  */
 .wrap {
   border: 1px solid red;
-  .canvasWrap{
+  .canvasWrap {
     min-height: 400px;
     background-color: aqua;
   }
@@ -13,4 +13,9 @@
 
 .stageWrap {
   border: 1px solid red;
+}
+
+.uploadWrap {
+  border: 1px solid red;
+  height: 100px;
 }
