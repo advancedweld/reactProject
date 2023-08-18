@@ -40,7 +40,10 @@ function ImageEditor() {
             ref={uploadRef}
             type='file'
             onChange={(e) => {
-              setImgFile(e.target.files?.[0])
+              const file = e.target.files?.[0]
+              if (file) {
+                setImgFile(file)
+              }
             }}
             style={{ display: 'none' }}
           />

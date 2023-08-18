@@ -10,37 +10,51 @@ import {
 } from 'react-konva'
 import Konva from 'konva'
 
-import KonvaImage from './KonvaImage'
+import KonvaImage, { ImagePosRef } from './KonvaImage'
 import style from '../style.module.css'
 
 type Iprops = {
   imgUrl: string
 }
+type Line = {
+  points: number[]
+  tool: string
+}
 const CanvasArea: React.FC<Iprops> = ({ imgUrl }) => {
   const stageRef = React.useRef<Konva.Stage>(null)
+  const posRef = React.useRef<ImagePosRef>(null)
   const [tool, setTool] = React.useState('pen')
-  const [lines, setLines] = React.useState([])
+  const [lines, setLines] = React.useState<Line[]>([])
   const isDrawing = React.useRef(false)
 
-  const handleMouseDown = (e) => {
+  const handleMouseDown = (e: any) => {
+    const points = e.target.getStage().getPointerPosition()
+    /** 如果不在图片范围内就不画线 */
+    if (!posRef.current) return
+    const { size, posX } = posRef.current || {}
+    if (points.x < posX || points.x > posX + size.width) {
+      return
+    }
     isDrawing.current = true
-    const pos = e.target.getStage().getPointerPosition()
-    setLines([...lines, { tool, points: [pos.x, pos.y] }])
+    setLines([...lines, { tool, points: [points.x, points.y] }])
   }
-  const handleMouseMove = (e) => {
-    // no drawing - skipping
-    if (!isDrawing.current) {
+  const handleMouseMove = (e: any) => {
+    /** 没用画线，找不到图片层，直接退出 */
+    if (!isDrawing.current || !posRef.current) {
       return
     }
     const stage = e.target.getStage()
     const point = stage.getPointerPosition()
-    let lastLine = lines[lines.length - 1]
-    // add point
-    lastLine.points = lastLine.points.concat([point.x, point.y])
-
-    // replace last
-    lines.splice(lines.length - 1, 1, lastLine)
-    setLines(lines.concat())
+    const { size, posX } = posRef.current || {}
+    if (point.x < posX || point.x > posX + size.width) {
+      return
+    }
+    const lastLine = lines.pop()
+    if (lastLine) {
+      lastLine.points = lastLine.points.concat([point.x, point.y])
+      const newLines = [...lines, lastLine]
+      setLines(newLines)
+    }
   }
 
   const handleMouseUp = () => {
@@ -50,6 +64,10 @@ const CanvasArea: React.FC<Iprops> = ({ imgUrl }) => {
   useEffect(() => {
     console.log('@@@@@line', lines)
   }, [lines])
+
+  useEffect(() => {
+    console.log('@@@@@posRef.current', posRef.current)
+  }, [posRef.current])
   return (
     <div className={style.stageWrap}>
       <KonvaStage
@@ -59,11 +77,16 @@ const CanvasArea: React.FC<Iprops> = ({ imgUrl }) => {
         onMouseDown={handleMouseDown}
         onMousemove={handleMouseMove}
         onMouseup={handleMouseUp}>
-        <Layer>
-          {/* <Rect width={50} height={50} fill='red' />
-              <Circle x={200} y={200} stroke='black' radius={50} /> */}
+        <Layer name='image-layer'>
+          <Rect width={50} height={50} fill='red' />
+          <Circle x={200} y={200} stroke='black' radius={50} />
           {imgUrl && (
-            <KonvaImage url={imgUrl} stageWidth={800} stageHeight={400} />
+            <KonvaImage
+              url={imgUrl}
+              stageWidth={800}
+              stageHeight={400}
+              ref={posRef}
+            />
           )}
         </Layer>
         <Layer>
