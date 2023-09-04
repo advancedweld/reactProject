@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { Button } from 'antd'
-import CanvasArea from './components/CanvasArea'
+import CanvasArea from './components/konva/CanvasArea'
 
 import style from './style.module.css'
 
@@ -65,6 +65,7 @@ function ImageEditor() {
         </div>
 
         <div className={style.canvasWrap}>
+          {/* 选择konva 或者 fabric 库实现canvas操作 */}
           {url && <CanvasArea imgUrl={url} />}
         </div>
       </div>
