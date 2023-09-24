@@ -77,7 +77,8 @@ const baseRoutes = [
       {
         path: HOOKS,
         label: 'HOOKS',
-        element: <Hooks />,
+        element: lazyLoad(() => import('@view/HooksTestCom')),
+        // element: <Hooks />,
       },
       {
         path: COMPONENT,
