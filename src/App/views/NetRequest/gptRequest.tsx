@@ -3,7 +3,7 @@ import { Configuration, OpenAIApi } from 'openai'
 /* GPT KEY */
 const GPT_KEY = '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'
 
-const GPT_KEY_ZHY = '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'
+const GPT_KEY_ZHY = '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'
 const ORGANAZITION = 'org-710rWrUjqW0hgrsoSdY5baXh'
 
 const configuration = new Configuration({

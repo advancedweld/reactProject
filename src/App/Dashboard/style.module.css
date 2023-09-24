@@ -1,14 +1,14 @@
 /*
  * @Author: xiangshangzhi
  * @Date: 2022-09-09 11:37:36
- * @FilePath: \webpackProject\src\App\Dashboard\style.module.css
+ * @FilePath: \reactProject\src\App\Dashboard\style.module.css
  */
 .wrap {
   display: flex;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   padding: 8px;
-  height: calc(100vh - 100px);
+  min-height: calc(100vh - 100px);
   .content {
     padding-left: 8px;
     width: 100%;

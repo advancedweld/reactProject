@@ -16,8 +16,8 @@ const baseConfig = {
   output: {
     path: resolvePath('../dist'),
     publicPath: '/',
-    // filename: '[contenthash].bundle.js',
-    filename: '[name].bundle.js',
+    filename: '[contenthash].bundle.js',
+    // filename: '[name].bundle.js',
     /* 是否输出es6模块 */
     // module: true,
   },
