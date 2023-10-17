@@ -11,10 +11,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useLatest } from 'ahooks'
 import { _useLatest } from './useLatest'
 
-export const useCount: (initialCount: number, delay?: number) => any = (
-  value,
-  delay = 1000,
-) => {
+export const useCount: (initialCount: number, delay?: number) => any = (value, delay = 1000) => {
   const [count, setCount] = useState(value)
   useEffect(() => {
     const interval = setInterval(() => {

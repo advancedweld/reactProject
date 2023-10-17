@@ -1,7 +1,7 @@
 /*
  * @Author: xiangshangzhi
  * @Date: 2022-07-20 12:42:23
- * @FilePath: /webpackProject/webpack/webpack.config.dev.js
+ * @FilePath: \reactProject\webpack\webpack.config.dev.js
  */
 // 合并规则
 
@@ -20,7 +20,7 @@ module.exports = merge(baseConfig, {
     // host
     host: '127.0.0.1',
     // 端口
-    port: 8000,
+    port: 3000,
     // 热更新
     hot: true,
     // 启动时打开浏览器
