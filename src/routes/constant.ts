@@ -18,8 +18,6 @@ export const COMPONENT = '/app/components'
 export const NETREQUEST = '/app/netRequest'
 export const NOPERMISSION = '/app/nopermission'
 
-
-
 export const FRUIT = '/fruit'
 export const BANANA = '/fruit/banana'
 export const APPLE = '/fruit/apple'

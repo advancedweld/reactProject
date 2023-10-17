@@ -15,24 +15,9 @@ import NoPermission from '@view/NoPermission'
 import ImageEditor from '@view/ImageEditor'
 import App from '../App'
 
-import {
-  LOGIN,
-  APP,
-  GROUP,
-  ABOUT,
-  HOOKS,
-  COMPONENT,
-  NETREQUEST,
-  FRUIT,
-  BANANA,
-  APPLE,
-  ORANGE,
-  NOPERMISSION,
-} from './constant'
+import { LOGIN, APP, GROUP, ABOUT, HOOKS, COMPONENT, NETREQUEST, FRUIT, BANANA, APPLE, ORANGE, NOPERMISSION } from './constant'
 
-const lazyLoad = (
-  importModule: () => Promise<{ default: React.ComponentType<any> }>,
-) => {
+const lazyLoad = (importModule: () => Promise<{ default: React.ComponentType<any> }>) => {
   const Ele = React.lazy(importModule)
   return (
     <Suspense fallback={<div>Loading...</div>}>
