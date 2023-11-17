@@ -55,11 +55,7 @@ function ImageEditor() {
               清除图片
             </Button>
           )}
-          <div
-            className={style.uploadWrap}
-            onClick={handleUpload}
-            onDragOver={handleDragover}
-            onDrop={handleDrop}>
+          <div className={style.uploadWrap} onClick={handleUpload} onDragOver={handleDragover} onDrop={handleDrop}>
             上传图片
           </div>
         </div>

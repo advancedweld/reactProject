@@ -82,6 +82,7 @@ const CanvasArea: React.FC<Iprops> = ({ imgUrl }) => {
       setLines(history.current[index])
     }
   }
+
   return (
     <div>
       <Space>
