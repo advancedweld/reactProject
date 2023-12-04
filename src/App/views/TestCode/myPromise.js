@@ -4,11 +4,16 @@
  * @FilePath: \reactProject\src\App\views\TestCode\myPromise.js
  * @Description: xiangshangzhi写的文件
  * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2023-12-04 08:42:53
+ * @LastEditTime: 2023-12-04 15:38:00
  *
  */
 function MyPromise(executor) {
-  let self = this
+  if (typeof executor !== 'function') {
+    // eslint-disable-next-line prefer-template
+    throw new Error('Promise resolver' + executor + 'is not a function')
+  }
+  // eslint-disable-next-line @typescript-eslint/no-this-alias
+  const self = this
   self.status = 'pending' // Promise当前的状态
   self.data = undefined // Promise的值
   self.onResolvedCallback = [] // Promise resolve时的回调函数集，因为在Promise结束之前有可能有多个回调添加到它上面
@@ -39,15 +44,14 @@ function MyPromise(executor) {
 }
 
 // eslint-disable-next-line
-Promise.prototype.then = function (onResolved, onRejected) {
-  let self = this
+Promise.prototype.then = function (_onResolved, _onRejected) {
+  // eslint-disable-next-line @typescript-eslint/no-this-alias
+  const self = this
   let promise2
 
   // 根据标准，如果then的参数不是function，则我们需要忽略它，此处以如下方式处理
-  // eslint-disable-next-line no-param-reassign
-  onResolved = typeof onResolved === 'function' ? onResolved : function (value) {}
-  // eslint-disable-next-line no-param-reassign
-  onRejected = typeof onRejected === 'function' ? onRejected : function (reason) {}
+  const onResolved = typeof _onResolved === 'function' ? onResolved : function (value) {}
+  const onRejected = typeof _onRejected === 'function' ? onRejected : function (reason) {}
 
   if (self.status === 'resolved') {
     // 如果promise1(此处即为this/self)的状态已经确定并且是resolved，我们调用onResolved
