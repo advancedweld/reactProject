@@ -1,0 +1,211 @@
+type Performance = {
+  // 页面加载性能指标
+  networkDelay: any[]
+  // 接口请求延时
+  apiLatency: any[]
+  fps: any[]
+  error: any[]
+}
+
+type PerformanceKeys = keyof Performance
+
+/** 缓存数据类 */
+const MAX_CACHE_SIZE = 100
+export class MonitoringCache {
+  private data: Performance = {
+    networkDelay: [],
+    apiLatency: [],
+    fps: [],
+    error: [],
+  }
+
+  addData(type: PerformanceKeys, data: any) {
+    const curData = this.data[type] || []
+    if (curData?.length === MAX_CACHE_SIZE) {
+      this.data[type].shift()
+    }
+    this.data[type].push(data)
+  }
+
+  clearData() {
+    this.data = {
+      networkDelay: [],
+      apiLatency: [],
+      fps: [],
+      error: [],
+    }
+  }
+
+  getAllData() {
+    return this.data
+  }
+
+  // 可以根据需求添加其他功能，比如定时上报、本地存储等
+}
+
+/** 发送监测数据到后台 自动重发请求 */
+export const sendDataToServer = (data: Performance, retry = 3) => {
+  if (!retry) return
+  console.log('@@@@@sendDataToServer', retry)
+  return fetch('https://your-monitoring-server.com/api/data', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Failed to send data to server')
+      }
+      console.log('Data sent successfully')
+    })
+    .catch((error) => {
+      console.error('Error sending data:', error)
+      sendDataToServer(data, retry - 1)
+    })
+}
+
+export const sendDataToServerWithBeacon = (data: Performance, retry = 3) => {
+  if (!retry) return
+  const success = navigator.sendBeacon('https://your-monitoring-server.com/api/data', JSON.stringify(data))
+  console.log('@@@@@sendDataToServer', success)
+  if (!success) {
+    console.log('Failed to send data to server retry', retry)
+    sendDataToServerWithBeacon(data, retry - 1)
+  }
+}
+
+/** 监测fps，根据每秒帧数得出fps */
+export const startFpsMonitor = (cache: MonitoringCache) => {
+  let frameCount = 0
+  let timeStamp = Date.now()
+
+  const monitor = () => {
+    window.requestAnimationFrame(() => {
+      let gap = Date.now() - timeStamp
+      frameCount += 1
+      // 统计一秒内的fps
+      if (gap > 1000) {
+        cache.addData('fps', frameCount)
+        frameCount = 0
+        timeStamp = Date.now()
+      }
+      monitor()
+    })
+  }
+  window.requestAnimationFrame(monitor)
+}
+
+/** 修改原生ajax */
+const originalOpen = XMLHttpRequest.prototype.open
+const originalSend = XMLHttpRequest.prototype.send
+function monitorAjax(cache: MonitoringCache) {
+  // open的时候拿到请求url，并记录开始请求时间戳
+  XMLHttpRequest.prototype.open = function (method: string, url: string, ...args: any[]) {
+    // @ts-ignore
+    this._startTime = performance.now()
+    // @ts-ignore
+    this._url = url
+    // @ts-ignore
+    return originalOpen.call(this, method, url, ...args)
+  }
+
+  XMLHttpRequest.prototype.send = function (...args: any[]) {
+    // eslint-disable-next-line
+    const self = this
+    this.addEventListener('load', function () {
+      const endTime = performance.now()
+      // @ts-ignore
+      const latency = endTime - self._startTime
+      const latencyInfo = {
+        // @ts-ignore
+        url: self._url,
+        latency: latency,
+      }
+      cache.addData('apiLatency', latencyInfo)
+    })
+    // @ts-ignore
+    return originalSend.apply(this, args)
+  }
+}
+function reserveAjaxRequest() {
+  XMLHttpRequest.prototype.open = originalOpen || XMLHttpRequest.prototype.open
+  XMLHttpRequest.prototype.send = originalSend || XMLHttpRequest.prototype.send
+}
+
+/** 修改原生fetch */
+const originalFetch = window.fetch
+
+function monitorFetch(cache: MonitoringCache) {
+  window.fetch = function (...args: any[]) {
+    const startTime = performance.now()
+    const url = args[0] // 第一个参数是请求的 URL
+    return (
+      originalFetch
+        ///@ts-ignore
+        .apply(this, args)
+        .then((response) => {
+          const endTime = performance.now()
+          const latency = endTime - startTime
+          const latencyInfo = {
+            url: url,
+            latency: latency,
+          }
+          cache.addData('apiLatency', latencyInfo)
+          return response
+        })
+        .catch((error) => {
+          console.error('Error fetching API:', error)
+          const latencyInfo = {
+            url: url,
+            latency: error,
+          }
+          cache.addData('apiLatency', latencyInfo)
+          throw error
+        })
+    )
+  }
+}
+function reserveFetch() {
+  window.fetch = originalFetch || window.fetch
+}
+// 开启网络请求监测
+export function monitorHttpRequest(cache: MonitoringCache) {
+  monitorFetch(cache)
+  monitorAjax(cache)
+}
+// 停止网络请求监测，恢复原生fetch和ajax
+export function stopMonitorHttpRequest() {
+  reserveAjaxRequest()
+  reserveFetch()
+}
+export function collectPerformanceData(cache: MonitoringCache) {
+  // 收集页面性能数据的方法，可以收集页面加载时间、资源加载时间等
+  // getEntries 和 getEntriesByType 拿到的数据是一样的
+  const performanceData = performance.getEntries()[0]
+  const performanceType = performance.getEntriesByType('navigation')[0]
+  // 拿到fp fcp
+  const paint = performance.getEntriesByType('paint')
+
+  cache.addData('networkDelay', {
+    performanceData: performanceData,
+    performanceType: performanceType,
+    performancePaint: paint,
+  })
+}
+
+export function modifyHistory() {
+  const ip = window.location.host
+  console.log('@@@ip===', ip)
+  window.addEventListener('popstate', function (event) {
+    console.log('popstate 事件触发了')
+    // 处理路由变化的逻辑
+  })
+
+  const originlPushState = History.prototype.pushState
+  History.prototype.pushState = function (...args) {
+    console.log('@@@pushState', args)
+    originlPushState.apply(this, args)
+  }
+}
