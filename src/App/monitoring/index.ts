@@ -15,75 +15,79 @@ type EagleOption = {
   monitorRequest?: boolean
 }
 
-export default (function () {
-  console.log('@@eagle is watching!')
+console.log('@@eagle is watching!')
 
-  class Eagle {
-    name?: string = 'eagle'
-    // 不需要配置的参数直接类型定义的时候给初始值，不需要在构造函数里处理
-    version = '1.0.0'
-    monitorRequest?: boolean
-    interval?: NodeJS.Timeout | null // NodeJS.Timeout 用于存储 setInterval 的返回值
-    private static instance: Eagle | null = null // 私有静态属性存储实例
-    private cache: MonitoringCache = new MonitoringCache()
+class Eagle {
+  name?: string = 'eagle'
+  // 不需要配置的参数直接类型定义的时候给初始值，不需要在构造函数里处理
 
-    constructor(options: EagleOption) {
-      // 单例模式，new 创建返回同一个实例
-      if (!!Eagle.instance) {
-        return Eagle.instance
-      }
-      this.name = options.piggyName
-      this.interval = null
-      this.monitorRequest = options.monitorRequest
-      Eagle.instance = this
-    }
+  version = '1.0.0'
 
-    modifyName(name: string) {
-      this.name = name
-    }
+  monitorRequest?: boolean
 
-    startMonitoring() {
-      // 根据配置启动网络请求监控
-      if (this.monitorRequest) {
-        monitorHttpRequest(this.cache)
-      }
-      // fpsMonitor
-      startFpsMonitor(this.cache)
-      collectPerformanceData(this.cache)
+  interval?: NodeJS.Timeout | null // NodeJS.Timeout 用于存储 setInterval 的返回值
 
-      modifyHistory()
-      // 数据上报 从缓存拿到数据，发送给服务器
-      this.interval = setInterval(() => {
-        const data = this.cache.getAllData()
-        this.uploadData(data)
-        // 发送之后清空缓存
-        // this.cache.clearData()
-        console.log('@@@cache', data)
-      }, 5000) // 每5秒收集一次数据并发送到服务器
-    }
+  private static instance: Eagle | null = null // 私有静态属性存储实例
 
-    stopMonitoring() {
-      // 停止上报
-      if (this.interval) {
-        clearInterval(this.interval)
-      }
-      // 恢复原生fetch和ajax
-      stopMonitorHttpRequest()
-    }
+  private cache: MonitoringCache = new MonitoringCache()
 
-    uploadData(data: any) {
-      // return
-      // sendDataToServer(data)
-      sendDataToServerWithBeacon(data)
-    }
-
-    static getInstance() {
-      // if (!Eagle.instance) {
-      //   Eagle.instance = new Eagle()
-      // }
+  constructor(options: EagleOption) {
+    // 单例模式，new 创建返回同一个实例
+    if (Eagle.instance) {
+      // eslint-disable-next-line no-constructor-return
       return Eagle.instance
     }
+    this.name = options.piggyName
+    this.interval = null
+    this.monitorRequest = options.monitorRequest
+    Eagle.instance = this
   }
 
-  return Eagle
-})()
+  modifyName(name: string) {
+    this.name = name
+  }
+
+  startMonitoring() {
+    // 根据配置启动网络请求监控
+    if (this.monitorRequest) {
+      monitorHttpRequest(this.cache)
+    }
+    // fpsMonitor
+    startFpsMonitor(this.cache)
+    collectPerformanceData(this.cache)
+
+    modifyHistory()
+    // 数据上报 从缓存拿到数据，发送给服务器
+    this.interval = setInterval(() => {
+      const data = this.cache.getAllData()
+      this.uploadData(data)
+      // 发送之后清空缓存
+      // this.cache.clearData()
+      console.log('@@@cache', data)
+    }, 5000) // 每5秒收集一次数据并发送到服务器
+  }
+
+  stopMonitoring() {
+    // 停止上报
+    if (this.interval) {
+      clearInterval(this.interval)
+    }
+    // 恢复原生fetch和ajax
+    stopMonitorHttpRequest()
+  }
+
+  uploadData(data: any) {
+    // return
+    // sendDataToServer(data)
+    sendDataToServerWithBeacon(data)
+  }
+
+  static getInstance() {
+    // if (!Eagle.instance) {
+    //   Eagle.instance = new Eagle()
+    // }
+    return Eagle.instance
+  }
+}
+
+export { Eagle }

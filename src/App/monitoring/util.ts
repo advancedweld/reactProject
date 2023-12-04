@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 type Performance = {
   // 页面加载性能指标
   networkDelay: any[]
@@ -143,7 +144,7 @@ function monitorFetch(cache: MonitoringCache) {
     const url = args[0] // 第一个参数是请求的 URL
     return (
       originalFetch
-        ///@ts-ignore
+        // @ts-ignore
         .apply(this, args)
         .then((response) => {
           const endTime = performance.now()
