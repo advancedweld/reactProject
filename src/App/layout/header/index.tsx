@@ -5,11 +5,23 @@
  */
 
 import React, { Suspense } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { Button } from 'antd'
+
 import styles from './style.module.css'
 
 const Entry = () => {
   console.log('Entry')
-  return <div className={styles.wrap}>俺是头部</div>
+  const nav = useNavigate()
+  const login = () => {
+    nav('/login')
+  }
+  return (
+    <div className={styles.wrap}>
+      <div>俺是头部</div>
+      <Button onClick={login}>登录</Button>
+    </div>
+  )
 }
 
 export default Entry

@@ -5,8 +5,9 @@
  */
 
 import React, { Suspense } from 'react'
-import { BrowserRouter, RouterProvider } from 'react-router-dom'
-import { router } from 'routes'
+import { BrowserRouter, RouterProvider, Outlet } from 'react-router-dom'
+
+import AuthWrap from 'App/auth'
 import Header from './header'
 
 const Entry = () => {
@@ -14,7 +15,10 @@ const Entry = () => {
   return (
     <>
       <Header />
-      <RouterProvider router={router} />
+      <AuthWrap>
+        <Outlet />
+      </AuthWrap>
+
       <h1>hello, world</h1>
     </>
   )
