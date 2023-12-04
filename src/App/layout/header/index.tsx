@@ -6,7 +6,9 @@
 
 import React, { Suspense } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Button } from 'antd'
+import useUserProfileStore from 'store/userProfile'
+
+import { Button, Space } from 'antd'
 
 import styles from './style.module.css'
 
@@ -16,10 +18,22 @@ const Entry = () => {
   const login = () => {
     nav('/login')
   }
+
+  const logout = useUserProfileStore((state) => state.logout)
   return (
     <div className={styles.wrap}>
-      <div>俺是头部</div>
-      <Button onClick={login}>登录</Button>
+      <div className={styles.header}>
+        <Space>
+          <h3
+            onClick={() => nav('/')}
+            style={{
+              cursor: 'pointer',
+            }}>
+            登录
+          </h3>
+          <Button onClick={logout}>退出</Button>
+        </Space>
+      </div>
     </div>
   )
 }

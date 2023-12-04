@@ -6,7 +6,7 @@
 
 import React, { Suspense } from 'react'
 import { BrowserRouter, RouterProvider, Outlet } from 'react-router-dom'
-
+import Dashboard from 'App/Dashboard'
 import AuthWrap from 'App/auth'
 import Header from './header'
 
@@ -16,7 +16,7 @@ const Entry = () => {
     <>
       <Header />
       <AuthWrap>
-        <Outlet />
+        <Dashboard />
       </AuthWrap>
 
       <h1>hello, world</h1>

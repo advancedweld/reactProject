@@ -1,12 +1,17 @@
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
 
-const useUserProfileStore = create(
+type State = {
+  isLogin: boolean
+  login: () => void
+  logout: () => void
+}
+const useUserProfileStore = create<State, [['zustand/persist', unknown]]>(
   persist(
     (set) => ({
       isLogin: false,
-      login: () => set((state: any) => ({ isLogin: true })),
-      logout: () => set((state: any) => ({ isLogin: false })),
+      login: () => set((state: State) => ({ isLogin: true })),
+      logout: () => set((state: State) => ({ isLogin: false })),
     }),
     {
       name: 'userProfile-storage', // unique name

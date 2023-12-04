@@ -41,12 +41,15 @@ const baseRoutes = [
     path: APP,
     label: 'app首页',
     element: <AppComponent></AppComponent>,
+    children: [
+      {
+        path: '/app/home',
+        label: '首页',
+        element: <h1>APP首页</h1>,
+      },
+    ],
   },
-  // {
-  //   path: '/app/home',
-  //   label: '首页',
-  //   element: <h1>APP首页</h1>,
-  // },
+
   // {
   //   path: NETREQUEST,
   //   label: '网络请求',

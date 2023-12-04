@@ -2,7 +2,7 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-26 11:11:47
  * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2023-12-04 11:21:55
+ * @LastEditTime: 2023-12-04 11:34:31
  * @FilePath: \reactProject\src\routes\constant.ts
  * @Description: 路由路径常量
  *

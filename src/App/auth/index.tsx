@@ -14,7 +14,7 @@ function AuthWrap(props) {
   console.log('@@@@@location', location)
   const { children } = props
 
-  // return <>{loginStatus ? children : <Navigate to='/login' />}</>
-  return <>{children}</>
+  return <>{loginStatus ? children : <Navigate to='/login' />}</>
+  // return <>{children}</>
 }
 export default AuthWrap
