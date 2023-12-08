@@ -1,10 +1,25 @@
 /*
  * @Author: xiangshangzhi
  * @Date: 2022-09-09 11:37:36
- * @FilePath: /webpackProject/src/App/views/Login/style.module.css
+ * @FilePath: \reactProject\src\App\views\Login\style.module.css
  */
 .wrap {
   border: 1px solid red;
+  height: 100vh;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  .loginForm {
+    border: 1px solid red;
+    margin-bottom: 40px;
+  }
+  .loginBtn {
+    border: 1px solid red;
+    display: block;
+    margin: auto;
+    width: 140px;
+  }
 }
 
 :global(.xiang) {
