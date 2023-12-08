@@ -2,15 +2,15 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
  * @LastEditors: engineMaster xiangshangzhi@gmail.com
- * @LastEditTime: 2023-07-01 18:08:36
- * @FilePath: \webpackProject\src\App\views\Login\index.tsx
+ * @LastEditTime: 2023-12-08 20:37:21
+ * @FilePath: \reactProject\src\App\views\Login\index.tsx
  * @Description: xiangshangzhi写的文件
  *
  */
 import React, { useEffect } from 'react'
-import { Button } from 'antd'
+import { Button, message } from 'antd'
 
-import { useLocation, Link } from 'react-router-dom'
+import { useLocation, Link, useNavigate } from 'react-router-dom'
 import { LOGIN, APP, GROUP, ABOUT, HOOKS } from 'routes/constant'
 
 import useUserProfileStore from 'store/userProfile'
@@ -22,10 +22,20 @@ function Login() {
   const loginStatus = useUserProfileStore((state) => state.isLogin)
   const login = useUserProfileStore((state) => state.login)
   const logout = useUserProfileStore((state) => state.logout)
-  console.log('@@@login is -----', loginStatus)
+
+  const nav = useNavigate()
+  // console.log('@@@login is -----', loginStatus)
   useEffect(() => {
     console.log('@@location in login is -----', location)
   })
+
+  const goDashboard = () => {
+    if (loginStatus) {
+      nav(APP)
+    } else {
+      message.error('请先登录')
+    }
+  }
   return (
     <>
       <div className={style.wrap}>
@@ -40,7 +50,9 @@ function Login() {
           </>
         )}
         <h1> login </h1>
-        <Link to={APP}> 首页</Link>
+        <Button type='text' onClick={goDashboard}>
+          首页
+        </Button>
       </div>
 
       {/* <div className="xiang">

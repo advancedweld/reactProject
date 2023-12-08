@@ -2,8 +2,8 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-22 11:22:11
  * @LastEditors: engineMaster xiangshangzhi@gmail.com
- * @LastEditTime: 2023-07-01 17:56:03
- * @FilePath: \webpackProject\src\App\views\HooksTestCom\index.tsx
+ * @LastEditTime: 2023-08-05 14:39:50
+ * @FilePath: \reactProject\src\App\views\HooksTestCom\index.tsx
  * @Description: xiangshangzhi写的文件
  *
  */
@@ -20,6 +20,7 @@ import ThrottleFn from './useThrotleFn'
 import DenounceValue from './useDenounceValue'
 import Count from './useCount'
 import GetVideo from './useGetVideo'
+import UseReducer_ from './useReducer_'
 
 type IHOOKS = keyof typeof MAP_COM
 
@@ -30,6 +31,7 @@ const MAP_COM = {
   DenounceValue: (props: any) => <DenounceValue {...props}></DenounceValue>,
   Count: (props: any) => <Count {...props}></Count>,
   GetVideo: (props: any) => <GetVideo {...props}></GetVideo>,
+  useReducer_: (props: any) => <UseReducer_ {...props}></UseReducer_>,
   OTHER: () => <p>不存在。。。</p>,
 }
 const options = Object.keys(MAP_COM).map((key) => ({
@@ -51,10 +53,7 @@ export default () => {
   return (
     <>
       <p>自定义hooks</p>
-      <Radio.Group
-        onChange={onChange}
-        value={curHook}
-        options={options}></Radio.Group>
+      <Radio.Group onChange={onChange} value={curHook} options={options}></Radio.Group>
 
       <div
         style={{
