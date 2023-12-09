@@ -11,7 +11,7 @@ function AuthWrap(props) {
   const location = useLocation()
   const loginStatus = useUserProfileStore((state) => state.isLogin)
 
-  console.log('@@@@@location', location)
+  // console.log('@@@@@location', location)
   const { children } = props
 
   return <>{loginStatus ? children : <Navigate to='/login' />}</>

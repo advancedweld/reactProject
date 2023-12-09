@@ -8,8 +8,9 @@ import React, { Suspense, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import useUserProfileStore from 'store/userProfile'
 
-import { Button, Space } from 'antd'
+import { Button, Space, Tooltip } from 'antd'
 
+import { QuestionCircleOutlined } from '@ant-design/icons'
 import styles from './style.module.css'
 
 const Entry = () => {
@@ -36,10 +37,15 @@ const Entry = () => {
           <Button onClick={logout}>退出</Button>
           <Button onClick={() => changeUserName(`xiangshangzhi${Date.now()}`)}>修改用户名</Button>
           <div>当前用户：{userName}</div>
-          <div>刷新次数：{refreshCountRef.current}</div>
-          <div>
-            zustand里全局状态变更，只会影响订阅到该状态的组件。也就是zustand全局状态变更，<b>不会导致整个应用重新渲染</b>
-          </div>
+          <div>刷新次数{refreshCountRef.current}</div>
+          <Tooltip
+            title={
+              <div>
+                zustand里全局状态变更，只会影响订阅到该状态的组件。也就是zustand全局状态变更，<b>不会导致整个应用重新渲染</b>
+              </div>
+            }>
+            <QuestionCircleOutlined />
+          </Tooltip>
         </Space>
       </div>
     </div>

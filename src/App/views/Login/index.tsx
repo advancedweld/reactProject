@@ -2,7 +2,7 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
  * @LastEditors: engineMaster xiangshangzhi@gmail.com
- * @LastEditTime: 2023-12-09 12:08:32
+ * @LastEditTime: 2023-12-09 15:42:49
  * @FilePath: \reactProject\src\App\views\Login\index.tsx
  * @Description: xiangshangzhi写的文件
  *
@@ -49,7 +49,7 @@ function Login() {
     <>
       <div className={style.wrap}>
         <div className={style.loginForm}>
-          <h1>宝贝，欢迎回家！</h1>
+          <h2 style={{ textAlign: 'center' }}>欢迎！</h2>
           <Form
             form={form}
             onFinish={onFinish}
