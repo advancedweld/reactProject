@@ -2,7 +2,7 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
  * @LastEditors: engineMaster xiangshangzhi@gmail.com
- * @LastEditTime: 2023-12-08 20:57:59
+ * @LastEditTime: 2023-12-09 12:08:32
  * @FilePath: \reactProject\src\App\views\Login\index.tsx
  * @Description: xiangshangzhi写的文件
  *
@@ -18,9 +18,11 @@ import useUserProfileStore from 'store/userProfile'
 import style from './style.module.css'
 
 function Login() {
-  const loginStatus = useUserProfileStore((state) => state.isLogin)
-  const login = useUserProfileStore((state) => state.login)
-  const logout = useUserProfileStore((state) => state.logout)
+  // const loginStatus = useUserProfileStore((state) => state.isLogin)
+  // const login = useUserProfileStore((state) => state.login)
+  // const logout = useUserProfileStore((state) => state.logout)
+
+  const { userName, logout, changeUserName, login } = useUserProfileStore((state) => state)
 
   const [form] = Form.useForm<any>()
 
@@ -34,10 +36,13 @@ function Login() {
         message.success('登录成功')
         // 更新全局状态
         login()
+        changeUserName(values.username)
         nav(APP)
       } else {
         message.error('账号或密码错误')
       }
+    } else {
+      message.error('账号或密码不能为空')
     }
   }
   return (

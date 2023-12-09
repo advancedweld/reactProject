@@ -1,8 +1,8 @@
 /*
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
- * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2023-12-04 12:11:21
+ * @LastEditors: engineMaster xiangshangzhi@gmail.com
+ * @LastEditTime: 2023-12-09 12:03:32
  * @FilePath: \reactProject\src\App\Dashboard\index.tsx
  * @Description: xiangshangzhi写的文件
  *
@@ -19,8 +19,6 @@ import LinkArea from './LinkArea'
 import styles from './style.module.css'
 
 function Dashboard() {
-  const location = useLocation()
-  const nav = useNavigate()
   const refreshCount = useRef(0)
   useEffect(() => {
     console.log('@@@fresh is -----', refreshCount.current)
@@ -31,8 +29,13 @@ function Dashboard() {
   })
 
   const ele = useRoutes(routes)
-  console.log('🚀 ~ file: index.tsx:32 ~ Dashboard ~ ele:', ele)
 
+  const refreshCountRef = useRef(0)
+
+  useEffect(() => {
+    refreshCountRef.current += 1
+    console.log('@@@@ header刷新')
+  })
   const logout = useUserProfileStore((state) => state.logout)
 
   return (
@@ -46,6 +49,8 @@ function Dashboard() {
       <div className={styles.wrap}>
         <XMenu></XMenu>
         <div className={styles.content}>
+          <div>content刷新次数：{refreshCountRef.current}</div>
+
           <Outlet />
         </div>
       </div>
