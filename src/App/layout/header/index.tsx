@@ -16,11 +16,21 @@ import styles from './style.module.css'
 const Entry = () => {
   const nav = useNavigate()
 
+  const [count, Setcount] = React.useState(0)
+
   const refreshCountRef = React.useRef(0)
 
+  const divRef = React.useRef<HTMLDivElement | null>(null)
+
+  // useeffect 执行时机，会在组件渲染完后执行
+  useEffect(() => {
+    // blue  而不是 red  显示的是第一次渲染时候的颜色，在执行完count+1后会变成red
+    console.log('header渲染div', divRef.current?.style.color)
+    Setcount(count + 1)
+  }, [])
   useEffect(() => {
     refreshCountRef.current += 1
-    console.log('@@@@ header刷新')
+    console.log('@@@@ header刷新', count)
   })
   const { userName, logout, changeUserName } = useUserProfileStore((state) => state)
   return (
@@ -46,6 +56,8 @@ const Entry = () => {
             }>
             <QuestionCircleOutlined />
           </Tooltip>
+
+          <div ref={divRef} style={{ color: count ? 'red' : 'blue' }}>{`计数${count}`}</div>
         </Space>
       </div>
     </div>

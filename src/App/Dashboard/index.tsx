@@ -2,7 +2,7 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
  * @LastEditors: engineMaster xiangshangzhi@gmail.com
- * @LastEditTime: 2023-12-09 12:03:32
+ * @LastEditTime: 2023-12-11 19:04:31
  * @FilePath: \reactProject\src\App\Dashboard\index.tsx
  * @Description: xiangshangzhi写的文件
  *
@@ -34,7 +34,6 @@ function Dashboard() {
 
   useEffect(() => {
     refreshCountRef.current += 1
-    console.log('@@@@ header刷新')
   })
   const logout = useUserProfileStore((state) => state.logout)
 
