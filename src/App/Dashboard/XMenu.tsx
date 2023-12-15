@@ -2,17 +2,13 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
  * @LastEditors: engineMaster xiangshangzhi@gmail.com
- * @LastEditTime: 2023-06-04 22:24:57
- * @FilePath: \webpackProject\src\App\Dashboard\XMenu.tsx
+ * @LastEditTime: 2023-12-15 20:17:50
+ * @FilePath: \reactProject\src\App\Dashboard\XMenu.tsx
  * @Description: xiangshangzhi写的文件
  *
  */
 
-import {
-  AppstoreOutlined,
-  MailOutlined,
-  SettingOutlined,
-} from '@ant-design/icons'
+import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons'
 import type { MenuProps } from 'antd'
 import { Menu } from 'antd'
 import React, { useState } from 'react'
@@ -29,13 +25,11 @@ type Route = {
   label: string
   children?: Route[]
 }
+// 递归 生成菜单
 const getItem = (routes: Route[]): MenuItem[] => {
   return routes.map((route, index) => {
     const { path, label = 'label', children } = route
-    const _children =
-      children?.length && children?.length > 1
-        ? getItem(children as Route[])
-        : undefined
+    const _children = children?.length && children?.length > 1 ? getItem(children as Route[]) : undefined
     return {
       key: path,
       path,
@@ -62,7 +56,7 @@ const XMenu: React.FC = () => {
     }
   }
 
-  const items = getItem(baseRoutes as Route[])
+  const items = getItem(baseRoutes.children as Route[])
   console.log('🚀 ~ file: XMenu.tsx:67 ~ baseRoutes:', baseRoutes)
   console.log('🚀 ~ file: XMenu.tsx:62 ~ items:', items)
 

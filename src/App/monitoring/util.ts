@@ -122,7 +122,7 @@ function monitorAjax(cache: MonitoringCache) {
       const latencyInfo = {
         // @ts-ignore
         url: self._url,
-        latency: latency,
+        latency,
       }
       cache.addData('apiLatency', latencyInfo)
     })
