@@ -2,7 +2,7 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
  * @LastEditors: engineMaster xiangshangzhi@gmail.com
- * @LastEditTime: 2023-12-15 20:17:50
+ * @LastEditTime: 2023-12-15 20:29:41
  * @FilePath: \reactProject\src\App\Dashboard\XMenu.tsx
  * @Description: xiangshangzhi写的文件
  *
@@ -34,7 +34,8 @@ const getItem = (routes: Route[]): MenuItem[] => {
       key: path,
       path,
       children: _children,
-      label: <Link to={path}>{label}</Link>,
+      // 有子路由的时候渲染纯文本，没有子路由的时候渲染link
+      label: _children?.length ? label : <Link to={path}>{label}</Link>,
     }
   })
 }
@@ -68,7 +69,6 @@ const XMenu: React.FC = () => {
       onOpenChange={onOpenChange}
       style={{ width: 256, height: '100%' }}
       // style={{ width: 256, minHeight: 700 }}
-
       items={items}
     />
   )

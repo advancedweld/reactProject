@@ -40,7 +40,18 @@ const baseRoutes = {
     {
       path: NETREQUEST,
       label: '网络请求',
-      element: <NetRequest />,
+      children: [
+        {
+          path: '/app/netRequest/base',
+          label: '请求gpt',
+          element: <NetRequest />,
+        },
+        {
+          path: '/app/netRequest/nest',
+          label: '请求nest',
+          element: <h1>请求 nest</h1>,
+        },
+      ],
     },
     {
       path: GROUP,
@@ -81,11 +92,7 @@ const routes = [
   {
     path: '/',
     label: '登录',
-    element: (
-      <Suspense>
-        <Login />
-      </Suspense>
-    ),
+    element: <AppComponent></AppComponent>,
   },
   {
     path: LOGIN,
