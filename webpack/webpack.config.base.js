@@ -7,7 +7,11 @@ const webpack = require('webpack')
 const resolvePath = (relativePath) => path.resolve(__dirname, relativePath)
 // HTML模板
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+// 使用MiniCssExtractPlugin 将css单独打包，替换style-loader
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 // 基础配置
 const baseConfig = {
   // 入口文件
@@ -42,7 +46,7 @@ const baseConfig = {
       {
         test: /\.css$/,
         use: [
-          'style-loader',
+          MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
@@ -61,7 +65,7 @@ const baseConfig = {
       // 对less文件的处理
       {
         test: /\.less$/,
-        use: ['style-loader', 'css-loader', 'less-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
       },
       // 对ts|tsx文件的处理
       {
@@ -82,6 +86,29 @@ const baseConfig = {
         type: 'asset/resource',
       },
     ],
+  },
+  // 代码分割，antd和konva单独打包
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      // minSize: 30000,
+      // maxSize: 0,
+      // minChunks: 1,
+      // maxAsyncRequests: 5,
+      // maxInitialRequests: 3,
+      // automaticNameDelimiter: '~',
+      // name: true,
+      cacheGroups: {
+        antd: {
+          test: /[\\/]node_modules[\\/]antd[\\/]/,
+          name: 'antd',
+        },
+        konva: {
+          test: /[\\/]node_modules[\\/]konva[\\/]/,
+          name: 'konva',
+        },
+      },
+    },
   },
   // 插件的处理
   plugins: [
@@ -104,6 +131,10 @@ const baseConfig = {
     new webpack.ProvidePlugin({
       React: 'react',
     }),
+    new MiniCssExtractPlugin({
+      filename: '[name].[contenthash].css',
+    }),
+    new BundleAnalyzerPlugin(),
   ],
 }
 module.exports = {
