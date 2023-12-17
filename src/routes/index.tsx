@@ -78,7 +78,7 @@ const baseRoutes = {
     {
       path: '/app/image-editor/home',
       label: '图片编辑器',
-      element: lazyLoad(() => import('../App/layout')),
+      element: lazyLoad(() => import('@view/ImageEditor')),
       // element: <ImageEditor />,
     },
     {
@@ -94,7 +94,7 @@ const routes = [
     path: '/',
     label: '登录',
     // element: <AppComponent></AppComponent>,
-    element: lazyLoad(() => import('@view/ImageEditor')),
+    element: lazyLoad(() => import('../App/layout')),
   },
   {
     path: LOGIN,
