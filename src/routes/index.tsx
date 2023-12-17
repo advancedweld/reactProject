@@ -68,7 +68,7 @@ const baseRoutes = {
     {
       path: COMPONENT,
       label: '自定义组件',
-      element: <CustomerComponents />,
+      element: lazyLoad(() => import('@view/Components')),
     },
     {
       path: ABOUT,
@@ -78,7 +78,8 @@ const baseRoutes = {
     {
       path: '/app/image-editor/home',
       label: '图片编辑器',
-      element: <ImageEditor />,
+      element: lazyLoad(() => import('../App/layout')),
+      // element: <ImageEditor />,
     },
     {
       path: '/app/car/home',
@@ -92,7 +93,8 @@ const routes = [
   {
     path: '/',
     label: '登录',
-    element: <AppComponent></AppComponent>,
+    // element: <AppComponent></AppComponent>,
+    element: lazyLoad(() => import('@view/ImageEditor')),
   },
   {
     path: LOGIN,
