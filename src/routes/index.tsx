@@ -60,6 +60,11 @@ const baseRoutes = {
       // element: <Group />,
     },
     {
+      path: '/app/nest-request',
+      label: 'nest请求',
+      element: lazyLoad(() => import('@view/NestRequest')),
+    },
+    {
       path: HOOKS,
       label: 'HOOKS',
       element: lazyLoad(() => import('@view/HooksTestCom')),

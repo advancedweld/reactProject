@@ -20,12 +20,19 @@ module.exports = merge(baseConfig, {
     // host
     host: '127.0.0.1',
     // 端口
-    port: 3000,
+    port: 3003,
     // 热更新
     hot: true,
     // 启动时打开浏览器
     open: true,
     // 路由返回index.html'，避免出现404
     historyApiFallback: true,
+    proxy: {
+      '/photos': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+      },
+    },
   },
+ 
 })
