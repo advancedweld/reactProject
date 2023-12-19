@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { Button, Table, Space, Modal, Form, Input } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
 import { useQuery, useMutation } from '@tanstack/react-query'
-import { getPhotos, createPhoto } from './service/api'
+import { getPhotos, createPhoto, updatePhoto } from './service/api'
 import { Photo } from './service/type'
 import style from './style.module.css'
 
@@ -12,14 +12,21 @@ function Entry() {
   const [photoForm] = Form.useForm<Photo>()
   const { data: photosData, refetch, isLoading } = useQuery({ queryKey: ['photos/Getphotos'], queryFn: getPhotos, enabled: true })
 
-  const mutation = useMutation({
+  const createPhotoMutation = useMutation({
     mutationFn: createPhoto,
     onSuccess: () => {
       refetch()
     },
   })
+
+  const updatePhotoMutation = useMutation({
+    mutationFn: updatePhoto,
+    onSuccess: () => {
+      refetch()
+    },
+  })
   const handleCreatePhoto = () => {
-    mutation.mutate({
+    createPhotoMutation.mutate({
       name: 'xiangshangzhi',
       totalPages: 100,
       description: 'this is a photo',
@@ -88,6 +95,21 @@ function Entry() {
     },
   ]
 
+  const onFinish = () => {
+    photoForm.validateFields().then((values) => {
+      console.log('@@onFinish', values)
+      const photoId = values.id
+      if (photoId) {
+        updatePhotoMutation.mutate({ ...values })
+      } else {
+        createPhotoMutation.mutate({ ...values })
+      }
+      // mutation.mutate(values)
+      setEditorVisible(false)
+    })
+    // mutation.mutate(values)
+    // setEditorVisible(false)
+  }
   return (
     <>
       <div className={style.wrap}>
@@ -98,15 +120,11 @@ function Entry() {
       </Button>
       <Table dataSource={photosData} columns={columns} pagination={{ pageSize: 5 }} loading={isLoading} rowKey={'id'} scroll={{ y: 400 }} />
 
-      <Modal open={editorVisible} onCancel={() => setEditorVisible(false)} title='编辑photo'>
-        <Form
-          form={photoForm}
-          // onFinish={onFinish}
-          name={'photoForm'}
-          style={{ marginTop: '8px' }}
-          labelCol={{ flex: '80px' }}
-          labelAlign='left'
-          autoComplete='off'>
+      <Modal open={editorVisible} onCancel={() => setEditorVisible(false)} title='编辑photo' onOk={onFinish}>
+        <Form form={photoForm} name={'photoForm'} style={{ marginTop: '8px' }} labelCol={{ flex: '80px' }} labelAlign='left' autoComplete='off'>
+          <Form.Item label='名称' name='id' hidden>
+            <Input style={{ height: '40px' }} />
+          </Form.Item>
           <Form.Item label='名称' name='name' required>
             <Input style={{ height: '40px' }} />
           </Form.Item>
