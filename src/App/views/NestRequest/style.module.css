@@ -1,12 +1,13 @@
 /*
  * @Author: xiangshangzhi
  * @Date: 2022-09-09 11:37:36
- * @FilePath: /webpackProject/src/App/views/Login/style.module.css
+ * @FilePath: \reactProject\src\App\views\NestRequest\style.module.css
  */
 .wrap {
   border: 1px solid red;
-}
-
-:global(.xiang) {
-  border: 1px solid red;
+  .header {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+  }
 }

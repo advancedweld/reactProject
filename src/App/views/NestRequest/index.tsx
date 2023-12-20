@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-import { Button, Table, Space, Modal, Form, Input } from 'antd'
+import { Button, Table, Space, Modal, Form, Input, message } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
 import { useQuery, useMutation } from '@tanstack/react-query'
 import { getPhotos, createPhoto, updatePhoto } from './service/api'
@@ -9,12 +9,14 @@ import style from './style.module.css'
 
 function Entry() {
   const [editorVisible, setEditorVisible] = React.useState(false)
+  const [editorType, setEditorType] = React.useState<'create' | 'update'>('create')
   const [photoForm] = Form.useForm<Photo>()
   const { data: photosData, refetch, isLoading } = useQuery({ queryKey: ['photos/Getphotos'], queryFn: getPhotos, enabled: true })
 
   const createPhotoMutation = useMutation({
     mutationFn: createPhoto,
     onSuccess: () => {
+      message.success('创建成功')
       refetch()
     },
   })
@@ -22,11 +24,12 @@ function Entry() {
   const updatePhotoMutation = useMutation({
     mutationFn: updatePhoto,
     onSuccess: () => {
+      message.success('更新成功')
       refetch()
     },
   })
   const handleCreatePhoto = () => {
-    createPhotoMutation.mutate({
+    photoForm.setFieldsValue({
       name: 'xiangshangzhi',
       totalPages: 100,
       description: 'this is a photo',
@@ -34,12 +37,15 @@ function Entry() {
       isPublished: true,
       views: 1000 * Math.random(),
     })
+    setEditorVisible(true)
+    setEditorType('create')
   }
 
   const editPhoto = (record: Photo) => {
     console.log('@@editPhoto', record)
     photoForm.setFieldsValue(record)
     setEditorVisible(true)
+    setEditorType('update')
   }
 
   const deletePhoto = (id?: number) => {
@@ -99,28 +105,28 @@ function Entry() {
     photoForm.validateFields().then((values) => {
       console.log('@@onFinish', values)
       const photoId = values.id
-      if (photoId) {
+      if (editorType === 'update' && photoId) {
         updatePhotoMutation.mutate({ ...values })
       } else {
         createPhotoMutation.mutate({ ...values })
       }
-      // mutation.mutate(values)
       setEditorVisible(false)
     })
-    // mutation.mutate(values)
-    // setEditorVisible(false)
   }
   return (
     <>
       <div className={style.wrap}>
-        <h1> nest request </h1>
+        <div className={style.header}>
+          <h1> nest request </h1>
+          <Button onClick={handleCreatePhoto} type='primary'>
+            新建photo
+          </Button>
+        </div>
       </div>
-      <Button onClick={handleCreatePhoto} type='primary'>
-        新建photo
-      </Button>
+
       <Table dataSource={photosData} columns={columns} pagination={{ pageSize: 5 }} loading={isLoading} rowKey={'id'} scroll={{ y: 400 }} />
 
-      <Modal open={editorVisible} onCancel={() => setEditorVisible(false)} title='编辑photo' onOk={onFinish}>
+      <Modal open={editorVisible} onCancel={() => setEditorVisible(false)} title={editorType === 'create' ? '新建相片' : '编辑相片'} onOk={onFinish}>
         <Form form={photoForm} name={'photoForm'} style={{ marginTop: '8px' }} labelCol={{ flex: '80px' }} labelAlign='left' autoComplete='off'>
           <Form.Item label='名称' name='id' hidden>
             <Input style={{ height: '40px' }} />
