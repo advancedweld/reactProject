@@ -9,6 +9,7 @@
     "dev:test": "cross-env NODE_ENV=development BASE_ENV=test webpack serve -c webpack/webpack.config.dev.js",
     "dev:pre": "cross-env NODE_ENV=development BASE_ENV=pre webpack serve -c webpack/webpack.config.dev.js",
     "dev:prod": "cross-env NODE_ENV=development BASE_ENV=production webpack serve -c webpack/webpack.config.dev.js",
+    "build": "cross-env NODE_ENV=production BASE_ENV=production webpack -c webpack/webpack.config.prod.js",
     "build:dev": "cross-env NODE_ENV=production BASE_ENV=development webpack -c webpack/webpack.config.prod.js",
     "build:test": "cross-env NODE_ENV=production BASE_ENV=test webpack -c webpack/webpack.config.prod.js",
     "build:pre": "cross-env NODE_ENV=production BASE_ENV=pre webpack -c webpack/webpack.config.prod.js",

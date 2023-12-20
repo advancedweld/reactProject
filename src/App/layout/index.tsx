@@ -4,23 +4,18 @@
  * @FilePath: \reactProject\src\App\layout\index.tsx
  */
 
-import React, { Suspense } from 'react'
-import { BrowserRouter, RouterProvider, Outlet } from 'react-router-dom'
 import Dashboard from 'App/Dashboard'
 import AuthWrap from 'App/auth'
 import Header from './header'
 
 const Entry = () => {
-  console.log('Entry')
   return (
-    <>
+    <div>
       <Header />
       <AuthWrap>
         <Dashboard />
       </AuthWrap>
-
-      <h1>hello, world</h1>
-    </>
+    </div>
   )
 }
 
