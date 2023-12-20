@@ -28,7 +28,7 @@ module.exports = merge(baseConfig, {
     // 路由返回index.html'，避免出现404
     historyApiFallback: true,
     proxy: {
-      '/photos': {
+      '/api-x': {
         target: 'http://localhost:3000',
         changeOrigin: true,
       },
