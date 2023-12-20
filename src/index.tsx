@@ -2,7 +2,7 @@
  * @Author: xiangshangzhi xiangshangzhi@xtfer.com
  * @Date: 2022-07-20 12:55:04
  * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2023-12-20 08:45:00
+ * @LastEditTime: 2023-12-20 16:50:39
  * @FilePath: \reactProject\src\index.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -11,7 +11,8 @@
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, RouterProvider } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-
+import { ConfigProvider } from 'antd'
+import zhCN from 'antd/locale/zh_CN'
 import { router } from 'routes'
 import './index.less'
 import { Eagle } from 'App/monitoring'
@@ -25,7 +26,9 @@ function AppCotainer() {
   return (
     <div className='appContainer'>
       <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
+        <ConfigProvider locale={zhCN}>
+          <RouterProvider router={router} />
+        </ConfigProvider>
       </QueryClientProvider>
     </div>
   )
