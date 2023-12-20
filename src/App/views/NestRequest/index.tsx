@@ -3,15 +3,23 @@ import React, { useEffect } from 'react'
 import { Button, Table, Space, Modal, Form, Input, message } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
 import { useQuery, useMutation } from '@tanstack/react-query'
-import { getPhotos, createPhoto, updatePhoto } from './service/api'
-import { Photo } from './service/type'
+import { requestPhotos, createPhoto, updatePhoto } from './service/api'
+import { Photo, PageParams } from './service/type'
 import style from './style.module.css'
 
 function Entry() {
   const [editorVisible, setEditorVisible] = React.useState(false)
   const [editorType, setEditorType] = React.useState<'create' | 'update'>('create')
   const [photoForm] = Form.useForm<Photo>()
-  const { data: photosData, refetch, isLoading } = useQuery({ queryKey: ['photos/Getphotos'], queryFn: getPhotos, enabled: true })
+  const [pageParams, setPageParams] = React.useState<PageParams>({
+    pageNo: 1,
+    pageSize: 10,
+  })
+  const {
+    data: photosData,
+    refetch,
+    isLoading,
+  } = useQuery({ queryKey: ['photos/Getphotos', pageParams], queryFn: () => requestPhotos(pageParams), enabled: true })
 
   const createPhotoMutation = useMutation({
     mutationFn: createPhoto,
@@ -113,6 +121,7 @@ function Entry() {
       setEditorVisible(false)
     })
   }
+
   return (
     <>
       <div className={style.wrap}>
@@ -124,7 +133,24 @@ function Entry() {
         </div>
       </div>
 
-      <Table dataSource={photosData} columns={columns} pagination={{ pageSize: 5 }} loading={isLoading} rowKey={'id'} scroll={{ y: 400 }} />
+      <Table
+        dataSource={photosData}
+        columns={columns}
+        pagination={{
+          pageSize: pageParams.pageSize,
+          current: pageParams.pageNo,
+          showSizeChanger: true,
+          onChange: (pageNo, pageSize) => {
+            setPageParams({
+              pageNo,
+              pageSize,
+            })
+          },
+        }}
+        loading={isLoading}
+        rowKey={'id'}
+        scroll={{ y: 400 }}
+      />
 
       <Modal open={editorVisible} onCancel={() => setEditorVisible(false)} title={editorType === 'create' ? '新建相片' : '编辑相片'} onOk={onFinish}>
         <Form form={photoForm} name={'photoForm'} style={{ marginTop: '8px' }} labelCol={{ flex: '80px' }} labelAlign='left' autoComplete='off'>

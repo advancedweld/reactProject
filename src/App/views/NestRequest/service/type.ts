@@ -27,3 +27,9 @@ export type User = {
 
   photos: Photo[]
 }
+
+export type PageParams = {
+  pageNo: number
+
+  pageSize: number
+}
