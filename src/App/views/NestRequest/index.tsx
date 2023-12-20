@@ -134,12 +134,13 @@ function Entry() {
       </div>
 
       <Table
-        dataSource={photosData}
+        dataSource={photosData?.photos}
         columns={columns}
         pagination={{
           pageSize: pageParams.pageSize,
           current: pageParams.pageNo,
           showSizeChanger: true,
+          total: photosData?.totalCount,
           onChange: (pageNo, pageSize) => {
             setPageParams({
               pageNo,
