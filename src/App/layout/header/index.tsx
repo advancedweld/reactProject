@@ -35,31 +35,24 @@ const Entry = () => {
   const { userName, logout, changeUserName } = useUserProfileStore((state) => state)
   return (
     <div className={styles.wrap}>
-      <div className={styles.header}>
-        <Space>
-          <h3
-            onClick={() => nav('/')}
-            style={{
-              cursor: 'pointer',
-            }}>
-            登录
-          </h3>
-          <Button onClick={logout}>退出</Button>
-          <Button onClick={() => changeUserName(`xiang${Date.now().toString().slice(-5)}`)}>修改用户名</Button>
-          <div>当前用户：{userName}</div>
-          <div>刷新次数{refreshCountRef.current}</div>
-          <Tooltip
-            title={
-              <div>
-                zustand里全局状态变更，只会影响订阅到该状态的组件。也就是zustand全局状态变更，<b>不会导致整个应用重新渲染</b>
-              </div>
-            }>
-            <QuestionCircleOutlined />
-          </Tooltip>
+      <Space>
+        <div>刷新次数{refreshCountRef.current}</div>
+        <Tooltip
+          title={
+            <div>
+              zustand里全局状态变更，只会影响订阅到该状态的组件。也就是zustand全局状态变更，<b>不会导致整个应用重新渲染</b>
+            </div>
+          }>
+          <QuestionCircleOutlined />
+        </Tooltip>
 
-          <div ref={divRef} style={{ color: count ? 'red' : 'blue' }}>{`count:${count}`}</div>
-        </Space>
-      </div>
+        <div ref={divRef} style={{ color: count ? 'red' : 'blue' }}>{`count:${count}`}</div>
+      </Space>
+      <Space>
+        <Button onClick={() => changeUserName(`xiang${Date.now().toString().slice(-5)}`)}>修改用户名</Button>
+        <div>当前用户：{userName}</div>
+        <Button onClick={logout}>注销</Button>
+      </Space>
     </div>
   )
 }
