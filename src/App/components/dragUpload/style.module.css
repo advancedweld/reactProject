@@ -1,0 +1,31 @@
+.container {
+  border: 1px solid red;
+  min-height: 800px;
+  margin: auto;
+}
+
+.dragWrap {
+  border: 1px solid red;
+  background-color: #fff;
+  .uploadWrap {
+    border: 1px solid red;
+    height: 100px;
+    width: 300px;
+  }
+  .imgPreview {
+    max-width: 300px;
+    max-height: 300px;
+  }
+}
+
+.samWrap {
+  border: 1px solid red;
+  background-color: #fff;
+  padding: 8px;
+  min-height: 600px;
+}
+
+.contentWrap {
+  display: flex;
+  justify-content: space-around;
+}

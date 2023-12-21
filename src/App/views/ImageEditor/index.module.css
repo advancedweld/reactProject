@@ -1,0 +1,138 @@
+.dragImageContainer {
+  border: 1px solid red;
+}
+
+.canvasEditorWrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  column-gap: 50px;
+  padding-left: 16px;
+  .canvasContainer {
+    margin-top: 16px;
+    background: gray;
+    border-radius: 4px;
+  }
+}
+
+.canvasToolsPanel {
+  width: 370px;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  background: rgba(44, 46, 51, 1);
+  div {
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .blockTitle {
+    height: 56px;
+    line-height: 56px;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 0 16px;
+    color: rgba(255, 255, 255, 0.85);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+  .operateArea {
+    padding: 16px 16px;
+  }
+  label {
+    color: rgba(255, 255, 255, 0.85) !important;
+  }
+  :global {
+    /* inputnumber样式 */
+    .ant-input-number,
+    .ant-select {
+      border-style: solid;
+      border-color: rgba(33, 34, 36, 1);
+    }
+
+    .ant-input-number-input::placeholder {
+      color: rgba(255, 255, 255, 0.25);
+    }
+    .ant-select:hover {
+      .ant-select-arrow {
+        display: none;
+      }
+    }
+    .ant-input-number-input-wrap,
+    .ant-select-selector {
+      background: linear-gradient(0deg, #212224, #212224), linear-gradient(0deg, #28292e, #28292e);
+      border: 1px solid rgba(33, 34, 36, 1) !important;
+    }
+    .ant-input-number-input,
+    .ant-select-selector {
+      color: rgba(255, 255, 255, 0.85);
+      border: rgba(33, 34, 36, 1);
+    }
+
+    .ant-select-selection-placeholder {
+      color: rgba(255, 255, 255, 0.25);
+    }
+    .ant-select-clear {
+      background: none;
+      color: rgba(255, 255, 255, 0.25);
+    }
+    .ant-select-arrow {
+      color: rgba(255, 255, 255, 0.25);
+    }
+    /* // checkbox样式 */
+    .ant-checkbox {
+      .ant-checkbox-inner {
+        border-color: rgba(255, 255, 255, 0.25);
+        background-color: #28292e;
+      }
+    }
+    .ant-checkbox-checked {
+      .ant-checkbox-inner {
+        border-color: rgba(33, 34, 36, 1);
+        background-color: #0958d9;
+      }
+    }
+
+    /* // checkbox样式 */
+    .ant-radio {
+      .ant-radio-inner {
+        border-color: rgba(255, 255, 255, 1);
+        background: none;
+      }
+    }
+    .ant-radio-checked {
+      .ant-radio-inner {
+        box-sizing: border-box;
+        border-color: rgba(33, 34, 36, 1);
+        background-color: #0958d9;
+      }
+    }
+
+    /* // 数字输入框 */
+    .ant-input-number-handler-wrap {
+      background-color: #28292e;
+      svg {
+        color: rgba(255, 255, 255, 0.25);
+      }
+    }
+    .ant-input-number-handler {
+      border-color: rgba(33, 34, 36, 1);
+    }
+
+    /* //slider */
+    .ant-slider-step {
+      background: rgba(255, 255, 255, 0.15);
+    }
+    .ant-slider-track {
+      background: rgba(0, 82, 217, 1);
+    }
+  }
+}
+
+.operatePanelWrap {
+  padding: 8px;
+}
+
+.ellipsis {
+  max-width: 200px;
+  text-overflow: 'ellipsis';
+  overflow: 'hidden';
+}

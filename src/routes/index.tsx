@@ -12,7 +12,7 @@ import NetRequest from '@view/NetRequest'
 import Hooks from '@view/HooksTestCom'
 import CustomerComponents from '@view/Components'
 import NoPermission from '@view/NoPermission'
-import ImageEditor from '@view/ImageEditor'
+import ImageEditor from '@view/imageEditor'
 import AppComponent from '../App/layout'
 
 import { LOGIN, APP, GROUP, ABOUT, HOOKS, COMPONENT, NETREQUEST, NOPERMISSION } from './constant'
@@ -83,7 +83,7 @@ const baseRoutes = {
     {
       path: '/app/image-editor/home',
       label: '图片编辑器',
-      element: lazyLoad(() => import('@view/ImageEditor')),
+      element: lazyLoad(() => import('@view/imageEditor')),
       // element: <ImageEditor />,
     },
     {
