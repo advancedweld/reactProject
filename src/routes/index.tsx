@@ -6,13 +6,9 @@
 
 import React, { Suspense } from 'react'
 import { createBrowserRouter } from 'react-router-dom'
-import Group from '@view/Group'
 import About from '@view/About'
 import NetRequest from '@view/NetRequest'
-import Hooks from '@view/HooksTestCom'
-import CustomerComponents from '@view/Components'
 import NoPermission from '@view/NoPermission'
-import ImageEditor from '@view/imageEditor'
 import AppComponent from '../App/layout'
 
 import { LOGIN, APP, GROUP, ABOUT, HOOKS, COMPONENT, NETREQUEST, NOPERMISSION } from './constant'
@@ -54,10 +50,14 @@ const baseRoutes = {
       ],
     },
     {
+      path: '/app/myCollect',
+      label: '收藏集',
+      element: lazyLoad(() => import('@view/MyCollect')),
+    },
+    {
       path: GROUP,
       label: 'GROUP',
       element: lazyLoad(() => import('@view/Group')),
-      // element: <Group />,
     },
     {
       path: '/app/nest-request',
@@ -75,11 +75,7 @@ const baseRoutes = {
       label: '自定义组件',
       element: lazyLoad(() => import('@view/Components')),
     },
-    {
-      path: ABOUT,
-      label: 'ABOUT(切换页面拦截)',
-      element: <About />,
-    },
+
     {
       path: '/app/image-editor/home',
       label: '图片编辑器',
@@ -90,6 +86,11 @@ const baseRoutes = {
       path: '/app/car/home',
       label: '汽车',
       element: <h1>汽车首页</h1>,
+    },
+    {
+      path: ABOUT,
+      label: 'ABOUT(切换页面拦截)',
+      element: <About />,
     },
   ],
 }
