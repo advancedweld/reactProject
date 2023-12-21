@@ -43,7 +43,7 @@ function Entry() {
   })
   const handleCreatePhoto = () => {
     photoForm.setFieldsValue({
-      name: 'xiangshangzhi',
+      name: 'xiang' + Date.now().toString().slice(-5),
       totalPages: 100,
       description: 'this is a photo',
       filename: 'go with the wind',

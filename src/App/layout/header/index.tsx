@@ -45,7 +45,7 @@ const Entry = () => {
             登录
           </h3>
           <Button onClick={logout}>退出</Button>
-          <Button onClick={() => changeUserName(`xiangshangzhi${Date.now()}`)}>修改用户名</Button>
+          <Button onClick={() => changeUserName(`xiang${Date.now().toString().slice(-5)}`)}>修改用户名</Button>
           <div>当前用户：{userName}</div>
           <div>刷新次数{refreshCountRef.current}</div>
           <Tooltip
@@ -57,7 +57,7 @@ const Entry = () => {
             <QuestionCircleOutlined />
           </Tooltip>
 
-          <div ref={divRef} style={{ color: count ? 'red' : 'blue' }}>{`计数${count}`}</div>
+          <div ref={divRef} style={{ color: count ? 'red' : 'blue' }}>{`count:${count}`}</div>
         </Space>
       </div>
     </div>
