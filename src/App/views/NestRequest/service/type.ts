@@ -33,3 +33,13 @@ export type PageParams = {
 
   pageSize: number
 }
+
+export type PhotosResponse = {
+  code: number
+
+  data: {
+    photos: Photo[]
+    totalCount: number
+  }
+  message: string
+}

@@ -19,7 +19,12 @@ function Entry() {
     data: photosData,
     refetch,
     isLoading,
-  } = useQuery({ queryKey: ['photos/Getphotos', pageParams], queryFn: () => requestPhotos(pageParams), enabled: true })
+  } = useQuery({
+    queryKey: ['photos/Getphotos', pageParams],
+    queryFn: () => requestPhotos(pageParams),
+    enabled: true,
+    select: (respose) => respose.data,
+  })
 
   const createPhotoMutation = useMutation({
     mutationFn: createPhoto,
