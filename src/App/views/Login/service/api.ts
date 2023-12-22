@@ -1,8 +1,8 @@
 import request from 'utils/request'
-import { User, UserRegisterResponse } from './type'
+import { User, UserRegisterResponse, UserLoginResponse } from './type'
 
 // 用户登录
-export const userLogin: (params: User) => Promise<string> = (params) =>
+export const userLogin: (params: User) => Promise<UserLoginResponse> = (params) =>
   // request.post('/user/getCode', { phone })
   request.post('/api-x/user/login', params, { timeout: 0 })
 

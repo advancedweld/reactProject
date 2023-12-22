@@ -9,3 +9,5 @@ export type UserRegisterResponse = {
   message: string
   data: User
 }
+
+export type UserLoginResponse = UserRegisterResponse

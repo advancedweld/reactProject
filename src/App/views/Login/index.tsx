@@ -2,7 +2,7 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
  * @LastEditors: engineMaster xiangshangzhi@gmail.com
- * @LastEditTime: 2023-12-22 20:35:07
+ * @LastEditTime: 2023-12-22 20:44:47
  * @FilePath: \reactProject\src\App\views\Login\index.tsx
  * @Description: xiangshangzhi写的文件
  *
@@ -35,6 +35,7 @@ function Login() {
     mutationFn: userLogin,
     onSuccess: (response) => {
       console.log('@@@@@@@@userLoginMutation', response)
+      updateUserProfile(response.data)
       login()
       nav(APP)
       message.success('登录成功')
@@ -61,21 +62,13 @@ function Login() {
     // 校验账号密码
     if (type === 'register') {
       userRegisterMutation.mutate(values)
-      // userRegisterMutation.mutate({
-      //   userName: `xiang${Date.now().toString().slice(-5)}`,
-      //   password: '123456',
-      //   email: `xiang${Date.now().toString().slice(-5)}@gmail.com`,
-      // })
     } else {
-      // userLoginMutation.mutate({
-      //   password: '123456',
-      // })
-      if (values.password === '123456') {
-        login()
-        nav(APP)
-        message.success('登录成功')
-        return
-      }
+      // if (values.password === '123456') {
+      //   login()
+      //   nav(APP)
+      //   message.success('登录成功')
+      //   return
+      // }
       userLoginMutation.mutate(values)
     }
     return
