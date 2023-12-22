@@ -2,7 +2,7 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
  * @LastEditors: engineMaster xiangshangzhi@gmail.com
- * @LastEditTime: 2023-12-22 20:44:47
+ * @LastEditTime: 2023-12-22 20:47:57
  * @FilePath: \reactProject\src\App\views\Login\index.tsx
  * @Description: xiangshangzhi写的文件
  *
@@ -63,29 +63,13 @@ function Login() {
     if (type === 'register') {
       userRegisterMutation.mutate(values)
     } else {
-      // if (values.password === '123456') {
-      //   login()
-      //   nav(APP)
-      //   message.success('登录成功')
-      //   return
-      // }
-      userLoginMutation.mutate(values)
-    }
-    return
-    if (values.username && values.pwd) {
-      if (values.pwd === '123456') {
-        message.success('登录成功')
-        // 更新全局状态
+      if (values.password === '123456') {
         login()
-        updateUserProfile({
-          userName: values.username,
-        })
         nav(APP)
-      } else {
-        message.error('账号或密码错误')
+        message.success('登录成功')
+        return
       }
-    } else {
-      message.error('账号或密码不能为空')
+      userLoginMutation.mutate(values)
     }
   }
 
