@@ -2,7 +2,7 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
  * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2023-12-21 17:43:29
+ * @LastEditTime: 2023-12-22 13:49:44
  * @FilePath: \reactProject\src\App\views\Login\index.tsx
  * @Description: xiangshangzhi写的文件
  *
@@ -29,7 +29,9 @@ function Login() {
   // 用户登录请求
   const userLoginMutation = useMutation({
     mutationFn: userLogin,
-    onSuccess: () => {
+    onSuccess: (response) => {
+      console.log('@@@@@@@@userLoginMutation', response)
+      login()
       nav(APP)
       message.success('登录成功')
     },
@@ -38,6 +40,8 @@ function Login() {
   const onFinish = async (values: any) => {
     console.log('@@@onFinish values is -----', values)
     // 校验账号密码
+    // userLoginMutation.mutate(values)
+    // return
     if (values.username && values.pwd) {
       if (values.pwd === '123456') {
         message.success('登录成功')

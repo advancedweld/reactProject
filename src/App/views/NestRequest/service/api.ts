@@ -12,3 +12,4 @@ export const updatePhoto: (params: Photo) => Promise<string> = (params) =>
 // 获取账户信息
 export const requestPhotos: (pages: PageParams) => Promise<PhotosResponse> = (params) =>
   request.get(`/api-x/photos?pageNo=${params.pageNo}&pageSize=${params.pageSize}`)
+// request.get(`/api-x/author`)
