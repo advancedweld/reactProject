@@ -1,7 +1,12 @@
 import request from 'utils/request'
 import { User } from './type'
 
-// 获取验证码
+// 用户登录
 export const userLogin: (params: User) => Promise<string> = (params) =>
   // request.post('/user/getCode', { phone })
-  request.post('/api-x/auth/login', params, { timeout: 0 })
+  request.post('/api-x/user/login', params, { timeout: 0 })
+
+// 用户注册
+export const userRegister: (params: User) => Promise<string> = (params) =>
+  // request.post('/user/getCode', { phone })
+  request.post('/api-x/user/register', params, { timeout: 0 })
