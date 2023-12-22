@@ -2,7 +2,7 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
  * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2023-12-22 16:08:06
+ * @LastEditTime: 2023-12-22 16:42:05
  * @FilePath: \reactProject\src\App\views\Login\index.tsx
  * @Description: xiangshangzhi写的文件
  *
@@ -39,6 +39,10 @@ function Login() {
       nav(APP)
       message.success('登录成功')
     },
+    onError: (error) => {
+      console.log('@@@@@@@@userLoginMutation', error)
+      message.error('登录失败:' + error.message)
+    },
   })
 
   const userRegisterMutation = useMutation({
@@ -58,6 +62,10 @@ function Login() {
         email: `xiang${Date.now().toString().slice(-5)}@gmail.com`,
       })
     } else {
+      // userLoginMutation.mutate({
+      //   password: '123456',
+      // })
+
       userLoginMutation.mutate(values)
     }
     return

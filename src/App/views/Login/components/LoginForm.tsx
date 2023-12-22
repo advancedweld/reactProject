@@ -2,7 +2,7 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
  * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2023-12-22 16:13:48
+ * @LastEditTime: 2023-12-22 16:40:49
  * @FilePath: \reactProject\src\App\views\Login\components\LoginForm.tsx
  * @Description: xiangshangzhi写的文件
  *
@@ -30,10 +30,10 @@ function LoginForm(props: ILoginForm) {
         labelCol={{ flex: '50px' }}
         labelAlign='left'
         autoComplete='off'>
-        <Form.Item label='账号' name='username' rules={[{ required: true, message: 'Please input your username!' }]}>
+        <Form.Item label='账号' name='userName' rules={[{ required: true, message: 'Please input your username!' }]}>
           <Input style={{ height: '40px' }} />
         </Form.Item>
-        <Form.Item label='密码' name='pwd' rules={[{ required: true, message: 'Please input your password!' }]}>
+        <Form.Item label='密码' name='password' rules={[{ required: true, message: 'Please input your password!' }]}>
           <Input style={{ height: '40px' }} type='password' />
         </Form.Item>
 
