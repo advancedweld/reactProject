@@ -2,7 +2,7 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
  * @LastEditors: engineMaster xiangshangzhi@gmail.com
- * @LastEditTime: 2023-12-22 20:02:28
+ * @LastEditTime: 2023-12-22 20:35:07
  * @FilePath: \reactProject\src\App\views\Login\index.tsx
  * @Description: xiangshangzhi写的文件
  *
@@ -24,7 +24,7 @@ import style from './style.module.css'
 
 function Login() {
   const [type, setType] = React.useState<'login' | 'register'>('login')
-  const { userName, logout, changeUserName, login } = useUserProfileStore((state) => state)
+  const { userProfile, logout, updateUserProfile, login } = useUserProfileStore((state) => state)
 
   const [form] = Form.useForm<any>()
 
@@ -49,6 +49,7 @@ function Login() {
     mutationFn: userRegister,
     onSuccess: (response) => {
       console.log('@@@@@@@@userRegistrMutation', response)
+      updateUserProfile(response.data)
       login()
       nav(APP)
       message.success('注册成功')
@@ -83,7 +84,9 @@ function Login() {
         message.success('登录成功')
         // 更新全局状态
         login()
-        changeUserName(values.username)
+        updateUserProfile({
+          userName: values.username,
+        })
         nav(APP)
       } else {
         message.error('账号或密码错误')

@@ -3,3 +3,9 @@ export type User = {
   password: string
   email: string
 }
+
+export type UserRegisterResponse = {
+  code: number
+  message: string
+  data: User
+}

@@ -7,7 +7,10 @@
 import { Navigate, useLocation } from 'react-router-dom'
 import useUserProfileStore from 'store/userProfile'
 
-function AuthWrap(props) {
+interface IAuthWrap {
+  children: React.ReactNode
+}
+function AuthWrap(props: IAuthWrap) {
   const location = useLocation()
   const loginStatus = useUserProfileStore((state) => state.isLogin)
 

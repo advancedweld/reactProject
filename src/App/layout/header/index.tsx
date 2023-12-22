@@ -32,7 +32,7 @@ const Entry = () => {
     refreshCountRef.current += 1
     console.log('@@@@ header刷新', count)
   })
-  const { userName, logout, changeUserName } = useUserProfileStore((state) => state)
+  const { userProfile, logout, updateUserProfile } = useUserProfileStore((state) => state)
   return (
     <div className={styles.wrap}>
       <Space>
@@ -49,8 +49,16 @@ const Entry = () => {
         <div ref={divRef} style={{ color: count ? 'red' : 'blue' }}>{`count:${count}`}</div>
       </Space>
       <Space>
-        <Button onClick={() => changeUserName(`xiang${Date.now().toString().slice(-5)}`)}>修改用户名</Button>
-        <div>当前用户：{userName}</div>
+        <Button
+          onClick={() =>
+            updateUserProfile({
+              ...userProfile,
+              userName: `xiang${Date.now().toString().slice(-5)}`,
+            })
+          }>
+          修改用户名
+        </Button>
+        <div>当前用户：{userProfile?.userName}</div>
         <Button onClick={logout}>注销</Button>
       </Space>
     </div>
