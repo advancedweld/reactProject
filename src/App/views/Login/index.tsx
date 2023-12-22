@@ -1,8 +1,8 @@
 /*
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
- * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2023-12-22 16:47:38
+ * @LastEditors: engineMaster xiangshangzhi@gmail.com
+ * @LastEditTime: 2023-12-22 20:02:28
  * @FilePath: \reactProject\src\App\views\Login\index.tsx
  * @Description: xiangshangzhi写的文件
  *
@@ -49,6 +49,9 @@ function Login() {
     mutationFn: userRegister,
     onSuccess: (response) => {
       console.log('@@@@@@@@userRegistrMutation', response)
+      login()
+      nav(APP)
+      message.success('注册成功')
     },
   })
 
@@ -56,11 +59,12 @@ function Login() {
     console.log('@@@onFinish values is -----', values)
     // 校验账号密码
     if (type === 'register') {
-      userRegisterMutation.mutate({
-        userName: `xiang${Date.now().toString().slice(-5)}`,
-        password: '123456',
-        email: `xiang${Date.now().toString().slice(-5)}@gmail.com`,
-      })
+      userRegisterMutation.mutate(values)
+      // userRegisterMutation.mutate({
+      //   userName: `xiang${Date.now().toString().slice(-5)}`,
+      //   password: '123456',
+      //   email: `xiang${Date.now().toString().slice(-5)}@gmail.com`,
+      // })
     } else {
       // userLoginMutation.mutate({
       //   password: '123456',

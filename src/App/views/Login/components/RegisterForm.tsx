@@ -1,8 +1,8 @@
 /*
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
- * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2023-12-22 16:02:51
+ * @LastEditors: engineMaster xiangshangzhi@gmail.com
+ * @LastEditTime: 2023-12-22 20:17:49
  * @FilePath: \reactProject\src\App\views\Login\components\RegisterForm.tsx
  * @Description: xiangshangzhi写的文件
  *
@@ -30,13 +30,29 @@ function LoginForm(props: IRegisterForm) {
         labelCol={{ flex: '50px' }}
         labelAlign='left'
         autoComplete='off'>
-        <Form.Item label='账号' name='username'>
+        <Form.Item label='账号' name='userName' rules={[{ required: true, message: 'Please input your username!' }]}>
           <Input style={{ height: '40px' }} />
         </Form.Item>
-        <Form.Item label='密码' name='pwd'>
+        <Form.Item label='密码' name='password' rules={[{ required: true, message: 'Please input your password!' }]}>
           <Input style={{ height: '40px' }} type='password' />
         </Form.Item>
-        <Form.Item label='确认密码' name='pwd'>
+        <Form.Item
+          label='确认密码'
+          name='passwordRepeat'
+          rules={[
+            {
+              required: true,
+              message: 'Please confirm your password!',
+            },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue('password') === value) {
+                  return Promise.resolve()
+                }
+                return Promise.reject(new Error('The new password that you entered do not match!'))
+              },
+            }),
+          ]}>
           <Input style={{ height: '40px' }} type='password' />
         </Form.Item>
         <Button className={style.loginBtn} htmlType='submit' type='primary' loading={false}>
