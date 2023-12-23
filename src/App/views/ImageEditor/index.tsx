@@ -9,8 +9,8 @@ import { CanvasImage } from './type'
 
 import styles from './index.module.css'
 
-export const CANVAS_WIDTH = 650
-export const CANVAS_HEIGHT = 800
+export const CANVAS_WIDTH = 600
+export const CANVAS_HEIGHT = 600
 // 变换transformer用法 demo：  https://konvajs.org/docs/react/Transformer.html
 
 const ConvasEditor = () => {
@@ -105,35 +105,33 @@ const ConvasEditor = () => {
   const selecteItem = imageArrs.find((item) => item.id === selectedId)
   return (
     <div className={styles.canvasEditorWrap}>
-      <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <div>
-          <div onDrop={onDrop} onDragOver={(e) => e.preventDefault()} className={styles.canvasContainer}>
-            <KonvaStage width={CANVAS_WIDTH} height={CANVAS_HEIGHT} onMouseDown={checkDeselect} ref={stageRef}>
-              <Layer width={650} height={800}>
-                {/* 背景图片 */}
-                {bgImage && (
-                  <BgImage
-                    imageProps={{ id: bgImage, src: bgImage }}
-                    isSelected={false}
-                    // 点击背景图的时候把选中id置空就行了
-                    onSelect={() => setSelectId(null)}
-                  />
-                )}
+      <div onDrop={onDrop} onDragOver={(e) => e.preventDefault()} className={styles.canvasContainer}>
+        <KonvaStage width={CANVAS_WIDTH} height={CANVAS_HEIGHT} onMouseDown={checkDeselect} ref={stageRef}>
+          <Layer>
+            {/* 背景图片 */}
+            {bgImage && (
+              <BgImage
+                imageProps={{ id: bgImage, src: bgImage }}
+                isSelected={false}
+                // 点击背景图的时候把选中id置空就行了
+                onSelect={() => setSelectId(null)}
+              />
+            )}
 
-                {imageArrs.map((item) => (
-                  <DragImage
-                    imageProps={item}
-                    key={item.id}
-                    isSelected={item.id === selectedId}
-                    onTransformChange={onTransformChange}
-                    onSelect={() => {
-                      setSelectId(item.id)
-                    }}
-                  />
-                ))}
-              </Layer>
-            </KonvaStage>
-          </div>
+            {imageArrs.map((item) => (
+              <DragImage
+                imageProps={item}
+                key={item.id}
+                isSelected={item.id === selectedId}
+                onTransformChange={onTransformChange}
+                onSelect={() => {
+                  setSelectId(item.id)
+                }}
+              />
+            ))}
+          </Layer>
+        </KonvaStage>
+        <div className={styles.operatePanelWrap}>
           <OperatePanel setBgImage={setBgImage} exportImage={exportImage} />
         </div>
       </div>

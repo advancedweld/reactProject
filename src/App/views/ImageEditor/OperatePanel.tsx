@@ -14,7 +14,7 @@ interface IOperatePanel {
 }
 const OperatePanel: React.FC<IOperatePanel> = ({ exportImage, setBgImage }) => {
   return (
-    <div className={styles.operatePanelWrap}>
+    <>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <Button onClick={exportImage}>导出图片</Button>
         {/* <Button onClick={resetPos}>重置位置</Button> */}
@@ -31,7 +31,7 @@ const OperatePanel: React.FC<IOperatePanel> = ({ exportImage, setBgImage }) => {
           }}
         />
       </div>
-    </div>
+    </>
   )
 }
 
