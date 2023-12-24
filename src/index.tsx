@@ -1,8 +1,8 @@
 /*
  * @Author: xiangshangzhi xiangshangzhi@xtfer.com
  * @Date: 2022-07-20 12:55:04
- * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2023-12-20 16:50:39
+ * @LastEditors: engineMaster xiangshangzhi@gmail.com
+ * @LastEditTime: 2023-12-24 11:02:33
  * @FilePath: \reactProject\src\index.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -24,13 +24,11 @@ const queryClient = new QueryClient()
 
 function AppCotainer() {
   return (
-    <div className='appContainer'>
-      <QueryClientProvider client={queryClient}>
-        <ConfigProvider locale={zhCN}>
-          <RouterProvider router={router} />
-        </ConfigProvider>
-      </QueryClientProvider>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <ConfigProvider locale={zhCN}>
+        <RouterProvider router={router} />
+      </ConfigProvider>
+    </QueryClientProvider>
   )
 }
 

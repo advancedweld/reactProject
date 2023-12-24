@@ -10,12 +10,12 @@ import Header from './header'
 
 const Entry = () => {
   return (
-    <div>
+    <>
       <Header />
       <AuthWrap>
         <Dashboard />
       </AuthWrap>
-    </div>
+    </>
   )
 }
 

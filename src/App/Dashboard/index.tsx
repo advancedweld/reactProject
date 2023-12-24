@@ -1,8 +1,8 @@
 /*
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
- * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2023-12-20 09:00:08
+ * @LastEditors: engineMaster xiangshangzhi@gmail.com
+ * @LastEditTime: 2023-12-24 10:58:07
  * @FilePath: \reactProject\src\App\Dashboard\index.tsx
  * @Description: xiangshangzhi写的文件
  *
@@ -38,7 +38,7 @@ function Dashboard() {
   const logout = useUserProfileStore((state) => state.logout)
 
   return (
-    <div>
+    <>
       {/* 标签和按钮跳转 */}
       {/* <div style={{ display: 'flex', justifyContent: 'space-around' }}>
         <LinkArea />
@@ -53,7 +53,7 @@ function Dashboard() {
           <Outlet />
         </div>
       </div>
-    </div>
+    </>
   )
 }
 
