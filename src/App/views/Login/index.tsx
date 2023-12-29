@@ -2,7 +2,7 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
  * @LastEditors: engineMaster xiangshangzhi@gmail.com
- * @LastEditTime: 2023-12-22 20:47:57
+ * @LastEditTime: 2023-12-29 20:46:24
  * @FilePath: \reactProject\src\App\views\Login\index.tsx
  * @Description: xiangshangzhi写的文件
  *
@@ -78,9 +78,15 @@ function Login() {
       <div className={style.wrap}>
         <div className={style.loginForm}>
           {type === 'login' ? <LoginForm onFinish={onFinish} /> : <RegisterForm onFinish={onFinish} />}
-          <Button className={style.loginBtn} onClick={() => setType((type) => (type === 'register' ? 'login' : 'register'))}>
-            {type === 'register' ? '登录' : '注册'}
-          </Button>
+
+          <div className={style.loginFooter}>
+            <span>
+              还没有账号？
+              <span className={style.link} onClick={() => setType((type) => (type === 'register' ? 'login' : 'register'))}>
+                {type === 'register' ? '登录' : '注册'}
+              </span>
+            </span>
+          </div>
         </div>
       </div>
     </>

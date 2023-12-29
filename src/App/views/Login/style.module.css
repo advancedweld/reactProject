@@ -2,31 +2,40 @@
  * @Author: xiangshangzhi
  * @Date: 2022-09-09 11:37:36
  * @FilePath: \reactProject\src\App\views\Login\style.module.css
+ * 好看的渐变： https://juejin.cn/post/7299621996249481279?searchId=20231229203836E54D5046B89F7B09BA71
  */
 .wrap {
   border: 1px solid red;
   height: 100vh;
   display: flex;
-
+  /* 雪山冰川渐变 */
+  /* background: linear-gradient(135deg, #c7e9fb, #a6defa, #80d4f9, #5bc9f8, #35bef7); */
+  /* 天空蓝渐变 */
+  background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
   justify-content: center;
   align-items: center;
   .loginForm {
     /* border: 1px solid red; */
+    /* 毛玻璃效果 */
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
     margin-bottom: 40px;
     padding: 60px;
-    background-color: #f5f5f5;
-    border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    .submitBtn {
+      width: 130px;
+      display: block;
+      margin: auto;
+    }
   }
-  .loginBtn {
-    /* border: 1px solid red; */
-    display: block;
-    margin: auto;
-    width: 140px;
+  .loginFooter {
+    margin-top: 8px;
+    font-size: 13px;
+    text-align: center;
   }
-}
-
-:global(.xiang) {
-  border: 1px solid red;
+  .link {
+    color: #3576f7;
+    cursor: pointer;
+  }
 }

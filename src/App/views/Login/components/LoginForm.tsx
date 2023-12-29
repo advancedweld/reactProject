@@ -42,7 +42,7 @@ function LoginForm(props: ILoginForm) {
           <Input style={{ height: '40px' }} type='password' />
         </Form.Item>
 
-        <Button className={style.loginBtn} htmlType='submit' type='primary' loading={false}>
+        <Button className={style.submitBtn} htmlType='submit' type='primary' loading={false}>
           登录
         </Button>
       </Form>

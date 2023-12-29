@@ -55,7 +55,7 @@ function LoginForm(props: IRegisterForm) {
           ]}>
           <Input style={{ height: '40px' }} type='password' />
         </Form.Item>
-        <Button className={style.loginBtn} htmlType='submit' type='primary' loading={false}>
+        <Button className={style.submitBtn} htmlType='submit' type='primary' loading={false}>
           注册
         </Button>
       </Form>
