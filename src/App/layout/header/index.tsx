@@ -19,7 +19,7 @@ const Entry = () => {
   const [count, Setcount] = React.useState(0)
 
   const timerRef = React.useRef<NodeJS.Timeout | null>(null)
-  const [timeStr, SetTimeStr] = useState('')
+  const [timeStr, SetTimeStr] = useState(new Date().toLocaleString())
   const refreshCountRef = React.useRef(0)
 
   const divRef = React.useRef<HTMLDivElement | null>(null)
