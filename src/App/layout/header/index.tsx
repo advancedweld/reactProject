@@ -4,7 +4,7 @@
  * @FilePath: \reactProject\src\App\layout\header\index.tsx
  */
 
-import React, { Suspense, useEffect } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import useUserProfileStore from 'store/userProfile'
 
@@ -18,9 +18,20 @@ const Entry = () => {
 
   const [count, Setcount] = React.useState(0)
 
+  const timerRef = React.useRef<NodeJS.Timeout | null>(null)
+  const [timeStr, SetTimeStr] = useState('')
   const refreshCountRef = React.useRef(0)
 
   const divRef = React.useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    timerRef.current = setInterval(() => {
+      SetTimeStr(new Date().toLocaleString())
+    }, 1000)
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current)
+    }
+  }, [])
 
   // useeffect 执行时机，会在组件渲染完后执行
   useEffect(() => {
@@ -33,6 +44,7 @@ const Entry = () => {
     console.log('@@@@ header刷新', count)
   })
   const { userProfile, logout, updateUserProfile } = useUserProfileStore((state) => state)
+
   return (
     <div className={styles.wrap}>
       <Space>
@@ -49,6 +61,7 @@ const Entry = () => {
         <div ref={divRef} style={{ color: count ? 'red' : 'blue' }}>{`count:${count}`}</div>
       </Space>
       <Space>
+        <div>{`当前时间：${timeStr}`}</div>
         <Button
           onClick={() =>
             updateUserProfile({
