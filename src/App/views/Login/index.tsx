@@ -2,7 +2,7 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
  * @LastEditors: engineMaster xiangshangzhi@gmail.com
- * @LastEditTime: 2023-12-29 20:46:24
+ * @LastEditTime: 2024-01-01 11:05:49
  * @FilePath: \reactProject\src\App\views\Login\index.tsx
  * @Description: xiangshangzhi写的文件
  *
@@ -12,7 +12,7 @@ import { Button, message, Form, Input } from 'antd'
 import { useQuery, useMutation } from '@tanstack/react-query'
 
 import { Link, useNavigate } from 'react-router-dom'
-import { APP } from 'routes/constant'
+import { APP, APPHOME } from 'routes/constant'
 import useUserProfileStore from 'store/userProfile'
 
 import { userLogin, userRegister } from './service/api'
@@ -37,7 +37,7 @@ function Login() {
       console.log('@@@@@@@@userLoginMutation', response)
       updateUserProfile(response.data)
       login()
-      nav(APP)
+      nav(APPHOME)
       message.success('登录成功')
     },
     onError: (error) => {
@@ -52,7 +52,7 @@ function Login() {
       console.log('@@@@@@@@userRegistrMutation', response)
       updateUserProfile(response.data)
       login()
-      nav(APP)
+      nav(APPHOME)
       message.success('注册成功')
     },
   })
@@ -65,7 +65,7 @@ function Login() {
     } else {
       if (values.password === '123456') {
         login()
-        nav(APP)
+        nav(APPHOME)
         message.success('登录成功')
         return
       }
