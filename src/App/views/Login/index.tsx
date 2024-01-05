@@ -2,7 +2,7 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
  * @LastEditors: engineMaster xiangshangzhi@gmail.com
- * @LastEditTime: 2024-01-01 11:05:49
+ * @LastEditTime: 2024-01-05 20:40:40
  * @FilePath: \reactProject\src\App\views\Login\index.tsx
  * @Description: xiangshangzhi写的文件
  *
@@ -19,7 +19,7 @@ import { userLogin, userRegister } from './service/api'
 
 import LoginForm from './components/LoginForm'
 import RegisterForm from './components/RegisterForm'
-
+import loginBg from '@/assets/images/login_bg.jpg'
 import style from './style.module.css'
 
 function Login() {
@@ -75,7 +75,7 @@ function Login() {
 
   return (
     <>
-      <div className={style.wrap}>
+      <div className={style.wrap} style={{ backgroundImage: `url(${loginBg})`, backgroundSize: 'cover' }}>
         <div className={style.loginForm}>
           {type === 'login' ? <LoginForm onFinish={onFinish} /> : <RegisterForm onFinish={onFinish} />}
 

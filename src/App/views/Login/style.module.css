@@ -17,6 +17,7 @@
   .loginForm {
     /* border: 1px solid red; */
     /* 毛玻璃效果 */
+    transform: translateX(80%);
     background: rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(10px);
     margin-bottom: 40px;

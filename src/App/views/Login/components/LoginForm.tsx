@@ -2,7 +2,7 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
  * @LastEditors: engineMaster xiangshangzhi@gmail.com
- * @LastEditTime: 2023-12-24 15:11:22
+ * @LastEditTime: 2024-01-05 20:47:49
  * @FilePath: \reactProject\src\App\views\Login\components\LoginForm.tsx
  * @Description: xiangshangzhi写的文件
  *
@@ -24,7 +24,7 @@ function LoginForm(props: ILoginForm) {
 
   return (
     <div>
-      <h2 style={{ textAlign: 'center' }}>欢迎！</h2>
+      <h2 style={{ textAlign: 'center' }}>用户登录</h2>
 
       <Form
         form={form}
