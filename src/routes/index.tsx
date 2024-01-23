@@ -75,11 +75,15 @@ const baseRoutes = {
       label: '自定义组件',
       element: lazyLoad(() => import('@view/Components')),
     },
-
+    {
+      path: 'app/Performance',
+      label: '性能',
+      element: lazyLoad(() => import('@view/Performance')),
+    },
     {
       path: '/app/image-editor/home',
       label: '图片编辑器',
-      element: lazyLoad(() => import('@view/imageEditor')),
+      element: lazyLoad(() => import('@view/ImageEditor')),
       // element: <ImageEditor />,
     },
     {

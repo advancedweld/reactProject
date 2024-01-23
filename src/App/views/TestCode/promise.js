@@ -3,7 +3,7 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-19 19:59:32
  * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2023-12-04 09:32:28
+ * @LastEditTime: 2024-01-19 09:38:27
  * @FilePath: \reactProject\src\App\views\TestCode\promise.js
  * @Description: promise测试
  *
@@ -74,7 +74,7 @@ const asyncFn = async () => {
 
   /**
    * 输出结果
-   * sync function1
+   * sync function
    * hello world
    * Async function1
    * promied promise1
