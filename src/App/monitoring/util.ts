@@ -212,6 +212,21 @@ export function collectPerformanceData(cache: MonitoringCache) {
 
   observer1.observe({ type: 'largest-contentful-paint', buffered: true })
 
+  const observerTTI = new PerformanceObserver((list) => {
+    const entries = list.getEntries()
+    console.log('🚀 ~ observerTTI ~ entries:', entries)
+
+    const ttiEntry = entries.find((entry) => entry.entryType === 'first-input')
+
+    if (ttiEntry) {
+      const ttiTime = ttiEntry.startTime
+      console.log('TTI:', ttiTime, 'ms')
+      observer.disconnect()
+    }
+  })
+
+  observerTTI.observe({ type: 'first-input', buffered: true })
+
   // 收集页面性能数据的方法，可以收集页面加载时间、资源加载时间等
   // getEntries 和 getEntriesByType 拿到的数据是一样的
   const performanceData = performance.getEntries()[0]
