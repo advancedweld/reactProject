@@ -84,7 +84,7 @@ export const startFpsMonitor = (cache: MonitoringCache) => {
 
   const monitor = () => {
     window.requestAnimationFrame(() => {
-      let gap = Date.now() - timeStamp
+      const gap = Date.now() - timeStamp
       frameCount += 1
       // 统计一秒内的fps
       if (gap > 1000) {
@@ -150,8 +150,8 @@ function monitorFetch(cache: MonitoringCache) {
           const endTime = performance.now()
           const latency = endTime - startTime
           const latencyInfo = {
-            url: url,
-            latency: latency,
+            url,
+            latency,
           }
           cache.addData('apiLatency', latencyInfo)
           return response
@@ -159,7 +159,7 @@ function monitorFetch(cache: MonitoringCache) {
         .catch((error) => {
           console.error('Error fetching API:', error)
           const latencyInfo = {
-            url: url,
+            url,
             latency: error,
           }
           cache.addData('apiLatency', latencyInfo)
@@ -182,16 +182,45 @@ export function stopMonitorHttpRequest() {
   reserveFetch()
 }
 export function collectPerformanceData(cache: MonitoringCache) {
+  const paint: Record<string, number> = {}
+  // fcp, fp
+  // https://developer.mozilla.org/en-US/docs/Web/API/PerformancePaintTiming
+  const observer = new PerformanceObserver((list) => {
+    list.getEntries().forEach((entry) => {
+      console.log(`The time to ${entry.name} was ${entry.startTime} milliseconds.`)
+      paint[entry.name] = entry.startTime
+      // Logs "The time to first-paint was 386.7999999523163 milliseconds."
+      // Logs "The time to first-contentful-paint was 400.6999999284744 milliseconds."
+    })
+  })
+  observer.observe({ type: 'paint', buffered: true })
+
+  // lcp
+  // https://juejin.cn/post/7143201009781702687?searchId=202401231359379DDEBE41E067686E8755
+  const observer1 = new PerformanceObserver((list) => {
+    const entries = list.getEntries()
+    const lcpEntry = entries.find((entry) => entry.entryType === 'largest-contentful-paint')
+
+    if (lcpEntry) {
+      const lcpTime = lcpEntry.startTime
+      // eslint-disable-next-line dot-notation
+      paint['lcp'] = lcpTime
+      console.log('LCP:', lcpTime, 'ms')
+      observer.disconnect()
+    }
+  })
+
+  observer1.observe({ type: 'largest-contentful-paint', buffered: true })
+
   // 收集页面性能数据的方法，可以收集页面加载时间、资源加载时间等
   // getEntries 和 getEntriesByType 拿到的数据是一样的
   const performanceData = performance.getEntries()[0]
   const performanceType = performance.getEntriesByType('navigation')[0]
-  // 拿到fp fcp
-  const paint = performance.getEntriesByType('paint')
+  console.log('🚀 ~ collectPerformanceData ~ performanceType:', performanceType)
 
   cache.addData('networkDelay', {
-    performanceData: performanceData,
-    performanceType: performanceType,
+    performanceData,
+    performanceType,
     performancePaint: paint,
   })
 }

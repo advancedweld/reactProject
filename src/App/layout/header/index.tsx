@@ -41,7 +41,7 @@ const Entry = () => {
   }, [])
   useEffect(() => {
     refreshCountRef.current += 1
-    console.log('@@@@ header刷新', count)
+    // console.log('@@@@ header刷新', count)
   })
   const { userProfile, logout, updateUserProfile } = useUserProfileStore((state) => state)
 
