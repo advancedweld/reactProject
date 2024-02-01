@@ -38,6 +38,8 @@
     "axios": "^1.4.0",
     "konva": "^9.2.0",
     "mini-css-extract-plugin": "^2.6.1",
+    "mobx": "^6.12.0",
+    "mobx-react": "^9.1.0",
     "openai": "^3.3.0",
     "postcss": "^8.4.16",
     "postcss-loader": "^7.0.1",

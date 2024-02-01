@@ -76,6 +76,11 @@ const baseRoutes = {
       element: lazyLoad(() => import('@view/Components')),
     },
     {
+      path: 'app/Mobx',
+      label: '响应式(mobx)',
+      element: lazyLoad(() => import('@view/Mobx')),
+    },
+    {
       path: 'app/Performance',
       label: '性能',
       element: lazyLoad(() => import('@view/Performance')),

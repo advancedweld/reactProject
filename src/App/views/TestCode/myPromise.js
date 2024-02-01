@@ -4,7 +4,7 @@
  * @FilePath: \reactProject\src\App\views\TestCode\myPromise.js
  * @Description: xiangshangzhi写的文件
  * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2023-12-04 16:48:13
+ * @LastEditTime: 2024-01-23 08:48:54
  *
  */
 function MyPromise(executor) {
@@ -131,4 +131,48 @@ Promise.prototype.then = function (_onResolved, _onRejected) {
 // eslint-disable-next-line
 Promise.prototype.catch = function (onRejected) {
   return this.then(null, onRejected)
+}
+
+function Mpromise(exector) {
+  if (typeof exector !== 'function') {
+    throw new Error('Promise resolver' + exector + 'is not a function')
+  }
+
+  const self = this
+  self.status = 'pending'
+  self.data = undefined
+  self.onResolvedCallback = []
+  self.onRejectedCallback = []
+
+  function resolve(value) {
+    if (self.status === 'pending') {
+      self.status = 'resolved'
+      self.data = value
+      self.onResolvedCallback.forEach((fun) => fun(value))
+    }
+  }
+
+  function reject(reason) {
+    if (self.status === 'pending') {
+      self.status = 'rejected'
+      self.data = reason
+      self.onRejectedCallback.forEach((fun) => fun(reason))
+    }
+  }
+
+  try {
+    exector(resolve, reject)
+  } catch (e) {
+    reject(e)
+  }
+}
+
+Mpromise.prototype.then = function (_onResolved, _onRejected) {
+  // eslint-disable-next-line @typescript-eslint/no-this-alias
+  const self = this
+  let promise2
+
+  // 根据标准，如果then的参数不是function，则我们需要忽略它，此处以如下方式处理
+  const onResolved = typeof _onResolved === 'function' ? onResolved : function (value) {}
+  const onRejected = typeof _onRejected === 'function' ? onRejected : function (reason) {}
 }
