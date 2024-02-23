@@ -2,9 +2,10 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-12-21 10:17:57
  * @FilePath: \reactProject\src\App\views\Mobx\index.tsx
- * @Description: https://zh.mobx.js.org/react-integration.html
+ * @参考: https://zh.mobx.js.org/react-integration.html
+ * @参考: https://juejin.cn/post/6844903475734642701?from=search-suggest
  * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2024-02-01 10:52:38
+ * @LastEditTime: 2024-02-23 09:47:59
  *
  */
 import React, { useEffect } from 'react'
