@@ -52,7 +52,19 @@ const baseRoutes = {
     {
       path: '/app/myCollect',
       label: '收藏集',
-      element: lazyLoad(() => import('@view/MyCollect')),
+      children: [
+        {
+          path: '/app/myCollect/flashdot',
+          label: '粒子效果',
+          element: lazyLoad(() => import('@view/MyCollect')),
+        },
+        {
+          path: '/app/myCollect/cell',
+          label: '元胞自动机',
+          element: lazyLoad(() => import('@view/MyCollect/GenerateCell')),
+        },
+      ],
+      // element: lazyLoad(() => import('@view/MyCollect')),
     },
     {
       path: GROUP,
