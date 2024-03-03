@@ -1,0 +1,23 @@
+.wrap {
+  border: 1px solid red;
+  .row {
+    display: flex;
+    /* column-gap: 4px; */
+    /* margin-top: 4px; */
+  }
+  .cell {
+    background-color: aqua;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .live {
+    background-color: red;
+  }
+  .dead {
+    background-color: green;
+    opacity: 0;
+  }
+}
