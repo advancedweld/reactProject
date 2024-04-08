@@ -2,8 +2,8 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-22 11:23:27
  * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2023-04-27 19:49:15
- * @FilePath: \webpackProject\src\App\views\HooksTestCom\useCount.tsx
+ * @LastEditTime: 2024-04-08 09:51:24
+ * @FilePath: \reactProject\src\App\views\HooksTestCom\useCount.tsx
  * @Description: xiangshangzhi写的文件
  *
  */
@@ -21,6 +21,36 @@ export const useCount: (initialCount: number, delay?: number) => any = (value, d
     return () => clearInterval(interval)
   }, [])
   return count
+}
+
+export const _useCount: (initialCount: number, delay?: number) => any = (initialCount, delay = 1) => {
+  const timer = React.useRef<any>(null)
+  const [count, setCount] = useState(initialCount)
+
+  useEffect(() => {
+    timer.current = setTimeout(() => {
+      setCount(count - 1)
+      if (count <= 0) {
+        clearTimeout(timer.current)
+      }
+    }, delay * 1)
+    return () => {
+      if (timer.current) {
+        clearTimeout(timer.current)
+      }
+    }
+  }, [count])
+
+  // 清除定时器
+  const clearCount = () => {
+    timer.current && clearTimeout(timer.current)
+  }
+  // 重新开始计时
+  const resumeCount = () => {
+    timer.current && clearTimeout(timer.current)
+    setCount(initialCount)
+  }
+  return { clearCount, resumeCount, count }
 }
 
 export default () => {

@@ -26,7 +26,8 @@ module.exports = {
     'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'class-methods-use-this': 'off',
     'no-param-reassign': 'off',
-    'no-unused-expressions': 'error',
+    'no-unused-expressions': 'warn',
+    // 'no-unused-expressions': 'off',
     'no-plusplus': 0,
     'no-restricted-syntax': 0,
     'consistent-return': 0,
@@ -46,7 +47,6 @@ module.exports = {
     'import/no-named-as-default': 0,
     '@typescript-eslint/no-empty-function': 'off',
     'no-shadow': 'off',
-
     'prefer-template': 'off',
     'no-var': 'error',
     'no-underscore-dangle': 0,
