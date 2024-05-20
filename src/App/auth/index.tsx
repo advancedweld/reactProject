@@ -4,7 +4,7 @@
  * @FilePath: \reactProject\src\App\auth\index.tsx
  */
 
-import { Navigate, useLocation } from 'react-router-dom'
+import { Navigate, redirect, useLocation } from 'react-router-dom'
 import useUserProfileStore from 'store/userProfile'
 
 interface IAuthWrap {
@@ -14,10 +14,13 @@ function AuthWrap(props: IAuthWrap) {
   const location = useLocation()
   const loginStatus = useUserProfileStore((state) => state.isLogin)
 
-  // console.log('@@@@@location', location)
+  console.log('@@@@@location', location)
   const { children } = props
 
-  return <>{loginStatus ? children : <Navigate to='/login' />}</>
-  // return <>{children}</>
+  if (!loginStatus) {
+    return <Navigate to='/login' />
+  }
+  if (location.pathname === '/') return <Navigate to='/home' />
+  return <>{children}</>
 }
 export default AuthWrap
