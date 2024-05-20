@@ -5,7 +5,7 @@
  */
 
 import React, { Suspense } from 'react'
-import { createBrowserRouter } from 'react-router-dom'
+import { createBrowserRouter, redirect } from 'react-router-dom'
 import About from '@view/About'
 import NetRequest from '@view/NetRequest'
 import NoPermission from '@view/NoPermission'
@@ -29,37 +29,32 @@ const baseRoutes = {
   element: <AppComponent></AppComponent>,
   children: [
     {
-      path: '/app/home',
-      label: '首页',
-      element: <h1>APP首页</h1>,
-    },
-    {
       path: NETREQUEST,
       label: '网络请求',
       children: [
         {
-          path: '/app/netRequest/base',
+          path: '/netRequest/base',
           label: '请求gpt',
           element: <NetRequest />,
         },
         {
-          path: '/app/netRequest/nest',
+          path: '/netRequest/nest',
           label: '请求nest',
           element: <h1>请求 nest</h1>,
         },
       ],
     },
     {
-      path: '/app/myCollect',
+      path: '/myCollect',
       label: '收藏集',
       children: [
         {
-          path: '/app/myCollect/flashdot',
+          path: '/myCollect/flashdot',
           label: '粒子效果',
           element: lazyLoad(() => import('@view/MyCollect')),
         },
         {
-          path: '/app/myCollect/cell',
+          path: '/myCollect/cell',
           label: '元胞自动机',
           element: lazyLoad(() => import('@view/MyCollect/GenerateCell')),
         },
@@ -72,7 +67,7 @@ const baseRoutes = {
       element: lazyLoad(() => import('@view/Group')),
     },
     {
-      path: '/app/nest-request',
+      path: '/nest-request',
       label: 'nest请求',
       element: lazyLoad(() => import('@view/NestRequest')),
     },
@@ -98,13 +93,13 @@ const baseRoutes = {
       element: lazyLoad(() => import('@view/Performance')),
     },
     {
-      path: '/app/image-editor/home',
+      path: '/image-editor/home',
       label: '图片编辑器',
       element: lazyLoad(() => import('@view/ImageEditor')),
       // element: <ImageEditor />,
     },
     {
-      path: '/app/car/home',
+      path: '/car/home',
       label: '汽车',
       element: <h1>汽车首页</h1>,
     },
@@ -132,7 +127,18 @@ const routes = [
       </Suspense>
     ),
   },
-
+  {
+    path: '/home',
+    label: '首页',
+    element: <AppComponent></AppComponent>,
+    children: [
+      {
+        path: '/home',
+        label: '网络请求',
+        element: <h1>首页</h1>,
+      },
+    ],
+  },
   baseRoutes,
   {
     path: '*',
