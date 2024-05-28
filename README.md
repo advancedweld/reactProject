@@ -16,3 +16,38 @@ yarn
 
 yarn dev
 ```
+
+## 目录结构
+
+├─App //根目录
+│ ├─auth //页面级别权限控制
+│ ├─components //公共组件
+│ │ └─dragUpload
+│ ├─Dashboard
+│ ├─layout
+│ │ └─header
+│ ├─monitoring
+│ └─views // 页面
+│ ├─About
+│ ├─Components
+│ ├─Group
+│ ├─HooksTestCom
+│ ├─ImageEditor
+│ ├─Login
+│ │ ├─components
+│ │ └─service
+│ ├─Mobx
+│ ├─MyCollect
+│ ├─NestRequest
+│ │ └─service
+│ ├─NetRequest
+│ ├─NoPermission
+│ ├─Performance
+│ └─TestCode
+│ └─bff
+├─assets
+│ └─images
+├─routes
+├─store
+├─types
+└─utils

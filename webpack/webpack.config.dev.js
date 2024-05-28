@@ -18,7 +18,7 @@ module.exports = merge(baseConfig, {
   // webpack-dev-server 的一下配置，webpack-dev-server 会提供一个本地服务(serve)
   devServer: {
     // host
-    host: '127.0.0.1',
+    host: '0.0.0.0',
     // 端口
     port: 3003,
     // 热更新
@@ -33,6 +33,8 @@ module.exports = merge(baseConfig, {
         changeOrigin: true,
       },
     },
+    open: {
+      target: 'http://localhost:3003'
+    }
   },
- 
 })
