@@ -1,8 +1,8 @@
 /*
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
- * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2024-05-20 11:28:54
+ * @LastEditors: engineMaster xiangshangzhi@gmail.com
+ * @LastEditTime: 2024-05-20 20:27:25
  * @FilePath: \reactProject\src\App\Dashboard\XMenu.tsx
  * @Description: xiangshangzhi写的文件
  *
@@ -46,6 +46,7 @@ const rootSubmenuKeys = ['sub1', 'sub2', 'sub4']
 const XMenu: React.FC = () => {
   const [openKeys, setOpenKeys] = useState(['sub1'])
 
+  console.log('@@@@菜单渲染')
   const onOpenChange: MenuProps['onOpenChange'] = (keys) => {
     console.log('🚀 ~ file: XMenu.tsx:74 ~ keys:', keys)
 
@@ -83,4 +84,4 @@ const XMenu: React.FC = () => {
   )
 }
 
-export default XMenu
+export default React.memo(XMenu)
