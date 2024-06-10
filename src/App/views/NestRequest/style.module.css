@@ -5,9 +5,17 @@
  */
 .wrap {
   border: 1px solid red;
+  padding: 8px;
   .header {
     display: flex;
     /* justify-content: center; */
     align-items: center;
+    justify-content: space-between;
+
+    .countNum {
+      margin-left: 10px;
+      color: rgb(221, 8, 8);
+      margin-right: 10px;
+    }
   }
 }

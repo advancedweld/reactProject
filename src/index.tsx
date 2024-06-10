@@ -2,7 +2,7 @@
  * @Author: xiangshangzhi xiangshangzhi@xtfer.com
  * @Date: 2022-07-20 12:55:04
  * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2024-01-23 13:47:18
+ * @LastEditTime: 2024-06-10 16:17:45
  * @FilePath: \reactProject\src\index.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -20,7 +20,7 @@ import { Eagle } from 'App/monitoring'
 const eagle = new Eagle({ piggyName: 'lihuahah', interval: 3000, monitorRequest: true })
 window.onload = () => {
   console.log('window.onload')
-  eagle.startMonitoring()
+  // eagle.startMonitoring()
 }
 
 const queryClient = new QueryClient()

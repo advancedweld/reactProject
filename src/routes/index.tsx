@@ -68,7 +68,7 @@ const baseRoutes = {
     },
     {
       path: '/nest-request',
-      label: 'nest请求',
+      label: '书籍管理',
       element: lazyLoad(() => import('@view/NestRequest')),
     },
     {

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-import { Button, Table, Space, Modal, Form, Input, message } from 'antd'
+import { Button, Table, Space, Modal, Form, Input, message, InputNumber } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
 import { useQuery, useMutation } from '@tanstack/react-query'
 import { requestPhotos, createPhoto, updatePhoto } from './service/api'
@@ -130,8 +130,11 @@ function Entry() {
   return (
     <>
       <div className={style.wrap}>
+        <h1> nest request </h1>
         <div className={style.header}>
-          <h1> nest request </h1>
+          <div>
+            共<span className={style.countNum}>{photosData?.totalCount}</span>条记录
+          </div>
           <Button onClick={handleCreatePhoto} type='primary'>
             新建photo
           </Button>
@@ -161,25 +164,25 @@ function Entry() {
       <Modal open={editorVisible} onCancel={() => setEditorVisible(false)} title={editorType === 'create' ? '新建相片' : '编辑相片'} onOk={onFinish}>
         <Form form={photoForm} name={'photoForm'} style={{ marginTop: '8px' }} labelCol={{ flex: '80px' }} labelAlign='left' autoComplete='off'>
           <Form.Item label='名称' name='id' hidden>
-            <Input style={{ height: '40px' }} />
+            <Input />
           </Form.Item>
           <Form.Item label='名称' name='name' required>
-            <Input style={{ height: '40px' }} />
+            <Input />
           </Form.Item>
           <Form.Item label='相片名' name='filename' required>
-            <Input style={{ height: '40px' }} />
+            <Input />
           </Form.Item>
           <Form.Item label='描述' name='description' required>
-            <Input style={{ height: '40px' }} />
+            <Input />
           </Form.Item>
           <Form.Item label='发布状态' name='isPublished' required>
-            <Input style={{ height: '40px' }} />
+            <Input />
           </Form.Item>
           <Form.Item label='总页数' name='totalPages' required>
-            <Input style={{ height: '40px' }} />
+            <Input />
           </Form.Item>
           <Form.Item label='浏览量' name='views' required>
-            <Input style={{ height: '40px' }} />
+            <InputNumber />
           </Form.Item>
         </Form>
       </Modal>
