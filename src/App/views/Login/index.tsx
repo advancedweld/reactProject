@@ -1,8 +1,8 @@
 /*
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
- * @LastEditors: engineMaster xiangshangzhi@gmail.com
- * @LastEditTime: 2024-01-05 20:40:40
+ * @LastEditors: xiangshangzhi xiangshangzhi@163.com
+ * @LastEditTime: 2024-06-10 17:19:13
  * @FilePath: \reactProject\src\App\views\Login\index.tsx
  * @Description: xiangshangzhi写的文件
  *
@@ -63,12 +63,12 @@ function Login() {
     if (type === 'register') {
       userRegisterMutation.mutate(values)
     } else {
-      if (values.password === '123456') {
-        login()
-        nav(APPHOME)
-        message.success('登录成功')
-        return
-      }
+      // if (values.password === '123456') {
+      //   login()
+      //   nav(APPHOME)
+      //   message.success('登录成功')
+      //   return
+      // }
       userLoginMutation.mutate(values)
     }
   }

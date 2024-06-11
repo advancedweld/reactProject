@@ -29,6 +29,11 @@ const baseRoutes = {
   element: <AppComponent></AppComponent>,
   children: [
     {
+      path: '/home',
+      label: '首页',
+      element: <h1>首页</h1>,
+    },
+    {
       path: NETREQUEST,
       label: '网络请求',
       children: [
@@ -112,12 +117,7 @@ const baseRoutes = {
 }
 
 const routes = [
-  {
-    path: '/',
-    label: '登录',
-    // element: <AppComponent></AppComponent>,
-    element: lazyLoad(() => import('../App/layout')),
-  },
+  baseRoutes,
   {
     path: LOGIN,
     label: '登录',
@@ -127,19 +127,6 @@ const routes = [
       </Suspense>
     ),
   },
-  {
-    path: '/home',
-    label: '首页',
-    element: <AppComponent></AppComponent>,
-    children: [
-      {
-        path: '/home',
-        label: '网络请求',
-        element: <h1>首页</h1>,
-      },
-    ],
-  },
-  baseRoutes,
   {
     path: '*',
     label: '无权限页面',

@@ -1,8 +1,8 @@
 /*
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
- * @LastEditors: engineMaster xiangshangzhi@gmail.com
- * @LastEditTime: 2024-05-20 20:27:25
+ * @LastEditors: xiangshangzhi xiangshangzhi@163.com
+ * @LastEditTime: 2024-06-11 19:13:45
  * @FilePath: \reactProject\src\App\Dashboard\XMenu.tsx
  * @Description: xiangshangzhi写的文件
  *
@@ -60,14 +60,7 @@ const XMenu: React.FC = () => {
 
   const _items = getItem(baseRoutes.children as Route[])
 
-  const menuItems = [
-    {
-      key: '/home',
-      path: '/home',
-      label: <Link to={'/home'}>首页</Link>,
-    },
-    ..._items,
-  ]
+  const menuItems = [..._items]
   console.log('🚀 ~ file: XMenu.tsx:67 ~ baseRoutes:', baseRoutes)
   console.log('🚀 ~ file: XMenu.tsx:62 ~ items:', menuItems)
 
