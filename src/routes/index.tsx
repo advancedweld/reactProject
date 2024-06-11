@@ -128,6 +128,11 @@ const routes = [
     ),
   },
   {
+    path: '/user-manage',
+    label: '用户管理',
+    element: lazyLoad(() => import('@view/user-manage')),
+  },
+  {
     path: '*',
     label: '无权限页面',
     element: <NoPermission />,

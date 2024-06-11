@@ -5,7 +5,7 @@
  */
 
 import React, { Suspense, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import useUserProfileStore from 'store/userProfile'
 
 import { Button, Space, Tooltip } from 'antd'
@@ -73,6 +73,7 @@ const Entry = () => {
         </Button>
         <div>当前用户：{userProfile?.userName}</div>
         <Button onClick={logout}>注销</Button>
+        <Link to='/user-manage'>用户管理</Link>
       </Space>
     </div>
   )
