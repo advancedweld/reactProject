@@ -30,8 +30,12 @@ instance.interceptors.request.use((config: any) => {
   Cookies.remove('myCustomContent')
   Cookies.set('token', 'myCustomContent')
 
-  config.headers.Authorization = 'token = mynametoken'
+  // config.headers.Authorization = 'token = mynametoken'
 
+  const token = localStorage.getItem('access_token')
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`
+  }
   return config
 })
 

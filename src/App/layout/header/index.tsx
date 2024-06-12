@@ -45,6 +45,11 @@ const Entry = () => {
   })
   const { userProfile, logout, updateUserProfile } = useUserProfileStore((state) => state)
 
+  const userLogout = () => {
+    localStorage.removeItem('access_token')
+    logout()
+    nav('/login')
+  }
   return (
     <div className={styles.wrap}>
       <Space>
@@ -72,7 +77,7 @@ const Entry = () => {
           修改用户名
         </Button>
         <div>当前用户：{userProfile?.userName}</div>
-        <Button onClick={logout}>注销</Button>
+        <Button onClick={userLogout}>注销</Button>
         <Link to='/user-manage'>用户管理</Link>
       </Space>
     </div>

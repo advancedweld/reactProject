@@ -2,7 +2,7 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
  * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2024-06-10 17:19:13
+ * @LastEditTime: 2024-06-12 13:50:53
  * @FilePath: \reactProject\src\App\views\Login\index.tsx
  * @Description: xiangshangzhi写的文件
  *
@@ -35,6 +35,10 @@ function Login() {
     mutationFn: userLogin,
     onSuccess: (response) => {
       console.log('@@@@@@@@userLoginMutation', response)
+
+      // eslint-disable-next-line camelcase
+      const { access_token } = response.data
+      localStorage.setItem('access_token', access_token)
       updateUserProfile(response.data)
       login()
       nav(APPHOME)
