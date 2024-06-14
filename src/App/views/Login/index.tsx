@@ -2,31 +2,31 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
  * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2024-06-12 13:50:53
+ * @LastEditTime: 2024-06-14 15:45:56
  * @FilePath: \reactProject\src\App\views\Login\index.tsx
  * @Description: xiangshangzhi写的文件
  *
  */
-import React, { useEffect } from 'react'
-import { Button, message, Form, Input } from 'antd'
-import { useQuery, useMutation } from '@tanstack/react-query'
+import React, { useEffect, useState } from 'react'
+import { message } from 'antd'
+import { useMutation } from '@tanstack/react-query'
 
 import { Link, useNavigate } from 'react-router-dom'
 import { APP, APPHOME } from 'routes/constant'
 import useUserProfileStore from 'store/userProfile'
-
 import { userLogin, userRegister } from './service/api'
 
 import LoginForm from './components/LoginForm'
 import RegisterForm from './components/RegisterForm'
-import loginBg from '@/assets/images/login_bg.jpg'
-import style from './style.module.css'
+
+import './style.less'
 
 function Login() {
   const [type, setType] = React.useState<'login' | 'register'>('login')
   const { userProfile, logout, updateUserProfile, login } = useUserProfileStore((state) => state)
 
-  const [form] = Form.useForm<any>()
+  const [userName, setuserName] = useState('')
+  const [password, setPassword] = useState('')
 
   const nav = useNavigate()
 
@@ -61,38 +61,76 @@ function Login() {
     },
   })
 
-  const onFinish = async (values: any) => {
-    console.log('@@@onFinish values is -----', values)
+  const onFinish = (evt: React.FormEvent<HTMLFormElement>) => {
+    evt.preventDefault()
+    if (!userName || !password) {
+      message.error('用户名和密码不能为空')
+      return
+    }
+
+    const formData = { userName, password }
     // 校验账号密码
     if (type === 'register') {
-      userRegisterMutation.mutate(values)
+      userRegisterMutation.mutate(formData)
     } else {
-      // if (values.password === '123456') {
-      //   login()
-      //   nav(APPHOME)
-      //   message.success('登录成功')
-      //   return
-      // }
-      userLoginMutation.mutate(values)
+      userLoginMutation.mutate(formData)
     }
   }
 
   return (
     <>
-      <div className={style.wrap} style={{ backgroundImage: `url(${loginBg})`, backgroundSize: 'cover' }}>
-        <div className={style.loginForm}>
-          {type === 'login' ? <LoginForm onFinish={onFinish} /> : <RegisterForm onFinish={onFinish} />}
+      <section>
+        <div className='color'></div>
+        <div className='color'></div>
+        <div className='color'></div>
+        <div className='box'>
+          <div className='square' style={{ '--i': 0 }}></div>
+          <div className='square' style={{ '--i': 1 }}></div>
+          <div className='square' style={{ '--i': 2 }}></div>
+          <div className='square' style={{ '--i': 3 }}></div>
+          <div className='square' style={{ '--i': 4 }}></div>
+          <div className='container'>
+            <div className='form'>
+              <h2>{type === 'login' ? 'Login Form' : 'Register Form'}</h2>
+              <form onSubmit={onFinish} action=''>
+                {/* 账号 */}
+                <div className='inputBox'>
+                  <input type='text' placeholder='userName' value={userName} onChange={(e) => setuserName(e.target.value)}></input>
+                </div>
+                {/* 密码 */}
+                <div className='inputBox'>
+                  <input type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                </div>
+                <div className='inputBox'>
+                  <input type='submit' value={type === 'login' ? 'Login' : 'Register'} />
+                </div>
 
-          <div className={style.loginFooter}>
-            <span>
-              还没有账号？
-              <span className={style.link} onClick={() => setType((type) => (type === 'register' ? 'login' : 'register'))}>
-                {type === 'register' ? '登录' : '注册'}
-              </span>
-            </span>
+                {/* <p className='forget'>
+                  Forgot Password ? <a href='#'>Click Here</a>
+                </p> */}
+                {type === 'login' ? (
+                  <p className='forget'>
+                    Don't have an account?{' '}
+                    <span style={{ cursor: 'pointer' }} onClick={() => setType('register')}>
+                      Sign Up
+                    </span>
+                  </p>
+                ) : (
+                  <p className='forget'>
+                    Already have an account?{' '}
+                    <span style={{ cursor: 'pointer' }} onClick={() => setType('login')}>
+                      Login
+                    </span>
+                  </p>
+                )}
+                {/* <p className='forget'>
+                  Don't have an account ? <a href='#'>Sign Up</a>
+                </p> */}
+              </form>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
     </>
   )
 }

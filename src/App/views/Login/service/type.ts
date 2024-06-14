@@ -5,6 +5,10 @@ export type User = {
   access_token: string
 }
 
+export type UserLogin = {
+  userName: string
+  password: string
+}
 export type UserRegisterResponse = {
   code: number
   message: string
