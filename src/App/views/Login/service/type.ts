@@ -2,7 +2,7 @@ export type User = {
   userName: string
   password: string
   email: string
-  access_token: string
+  accessToken: string
 }
 
 export type UserLogin = {

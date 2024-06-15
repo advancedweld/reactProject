@@ -18,21 +18,24 @@ section .color:nth-child(1) {
   top: -350px;
   width: 600px;
   height: 600px;
-  background: #ff359b;
+  background: #00d2ff;
+
+  // background: #ff359b;
 }
 section .color:nth-child(2) {
   bottom: 0px;
   left: 100px;
   width: 500px;
   height: 500px;
-  background: #fffd87;
+  // background: #fffd87;
+  background: #ff359b;
 }
 section .color:nth-child(3) {
   bottom: 50px;
   right: 100px;
   width: 300px;
   height: 300px;
-  background: #00d2ff;
+  background: #fffd87;
 }
 
 .box {
@@ -49,7 +52,22 @@ section .color:nth-child(3) {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   animation: animate 10s linear infinite;
-  animation-delay: calc(-1s * var(--i));
+}
+
+.box {
+  .square {
+    // 定义一个循环
+    .loop(@i) when (@i > 0) {
+      &:nth-child(@{i}) {
+        animation-delay: calc(-1s * (@i - 1));
+      }
+      // 递归调用，减少 @i 的值
+      .loop(@i - 1);
+    }
+
+    // 从 5 开始循环
+    .loop(5);
+  }
 }
 
 @keyframes animate {

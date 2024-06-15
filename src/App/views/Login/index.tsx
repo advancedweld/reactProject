@@ -2,7 +2,7 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
  * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2024-06-14 15:45:56
+ * @LastEditTime: 2024-06-15 16:02:49
  * @FilePath: \reactProject\src\App\views\Login\index.tsx
  * @Description: xiangshangzhi写的文件
  *
@@ -27,6 +27,7 @@ function Login() {
 
   const [userName, setuserName] = useState('')
   const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
 
   const nav = useNavigate()
 
@@ -36,9 +37,8 @@ function Login() {
     onSuccess: (response) => {
       console.log('@@@@@@@@userLoginMutation', response)
 
-      // eslint-disable-next-line camelcase
-      const { access_token } = response.data
-      localStorage.setItem('access_token', access_token)
+      const { accessToken } = response.data
+      localStorage.setItem('access_token', accessToken)
       updateUserProfile(response.data)
       login()
       nav(APPHOME)
@@ -68,6 +68,10 @@ function Login() {
       return
     }
 
+    if (type === 'register' && password !== confirmPassword) {
+      message.error('两次密码不一致')
+      return
+    }
     const formData = { userName, password }
     // 校验账号密码
     if (type === 'register') {
@@ -84,11 +88,9 @@ function Login() {
         <div className='color'></div>
         <div className='color'></div>
         <div className='box'>
-          <div className='square' style={{ '--i': 0 }}></div>
-          <div className='square' style={{ '--i': 1 }}></div>
-          <div className='square' style={{ '--i': 2 }}></div>
-          <div className='square' style={{ '--i': 3 }}></div>
-          <div className='square' style={{ '--i': 4 }}></div>
+          {new Array(5).fill(0).map((item, index) => {
+            return <div className='square' key={index}></div>
+          })}
           <div className='container'>
             <div className='form'>
               <h2>{type === 'login' ? 'Login Form' : 'Register Form'}</h2>
@@ -101,6 +103,11 @@ function Login() {
                 <div className='inputBox'>
                   <input type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)}></input>
                 </div>
+                {type === 'register' && (
+                  <div className='inputBox'>
+                    <input type='password' placeholder='Confirm' value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}></input>
+                  </div>
+                )}
                 <div className='inputBox'>
                   <input type='submit' value={type === 'login' ? 'Login' : 'Register'} />
                 </div>
@@ -111,14 +118,14 @@ function Login() {
                 {type === 'login' ? (
                   <p className='forget'>
                     Don't have an account?{' '}
-                    <span style={{ cursor: 'pointer' }} onClick={() => setType('register')}>
+                    <span style={{ cursor: 'pointer', fontWeight: 800 }} onClick={() => setType('register')}>
                       Sign Up
                     </span>
                   </p>
                 ) : (
                   <p className='forget'>
                     Already have an account?{' '}
-                    <span style={{ cursor: 'pointer' }} onClick={() => setType('login')}>
+                    <span style={{ cursor: 'pointer', fontWeight: 800 }} onClick={() => setType('login')}>
                       Login
                     </span>
                   </p>
