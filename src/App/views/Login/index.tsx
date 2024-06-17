@@ -2,7 +2,7 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
  * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2024-06-15 16:02:49
+ * @LastEditTime: 2024-06-17 20:01:23
  * @FilePath: \reactProject\src\App\views\Login\index.tsx
  * @Description: xiangshangzhi写的文件
  *
@@ -12,7 +12,7 @@ import { message } from 'antd'
 import { useMutation } from '@tanstack/react-query'
 
 import { Link, useNavigate } from 'react-router-dom'
-import { APP, APPHOME } from 'routes/constant'
+import { APP, APPHOME, LOGIN } from 'routes/constant'
 import useUserProfileStore from 'store/userProfile'
 import { userLogin, userRegister } from './service/api'
 
@@ -53,11 +53,9 @@ function Login() {
   const userRegisterMutation = useMutation({
     mutationFn: userRegister,
     onSuccess: (response) => {
-      console.log('@@@@@@@@userRegistrMutation', response)
-      updateUserProfile(response.data)
-      login()
-      nav(APPHOME)
+      // 注册成功后跳转到登录页面
       message.success('注册成功')
+      setType('login')
     },
   })
 
