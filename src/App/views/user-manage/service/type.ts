@@ -1,4 +1,5 @@
 export type User = {
+  userId: string
   userName: string
   password: string
   // @IsEmail()
@@ -6,6 +7,7 @@ export type User = {
   createTime: string
   updateTime: string
   avatar: string
+  role: 'root' | 'vip' | 'normal'
 }
 
 export type GetUsersResponse = {

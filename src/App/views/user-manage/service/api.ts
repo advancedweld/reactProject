@@ -6,6 +6,6 @@ export const getAllUser: () => Promise<GetUsersResponse> = () =>
   // request.post('/user/getCode', { phone })
   request.get('/api-x/user/all', { timeout: 0 })
 
-export const updatePhoto: (params: User) => Promise<GetUsersResponse> = (params) =>
+export const deleteUser: (params: { userId: string }) => Promise<void> = (params) =>
   // request.post('/user/getCode', { phone })
-  request.post('/api-x/user/update', params, { timeout: 0 })
+  request.post('/api-x/user/delete', params, { timeout: 0 })
