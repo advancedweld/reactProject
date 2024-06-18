@@ -13,7 +13,7 @@
   /* min-height: calc(100vh - 100px); */
   .content {
     padding-left: 8px;
-    /* width: 100%; */
+    flex: 1;
   }
 }
 
