@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
-import { Button, Table, message } from 'antd'
+import { Button, Space, Table, message } from 'antd'
 import type { TableProps } from 'antd'
 import { useQuery, useMutation } from '@tanstack/react-query'
 import dayjs from 'dayjs'
 import { Link } from 'react-router-dom'
-import { getAllUser, deleteUser } from './service/api'
+import { getAllUser, deleteUser, fetchUserDetail } from './service/api'
 import { User } from './service/type'
 import styles from './style.module.css'
 
@@ -20,6 +20,14 @@ const Entry = () => {
     select: (respose) => respose.data,
   })
 
+  const { mutate: fetchDetail } = useMutation({
+    mutationFn: fetchUserDetail,
+    onSuccess: () => {
+      // message.success('删除成功')
+      // refetch()
+    },
+  })
+
   const { mutate } = useMutation({
     mutationFn: deleteUser,
     onSuccess: () => {
@@ -33,7 +41,7 @@ const Entry = () => {
       dataIndex: 'userName',
       key: 'userName',
     },
- 
+
     {
       title: '创建时间',
       dataIndex: 'createTime',
@@ -59,9 +67,14 @@ const Entry = () => {
       title: '操作',
       key: 'action',
       render: (text, record) => (
-        <Button disabled={record.role === 'root'} onClick={() => handleDeleteUser(record.userId)}>
-          删除
-        </Button>
+        <Space>
+          <Button type='link' disabled={record.role === 'root'} onClick={() => handleDeleteUser(record.userId)}>
+            删除
+          </Button>
+          <Button type='link' disabled={record.role === 'root'} onClick={() => fetchDetail({ userId: record.userId })}>
+            查看详情
+          </Button>
+        </Space>
       ),
     },
   ]
@@ -73,7 +86,7 @@ const Entry = () => {
     <div className={styles.wrap}>
       <Link to='/home'>返回首页</Link>
       <h1>用户管理</h1>
-      <Table columns={columns} dataSource={userData?.users} />
+      <Table columns={columns} dataSource={userData?.users} bordered />
     </div>
   )
 }
