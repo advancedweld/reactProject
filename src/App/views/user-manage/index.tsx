@@ -33,11 +33,7 @@ const Entry = () => {
       dataIndex: 'userName',
       key: 'userName',
     },
-    {
-      title: '邮箱',
-      dataIndex: 'email',
-      key: 'email',
-    },
+ 
     {
       title: '创建时间',
       dataIndex: 'createTime',
@@ -53,6 +49,11 @@ const Entry = () => {
       render: (text: string) => {
         return dayjs(text).format('YYYY-MM-DD HH:mm:ss')
       },
+    },
+    {
+      title: '邮箱',
+      dataIndex: 'email',
+      key: 'email',
     },
     {
       title: '操作',

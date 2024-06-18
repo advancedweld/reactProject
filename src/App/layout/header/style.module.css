@@ -3,8 +3,8 @@
   width: 100%;
   top: 0;
   height: 60px;
-  border: 1px solid red;
-  background-color: aqua;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
   font-size: large;
   padding: 10px;
   /* margin: 10px; */
