@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Button, Space, Table, message } from 'antd'
+import { Button, Space, Table, message, Drawer } from 'antd'
 import type { TableProps } from 'antd'
 import { useQuery, useMutation } from '@tanstack/react-query'
 import dayjs from 'dayjs'
@@ -9,6 +9,7 @@ import { User } from './service/type'
 import styles from './style.module.css'
 
 const Entry = () => {
+  const [open, setOpen] = React.useState<boolean>(false)
   const {
     data: userData,
     refetch,
@@ -20,7 +21,7 @@ const Entry = () => {
     select: (respose) => respose.data,
   })
 
-  const { mutate: fetchDetail } = useMutation({
+  const { mutate: fetchDetail, isPending } = useMutation({
     mutationFn: fetchUserDetail,
     onSuccess: () => {
       // message.success('删除成功')
@@ -71,7 +72,7 @@ const Entry = () => {
           <Button type='link' disabled={record.role === 'root'} onClick={() => handleDeleteUser(record.userId)}>
             删除
           </Button>
-          <Button type='link' disabled={record.role === 'root'} onClick={() => fetchDetail({ userId: record.userId })}>
+          <Button type='link' disabled={record.role === 'root'} onClick={() => openDetailDrawer(record.userId)}>
             查看详情
           </Button>
         </Space>
@@ -82,12 +83,24 @@ const Entry = () => {
   const handleDeleteUser = (userId: string) => {
     mutate({ userId })
   }
+  const openDetailDrawer = (userId: string) => {
+    setOpen(true)
+    fetchDetail({ userId })
+  }
   return (
-    <div className={styles.wrap}>
-      <Link to='/home'>返回首页</Link>
-      <h1>用户管理</h1>
-      <Table columns={columns} dataSource={userData?.users} bordered />
-    </div>
+    <>
+      <div className={styles.wrap}>
+        <Link to='/home'>返回首页</Link>
+        <h1>用户管理</h1>
+        <Table columns={columns} dataSource={userData?.users} bordered />
+      </div>
+
+      <Drawer closable destroyOnClose title={<p>Loading Drawer</p>} placement='right' open={open} loading={isPending} onClose={() => setOpen(false)}>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+      </Drawer>
+    </>
   )
 }
 
