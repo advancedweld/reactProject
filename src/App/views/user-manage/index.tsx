@@ -9,6 +9,7 @@ import { User } from './service/type'
 import styles from './style.module.css'
 
 const Entry = () => {
+  const [currentUserId, setCurrentUserId] = React.useState<string | undefined>()
   const [open, setOpen] = React.useState<boolean>(false)
   const {
     data: userData,
@@ -21,12 +22,10 @@ const Entry = () => {
     select: (respose) => respose.data,
   })
 
-  const { mutate: fetchDetail, isPending } = useMutation({
-    mutationFn: fetchUserDetail,
-    onSuccess: () => {
-      // message.success('删除成功')
-      // refetch()
-    },
+  const { data: userDetailData, isLoading: isDetailLoading } = useQuery({
+    queryKey: ['users/getUserDetail', currentUserId],
+    queryFn: () => fetchUserDetail({ userId: currentUserId as string }),
+    enabled: !!currentUserId,
   })
 
   const { mutate } = useMutation({
@@ -84,8 +83,9 @@ const Entry = () => {
     mutate({ userId })
   }
   const openDetailDrawer = (userId: string) => {
+    console.log('userId', userId)
     setOpen(true)
-    fetchDetail({ userId })
+    setCurrentUserId(userId)
   }
   return (
     <>
@@ -95,10 +95,23 @@ const Entry = () => {
         <Table columns={columns} dataSource={userData?.users} bordered />
       </div>
 
-      <Drawer closable destroyOnClose title={<p>Loading Drawer</p>} placement='right' open={open} loading={isPending} onClose={() => setOpen(false)}>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+      <Drawer
+        closable
+        destroyOnClose
+        title={<p>Loading Drawer</p>}
+        placement='right'
+        open={open}
+        loading={isDetailLoading}
+        onClose={() => setOpen(false)}>
+        {userDetailData?.data &&
+          Object.entries(userDetailData.data).map(([key, value]) => {
+            return (
+              <div key={key}>
+                <strong>{key}:</strong>
+                {value}
+              </div>
+            )
+          })}
       </Drawer>
     </>
   )
