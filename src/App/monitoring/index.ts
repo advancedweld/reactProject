@@ -4,7 +4,6 @@ import {
   collectPerformanceData,
   modifyHistory,
   sendDataToServer,
-  sendDataToServerWithBeacon,
   monitorHttpRequest,
   stopMonitorHttpRequest,
 } from './util'
@@ -12,6 +11,9 @@ import {
 type EagleOption = {
   piggyName: string
   interval: number
+  // 上报地址
+  monitorApi: string
+  // 是否监控网络请求
   monitorRequest?: boolean
 }
 
@@ -22,6 +24,9 @@ class Eagle {
   // 不需要配置的参数直接类型定义的时候给初始值，不需要在构造函数里处理
 
   version = '1.0.0'
+
+  // 非空断言
+  monitorApi!: string
 
   monitorRequest?: boolean
 
@@ -40,6 +45,7 @@ class Eagle {
     this.name = options.piggyName
     this.interval = null
     this.monitorRequest = options.monitorRequest
+    this.monitorApi = options.monitorApi || ''
     Eagle.instance = this
   }
 
@@ -79,7 +85,7 @@ class Eagle {
   uploadData(data: any) {
     // return
     // sendDataToServer(data)
-    sendDataToServerWithBeacon(data)
+    sendDataToServer(data, this.monitorApi)
   }
 
   static getInstance() {

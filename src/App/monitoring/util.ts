@@ -44,36 +44,36 @@ export class MonitoringCache {
   // 可以根据需求添加其他功能，比如定时上报、本地存储等
 }
 
-/** 发送监测数据到后台 自动重发请求 */
-export const sendDataToServer = (data: Performance, retry = 3) => {
-  if (!retry) return
-  console.log('@@@@@sendDataToServer', retry)
-  return fetch('https://your-monitoring-server.com/api/data', {
+/** 发送监测数据到后台 */
+const sendDataToServerWithFetch = (data: Performance, monitorApi: string) => {
+  return fetch(monitorApi, {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
       'Content-Type': 'application/json',
     },
   })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Failed to send data to server')
-      }
-      console.log('Data sent successfully')
-    })
-    .catch((error) => {
-      console.error('Error sending data:', error)
-      sendDataToServer(data, retry - 1)
-    })
 }
 
-export const sendDataToServerWithBeacon = (data: Performance, retry = 3) => {
+export const sendDataToServer = (data: Performance, monitorApi: string, retry = 3) => {
   if (!retry) return
-  const success = navigator.sendBeacon('https://your-monitoring-server.com/api/data', JSON.stringify(data))
-  console.log('@@@@@sendDataToServer', success)
-  if (!success) {
-    console.log('Failed to send data to server retry', retry)
-    sendDataToServerWithBeacon(data, retry - 1)
+  // 不支持sendbeacon，用fetch
+  if (!navigator.sendBeacon) {
+    sendDataToServerWithFetch(data, monitorApi)
+      .then((res) => {
+        console.log('@@@@@sendDataToServer', res)
+      })
+      .catch((error) => {
+        console.error('Error sending data:', error)
+        sendDataToServer(data, monitorApi, retry - 1)
+      })
+  } else {
+    const success = navigator.sendBeacon(monitorApi, JSON.stringify(data))
+    console.log('@@@@@sendDataToServer', success)
+    if (!success) {
+      console.log('Failed to send data to server retry', retry)
+      sendDataToServer(data, monitorApi, retry - 1)
+    }
   }
 }
 
