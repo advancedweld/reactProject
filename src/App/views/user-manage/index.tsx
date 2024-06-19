@@ -92,7 +92,8 @@ const Entry = () => {
       <div className={styles.wrap}>
         <Link to='/home'>返回首页</Link>
         <h1>用户管理</h1>
-        <Table columns={columns} dataSource={userData?.users} bordered />
+        {/* 需要给rowkey属性，要不会报关于key的错误 就很烦 */}
+        <Table columns={columns} dataSource={userData?.users} rowKey='userName' bordered />
       </div>
 
       <Drawer

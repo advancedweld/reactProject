@@ -55,3 +55,7 @@ yarn dev
 ├─store
 ├─types
 └─utils
+
+### TODO list
+
+1.error boundary 2.监控数据管理
