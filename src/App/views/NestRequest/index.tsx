@@ -179,7 +179,7 @@ function Entry() {
             <Input />
           </Form.Item>
           <Form.Item label='总页数' name='totalPages' required>
-            <Input />
+            <InputNumber />
           </Form.Item>
           {/* <Form.Item label='浏览量' name='views' required>
             <InputNumber />

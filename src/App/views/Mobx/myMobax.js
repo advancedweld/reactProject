@@ -4,7 +4,7 @@
  * @FilePath: \reactProject\src\App\views\Mobx\myMobax.js
  * @Description: xiangshangzhi写的文件
  * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2024-06-19 12:32:54
+ * @LastEditTime: 2024-06-19 14:38:35
  *
  */
 
@@ -65,3 +65,16 @@ pObj.age = 19
 pObj.name = 'xiangshangzhi55'
 pObj.age = 33
 pObj.name = 'xiangshangzh3'
+
+// 耗时测试
+;(() => {
+  let start = Date.now()
+  console.log('🚀 ~ start:', start)
+  let arr = []
+  const count = 100 * 100 * 100 * 100
+  for (let i = 0; i < count; i++) {
+    arr.push(i)
+  }
+  const timeCount = Date.now() - start
+  console.log('🚀 ~ timeCount:', timeCount / 1000)
+})()
