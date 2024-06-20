@@ -30,10 +30,12 @@ function About(props) {
     }
   }, [blocker])
 
+  const aaa = undefined
   return (
     <>
       <div className={style.wrap}>
         <h1> about </h1>
+        <div>{aaa.valeu}</div>
       </div>
     </>
   )
