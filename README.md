@@ -58,4 +58,4 @@ yarn dev
 
 ### TODO list
 
-1.error boundary 2.监控数据管理
+1.error boundary 2.监控数据管理 3.地图接入 4. echarts
