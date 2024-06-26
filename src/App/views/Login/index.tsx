@@ -2,7 +2,7 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
  * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2024-06-17 20:01:23
+ * @LastEditTime: 2024-06-24 15:11:12
  * @FilePath: \reactProject\src\App\views\Login\index.tsx
  * @Description: xiangshangzhi写的文件
  *
@@ -65,16 +65,23 @@ function Login() {
       message.error('用户名和密码不能为空')
       return
     }
-
-    if (type === 'register' && password !== confirmPassword) {
-      message.error('两次密码不一致')
-      return
-    }
     const formData = { userName, password }
-    // 校验账号密码
     if (type === 'register') {
+      if (password !== confirmPassword) {
+        message.error('两次密码不一致')
+        return
+      }
       userRegisterMutation.mutate(formData)
-    } else {
+    }
+    // 校验账号密码
+    if (type === 'login') {
+      // 模拟登录 admin 123456
+      if (userName === 'admin' && password === '123456') {
+        message.success('登录成功')
+        login()
+        nav(APPHOME)
+        return
+      }
       userLoginMutation.mutate(formData)
     }
   }

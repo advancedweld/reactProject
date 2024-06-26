@@ -2,7 +2,7 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 
 /* 生产环境API地址 */
-const API_GATEWAY_PRO = 'http://36.26.47.210:25998'
+const API_GATEWAY_PRO = 'http://localhost:3000'
 
 const IS_PROD = process.env.NODE_ENV === 'production'
 
