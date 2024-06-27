@@ -2,7 +2,7 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 
 /* 生产环境API地址 */
-const API_GATEWAY_PRO = 'http://localhost:3000'
+const API_GATEWAY_PRO = ''
 
 const IS_PROD = process.env.NODE_ENV === 'production'
 
@@ -14,7 +14,7 @@ const instance = axios.create({
   // withCredentials: true,
   /* 超时时间10s */
   timeout: 1000 * 10,
-  baseURL: IS_PROD ? API_GATEWAY_PRO : '',
+  // baseURL: IS_PROD ? API_GATEWAY_PRO : '',
   /* 自定义header */
   headers: {
     'customer-header': 'customer-header',
