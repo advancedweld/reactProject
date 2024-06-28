@@ -4,9 +4,9 @@
 
 主要是用来搞 webpack 相关的配置
 
-### 踩坑
+**踩坑**
 
-antd5 默认采用了 dayjs 作为日期处理库，所以 dayjs 直接引入，不需要再额外安装，要不然会报错
+- antd5 默认采用了 dayjs 作为日期处理库，所以 dayjs 直接引入，不需要再额外安装，要不然会报错
 
 ## attention
 
@@ -58,4 +58,10 @@ yarn dev
 
 ### TODO list
 
-1.error boundary 2.监控数据管理 3.地图接入 4. echarts
+~~1.error boundary(已完成)~~
+
+2.监控数据管理
+
+3.地图接入
+
+4.echarts
