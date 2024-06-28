@@ -21,6 +21,33 @@ yarn
 yarn dev
 ```
 
+## docker 部署
+
+```bash
+# 构建镜像并启动容器
+docker-compose up --build -d
+
+# 构建镜像
+docker-compose build
+
+# 导出镜像tar包
+docker save -o app.tar image-name:latest
+
+# 解压并加载镜像tar包
+docker load -i /home/ubuntu/app.tar
+
+# 根据镜像启动容器
+# 宿主机端口 - 容器端口
+docker run -d -p 80:3000 --name container-name -e NODE_ENV=production image-name:latest
+
+# 删除未使用资源
+docker system prune -a
+
+# 清理悬空镜像
+docker rmi $(docker images -f "dangling=true" -q)
+
+```
+
 ## 目录结构
 
 ├─App //根目录
