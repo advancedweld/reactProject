@@ -1,0 +1,12 @@
+services:
+  app:
+    build:
+      context: .
+      # dockerfile: dockerfile
+    image: react-image
+    container_name: app-frontend
+    environment:
+      NODE_ENV: production
+    ports:
+      # 宿主机端口 - 容器端口
+      - 3023:80
