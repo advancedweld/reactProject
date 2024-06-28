@@ -32,14 +32,16 @@ docker-compose build
 
 # 导出镜像tar包
 docker save -o app.tar image-name:latest
+# docker save -o app.tar react-image:latest
 
 # 解压并加载镜像tar包
 docker load -i /home/ubuntu/app.tar
 
 # 根据镜像启动容器
 # 宿主机端口 - 容器端口
-docker run -d -p 80:3000 --name container-name -e NODE_ENV=production image-name:latest
+docker run -d -p 80:80 --name container-name -e NODE_ENV=production image-name:latest
 
+docker run -d -p 80:80 --name react-container -e NODE_ENV=production  react-image:latest
 # 删除未使用资源
 docker system prune -a
 
