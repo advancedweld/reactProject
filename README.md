@@ -42,7 +42,7 @@ docker load -i /home/ubuntu/app.tar
 docker run -d -p 80:80 --name container-name -e NODE_ENV=production image-name:latest
 
 docker run -d -p 80:80 --name react-container -e NODE_ENV=production  react-image:latest
-# 删除未使用资源
+# 删除未使用资源(包括镜像/容器/网络  谨慎使用！)
 docker system prune -a
 
 # 清理悬空镜像
