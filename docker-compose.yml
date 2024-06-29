@@ -9,4 +9,4 @@ services:
       NODE_ENV: production
     ports:
       # 宿主机端口 - 容器端口
-      - 3023:80
+      - 80:80
