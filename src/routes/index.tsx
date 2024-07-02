@@ -67,9 +67,14 @@ const baseRoutes = {
       // element: lazyLoad(() => import('@view/MyCollect')),
     },
     {
-      path: GROUP,
-      label: 'GROUP',
-      element: lazyLoad(() => import('@view/Group')),
+      path: '/gd-map',
+      label: '高德地图',
+      element: lazyLoad(() => import('@view/gd-map')),
+    },
+    {
+      path: '/echarts',
+      label: 'echarts',
+      element: <h1>echarts</h1>,
     },
     {
       path: '/nest-request',
@@ -102,11 +107,6 @@ const baseRoutes = {
       label: '图片编辑器',
       element: lazyLoad(() => import('@view/ImageEditor')),
       // element: <ImageEditor />,
-    },
-    {
-      path: '/car/home',
-      label: '汽车',
-      element: <h1>汽车首页</h1>,
     },
     {
       path: ABOUT,

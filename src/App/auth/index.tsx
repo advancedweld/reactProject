@@ -14,9 +14,14 @@ function AuthWrap(props: IAuthWrap) {
   const location = useLocation()
   const loginStatus = useUserProfileStore((state) => state.isLogin)
 
+  console.log('@@@@@@process', process.env.NODE_ENV)
   console.log('@@@@@location', location)
   const { children } = props
 
+  // 开发环境直接定位到首页
+  if (process.env.NODE_ENV === 'development') {
+    return <>{children}</>
+  }
   if (!loginStatus) {
     return <Navigate to='/login' />
   }
