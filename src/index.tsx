@@ -42,7 +42,7 @@ const container = document.getElementById('root')
 const root = createRoot(container!) // createRoot(container!) if you use TypeScript
 root.render(<AppCotainer />)
 setTimeout(() => {
-  console.log('@@@unmountComponent')
+  // console.log('@@@unmountComponent')
   // root.unmount()
 }, 10000)
 

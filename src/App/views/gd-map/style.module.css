@@ -1,12 +1,16 @@
 /*
  * @Author: xiangshangzhi
  * @Date: 2022-09-09 11:37:36
- * @FilePath: /webpackProject/src/App/views/Login/style.module.css
+ * @FilePath: \reactProject\src\App\views\gd-map\style.module.css
  */
 .wrap {
   border: 1px solid red;
+  .pannel{
+    height: 100px;
+  }
 }
 
-:global(.xiang) {
+:global(#amap-container) {
   border: 1px solid red;
+  height: 300px;
 }
