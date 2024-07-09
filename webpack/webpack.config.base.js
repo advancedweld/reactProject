@@ -1,3 +1,6 @@
+/**
+ * 参考 https://juejin.cn/post/6996816316875161637#heading-27
+ */
 // webpack.config.base.js
 
 const path = require('path')

@@ -60,6 +60,8 @@ export default function MapContainer() {
           zoomToAccuracy: true, //  定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
           position: 'RB', //  定位按钮的排放位置,  RB表示右下
         })
+        // todo 需要ip精准定位
+        // https://lbs.amap.com/api/javascript-api-v2/guide/services/geolocation#t2
       })
       .catch((e) => {
         console.log('@@@@laod error', e)
