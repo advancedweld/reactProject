@@ -14,6 +14,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 // 使用MiniCssExtractPlugin 将css单独打包，替换style-loader
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
+// https://webpack.docschina.org/plugins/mini-css-extract-plugin/#minimizing-for-production
+// css压缩
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
+
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 // 基础配置
 const baseConfig = {
@@ -113,6 +117,10 @@ const baseConfig = {
         },
       },
     },
+    minimizer: [
+      // 压缩css
+      new CssMinimizerPlugin(),
+    ],
   },
   // 插件的处理
   plugins: [
