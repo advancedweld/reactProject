@@ -14,7 +14,7 @@ function AuthWrap(props: IAuthWrap) {
   const location = useLocation()
   const loginStatus = useUserProfileStore((state) => state.isLogin)
 
-  console.log('@@@@@@process', process.env.NODE_ENV)
+  console.log('@@@@@@process.env.NODE_ENV', process.env.NODE_ENV)
   console.log('@@@@@location', location)
   const { children } = props
 

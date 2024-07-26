@@ -137,12 +137,15 @@ const baseConfig = {
       basic: false, // 默认true，启用一个简单的日志报告器
       profile: false, // 默认false，启用探查器。
     }),
+    // https://webpack.docschina.org/plugins/define-plugin#root
     new webpack.DefinePlugin({
-      'process.env': JSON.stringify(process.env),
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      IS_PRODUCTION: JSON.stringify(process.env.NODE_ENV === 'production'),
     }),
     new webpack.ProvidePlugin({
       React: 'react',
     }),
+    // https://webpack.docschina.org/plugins/mini-css-extract-plugin/#root
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
     }),
