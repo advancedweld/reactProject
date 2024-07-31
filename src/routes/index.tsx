@@ -63,6 +63,11 @@ const baseRoutes = {
           label: '元胞自动机',
           element: lazyLoad(() => import('@view/MyCollect/GenerateCell')),
         },
+        {
+          path: '/myCollect/svg-demo',
+          label: 'svgDemo',
+          element: lazyLoad(() => import('@view/MyCollect/svg-demo')),
+        },
       ],
       // element: lazyLoad(() => import('@view/MyCollect')),
     },
