@@ -2,7 +2,7 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
  * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2024-06-20 14:32:50
+ * @LastEditTime: 2024-08-05 14:16:07
  * @FilePath: \reactProject\src\App\Dashboard\index.tsx
  * @Description: xiangshangzhi写的文件
  *
@@ -44,6 +44,9 @@ function Dashboard() {
 
     return (
       <div role='alert'>
+        <p>
+          <b>ERROR BOUNDARY </b>
+        </p>
         <p>Something went wrong:</p>
         <pre style={{ color: 'red' }}>{error.message}</pre>
       </div>

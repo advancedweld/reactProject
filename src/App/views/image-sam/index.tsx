@@ -7,6 +7,8 @@ import MaskEditor from './MaskEditor'
 import { samImages, samControlnetImages } from './service/api'
 import { convertFile2Base64 } from '@/utils'
 
+import originalImg from './assets/originalImg.jpg'
+
 interface IMaskEditModal {
   open: boolean
   onClose: () => void
@@ -87,6 +89,20 @@ const MaskEditModal: React.FC<IMaskEditModal> = ({ open, onClose, originImgFile,
 const Entry = () => {
   const [editrModalOpen, setEditModalOpen] = useState(false)
   const [initImage, setInitImage] = useState<File | null>(null)
+
+  useEffect(() => {
+    // 使用 fetch 加载导入的图片并将其转换为 File 对象
+    fetch(originalImg)
+      .then((response) => response.blob())
+      .then((blob) => {
+        const file = new File([blob], 'initialImage.png', { type: blob.type })
+        setInitImage(file)
+      })
+      .catch((error) => {
+        console.error('Error loading initial image:', error)
+      })
+  }, [])
+
   return (
     <div>
       <div>
