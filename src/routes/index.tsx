@@ -61,7 +61,7 @@ const baseRoutes = {
         {
           path: '/image/image-sam',
           label: '图片分割',
-          element: lazyLoad(() => import('@view/ImageEditor')),
+          element: lazyLoad(() => import('@view/image-sam')),
         },
       ],
     },
