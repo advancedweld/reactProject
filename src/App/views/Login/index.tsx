@@ -2,7 +2,7 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
  * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2024-06-24 15:11:12
+ * @LastEditTime: 2024-08-05 09:47:17
  * @FilePath: \reactProject\src\App\views\Login\index.tsx
  * @Description: xiangshangzhi写的文件
  *
@@ -10,7 +10,7 @@
 import React, { useEffect, useState } from 'react'
 import { message } from 'antd'
 import { useMutation } from '@tanstack/react-query'
-
+import { motion } from 'framer-motion'
 import { Link, useNavigate } from 'react-router-dom'
 import { APP, APPHOME, LOGIN } from 'routes/constant'
 import useUserProfileStore from 'store/userProfile'
@@ -113,9 +113,25 @@ function Login() {
                     <input type='password' placeholder='Confirm' value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}></input>
                   </div>
                 )}
-                <div className='inputBox'>
+
+                <motion.div
+                  whileHover={{
+                    // scaleX: 2,
+                    // scaleY: 1.5,
+                    scale: 1.2,
+                    // transition: { duration: 1 },
+                  }}
+                  // 用来设置滚动进入动画
+                  // initial={{ opacity: 0 }}
+                  // whileInView={{ opacity: 1 }}
+
+                  className='submitBox'>
+                  <input type='submit' value={type === 'login' ? 'animate-Login' : 'animate-Register'} />
+                </motion.div>
+
+                {/* <div className='inputBox'>
                   <input type='submit' value={type === 'login' ? 'Login' : 'Register'} />
-                </div>
+                </div> */}
 
                 {/* <p className='forget'>
                   Forgot Password ? <a href='#'>Click Here</a>
