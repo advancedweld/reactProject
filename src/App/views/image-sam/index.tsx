@@ -7,7 +7,7 @@ import MaskEditor from './MaskEditor'
 import { samImages, samControlnetImages } from './service/api'
 import { convertFile2Base64 } from '@/utils'
 
-import originalImg from './assets/originalImg.jpg'
+import originalImg from './assets/originalImg.png'
 
 interface IMaskEditModal {
   open: boolean
