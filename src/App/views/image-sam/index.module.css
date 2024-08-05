@@ -1,3 +1,19 @@
 .wrap {
-  border: 1px solid red;
+  border: 1px solid rgb(44, 46, 51, 0.6);
+   /* width: 600px; */
+   /* min-height: 800px; */
+  padding: 16px;
+  margin: auto;
+  .highlightCanvasStyle {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .canvasContainer {
+     /* background-color: aqua; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
