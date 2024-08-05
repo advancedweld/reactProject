@@ -4,7 +4,7 @@
  * @FilePath: \reactProject\src\routes\index.tsx
  */
 
-import React, { Suspense } from 'react'
+import React, { Children, Suspense } from 'react'
 import { createBrowserRouter, redirect } from 'react-router-dom'
 import About from '@view/About'
 import NetRequest from '@view/NetRequest'
@@ -49,6 +49,23 @@ const baseRoutes = {
         },
       ],
     },
+    {
+      path: '/image',
+      label: '图像',
+      children: [
+        {
+          path: '/image/image-editor',
+          label: '图片编辑器',
+          element: lazyLoad(() => import('@view/ImageEditor')),
+        },
+        {
+          path: '/image/image-sam',
+          label: '图片分割',
+          element: lazyLoad(() => import('@view/ImageEditor')),
+        },
+      ],
+    },
+
     {
       path: '/myCollect',
       label: '收藏集',
@@ -107,12 +124,7 @@ const baseRoutes = {
       label: '性能',
       element: lazyLoad(() => import('@view/Performance')),
     },
-    {
-      path: '/image-editor/home',
-      label: '图片编辑器',
-      element: lazyLoad(() => import('@view/ImageEditor')),
-      // element: <ImageEditor />,
-    },
+
     {
       path: ABOUT,
       label: 'ABOUT(切换页面拦截)',
