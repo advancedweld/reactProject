@@ -1,3 +1,4 @@
+// eslint 初始化命令：  npm init @eslint/config
 module.exports = {
   env: {
     browser: true,
@@ -22,6 +23,7 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint'],
   rules: {
+    'no-console': 'warn',
     // eslint (http://eslint.cn/docs/rules)
     'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'class-methods-use-this': 'off',
@@ -41,7 +43,7 @@ module.exports = {
     '@typescript-eslint/no-use-before-define': 0,
     'no-use-before-define': 0,
     '@typescript-eslint/no-var-requires': 0,
-    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-explicit-any': 'warn',
     '@typescript-eslint/no-namespace': 'off', // 禁止使用自定义 TypeScript 模块和命名空间。
     'no-else-return': 'off',
     'import/no-named-as-default': 0,
