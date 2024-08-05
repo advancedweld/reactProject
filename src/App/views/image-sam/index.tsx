@@ -11,41 +11,12 @@ interface IMaskEditModal {
   open: boolean
   onClose: () => void
   onConfirm: (mask: string) => void
-  originImg: File
+  originImgFile: File
   // 蒙版图
   maskSrc?: string
 }
 
-const Entry = () => {
-  const [editrModalOpen, setEditModalOpen] = useState(false)
-  const [initImage, setInitImage] = useState<File | null>(null)
-  return (
-    <div>
-      <div>
-        <DragUpload
-          onChange={(file) => {
-            console.log('🚀 ~ Entry ~ file:', file)
-            if (!file) return
-            setInitImage(file)
-          }}
-        />
-      </div>
-      <div>
-        {initImage && (
-          <MaskEditModal
-            open={editrModalOpen}
-            onClose={() => setEditModalOpen(false)}
-            originImg={initImage}
-            onConfirm={(mask) => {
-              setEditModalOpen(false)
-            }}
-          />
-        )}
-      </div>
-    </div>
-  )
-}
-const MaskEditModal: React.FC<IMaskEditModal> = ({ open, onClose, originImg, onConfirm }) => {
+const MaskEditModal: React.FC<IMaskEditModal> = ({ open, onClose, originImgFile, onConfirm }) => {
   // 分割后的色块图片
   const [segImgUrl, setSegImgUrl] = useState<string>()
 
@@ -78,8 +49,8 @@ const MaskEditModal: React.FC<IMaskEditModal> = ({ open, onClose, originImg, onC
   useEffect(() => {
     // 根据原图拿到蒙版
     const samControlPredict = async () => {
-      if (!originImg) return
-      const img4sam = await convertFile2Base64(originImg)
+      if (!originImgFile) return
+      const img4sam = await convertFile2Base64(originImgFile)
       controlSegMutate({
         payload: {
           sam_model_name: 'sam_vit_l_0b3195.pth',
@@ -93,16 +64,53 @@ const MaskEditModal: React.FC<IMaskEditModal> = ({ open, onClose, originImg, onC
       })
     }
     samControlPredict()
-  }, [originImg])
+  }, [originImgFile])
 
   const onModalConfirm = () => {
     const base64Mask = getCanvasContentRef.current.getCanvasContent?.()
     onConfirm(base64Mask)
   }
   return (
-    <Modal open={open} onCancel={onClose} bodyStyle={bodyStyle} width={930} onOk={onModalConfirm}>
-      <MaskEditor originImgSrc={URL.createObjectURL(originImg)} maskSrc={segImgUrl} ref={getCanvasContentRef} />
+    <Modal
+      open={open}
+      onCancel={onClose}
+      styles={{
+        body: bodyStyle,
+      }}
+      width={930}
+      onOk={onModalConfirm}>
+      <MaskEditor originImgSrc={URL.createObjectURL(originImgFile)} maskSrc={segImgUrl} ref={getCanvasContentRef} />
     </Modal>
+  )
+}
+
+const Entry = () => {
+  const [editrModalOpen, setEditModalOpen] = useState(false)
+  const [initImage, setInitImage] = useState<File | null>(null)
+  return (
+    <div>
+      <div>
+        <DragUpload
+          onChange={(file) => {
+            console.log('🚀 ~ Entry ~ file:', file)
+            if (!file) return
+            setInitImage(file)
+          }}
+        />
+      </div>
+      <div>
+        {initImage && (
+          <MaskEditModal
+            open={editrModalOpen}
+            onClose={() => setEditModalOpen(false)}
+            originImgFile={initImage}
+            onConfirm={(mask) => {
+              setEditModalOpen(false)
+            }}
+          />
+        )}
+      </div>
+    </div>
   )
 }
 
