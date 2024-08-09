@@ -20,12 +20,14 @@ function AuthWrap(props: IAuthWrap) {
 
   // 开发环境直接定位到首页
   if (process.env.NODE_ENV === 'development') {
+    if (location.pathname === '/') return <Navigate to='/home' />
+    return <>{children}</>
+  } else {
+    if (!loginStatus) {
+      return <Navigate to='/login' />
+    }
+    if (location.pathname === '/') return <Navigate to='/home' />
     return <>{children}</>
   }
-  if (!loginStatus) {
-    return <Navigate to='/login' />
-  }
-  if (location.pathname === '/') return <Navigate to='/home' />
-  return <>{children}</>
 }
 export default AuthWrap
