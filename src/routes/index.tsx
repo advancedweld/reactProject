@@ -85,6 +85,11 @@ const baseRoutes = {
           label: 'svgDemo',
           element: lazyLoad(() => import('@view/MyCollect/svg-demo')),
         },
+        {
+          path: '/myCollect/lazy-image',
+          label: '图片懒加载',
+          element: lazyLoad(() => import('@view/MyCollect/lazy-image')),
+        },
       ],
       // element: lazyLoad(() => import('@view/MyCollect')),
     },
