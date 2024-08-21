@@ -8,6 +8,7 @@ import { samImages, samControlnetImages } from './service/api'
 import { convertFile2Base64 } from '@/utils'
 
 import originalImg from './assets/originalImg.png'
+import segImg from './assets/random1.png'
 
 interface IMaskEditModal {
   open: boolean
@@ -53,6 +54,7 @@ const MaskEditModal: React.FC<IMaskEditModal> = ({ open, onClose, originImgFile,
     const samControlPredict = async () => {
       if (!originImgFile) return
       const img4sam = await convertFile2Base64(originImgFile)
+
       controlSegMutate({
         payload: {
           sam_model_name: 'sam_vit_l_0b3195.pth',
@@ -65,7 +67,8 @@ const MaskEditModal: React.FC<IMaskEditModal> = ({ open, onClose, originImgFile,
         },
       })
     }
-    samControlPredict()
+    // samControlPredict()
+    setSegImgUrl(segImg)
   }, [originImgFile])
 
   const onModalConfirm = () => {
@@ -113,6 +116,7 @@ const Entry = () => {
             setInitImage(file)
           }}
         />
+        <button onClick={() => setEditModalOpen(true)}>编辑</button>
       </div>
       <div>
         {initImage && (
