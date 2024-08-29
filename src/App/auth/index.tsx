@@ -4,30 +4,38 @@
  * @FilePath: \reactProject\src\App\auth\index.tsx
  */
 
-import { Navigate, redirect, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import useUserProfileStore from 'store/userProfile'
 
 interface IAuthWrap {
   children: React.ReactNode
 }
+
 function AuthWrap(props: IAuthWrap) {
+  const { children } = props
   const location = useLocation()
+  const navigate = useNavigate()
   const loginStatus = useUserProfileStore((state) => state.isLogin)
 
-  console.log('@@@@@@process.env.NODE_ENV', process.env.NODE_ENV)
-  console.log('@@@@@location', location)
-  const { children } = props
-
-  // 开发环境直接定位到首页
-  if (process.env.NODE_ENV === 'development') {
-    if (location.pathname === '/') return <Navigate to='/home' />
-    return <>{children}</>
-  } else {
-    if (!loginStatus) {
-      return <Navigate to='/login' />
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'development') {
+      // 开发环境下的行为
+      if (location.pathname === '/') {
+        navigate('/home')
+      }
+    } else {
+      // 生产环境下的行为
+      if (!loginStatus) {
+        navigate('/login')
+      }
+      if (location.pathname === '/') {
+        navigate('/home')
+      }
     }
-    if (location.pathname === '/') return <Navigate to='/home' />
-    return <>{children}</>
-  }
+  }, [location.pathname, loginStatus, navigate])
+
+  return <>{children}</>
 }
+
 export default AuthWrap
