@@ -4,8 +4,7 @@
  * @FilePath: \reactProject\src\App\auth\index.tsx
  */
 
-import { useEffect } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Navigate, useLocation } from 'react-router-dom'
 import useUserProfileStore from 'store/userProfile'
 
 interface IAuthWrap {
@@ -13,27 +12,22 @@ interface IAuthWrap {
 }
 
 function AuthWrap(props: IAuthWrap) {
-  const { children } = props
   const location = useLocation()
-  const navigate = useNavigate()
   const loginStatus = useUserProfileStore((state) => state.isLogin)
+  const { children } = props
 
-  useEffect(() => {
-    if (process.env.NODE_ENV === 'development') {
-      // 开发环境下的行为
-      if (location.pathname === '/') {
-        navigate('/home')
-      }
-    } else {
-      // 生产环境下的行为
-      if (!loginStatus) {
-        navigate('/login')
-      }
-      if (location.pathname === '/') {
-        navigate('/home')
-      }
+  if (process.env.NODE_ENV === 'development') {
+    if (location.pathname === '/') {
+      return <Navigate to='/home' />
     }
-  }, [location.pathname, loginStatus, navigate])
+  } else {
+    if (!loginStatus) {
+      return <Navigate to='/login' />
+    }
+    if (location.pathname === '/') {
+      return <Navigate to='/home' />
+    }
+  }
 
   return <>{children}</>
 }
