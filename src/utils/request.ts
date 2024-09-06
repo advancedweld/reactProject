@@ -1,5 +1,6 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
+import useUserProfileStore from 'store/userProfile'
 
 /* 生产环境API地址 */
 const API_GATEWAY_PRO = ''
@@ -47,6 +48,12 @@ instance.interceptors.response.use(
     return response.data
   },
   (error) => {
+    // 检查是否是 401 错误
+    if (error.response && error.response.status === 401) {
+      console.log('Detected 401 error, logging out...')
+      // 调用 Zustand 的 logout 方法更新状态
+      useUserProfileStore.getState().logout()
+    }
     return Promise.reject(error?.response?.data)
   },
 )
