@@ -1,4 +1,9 @@
 #!/bin/bash
+# 检查是否有同名正在运行的容器
+if docker ps | grep -q "react-frontend"; then
+  echo "发现同名容器正在运行，请先停止或移除该容器。"
+  exit 1
+fi
 
 # 加载镜像
 docker load -i app.tar
