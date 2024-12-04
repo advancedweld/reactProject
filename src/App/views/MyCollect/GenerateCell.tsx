@@ -5,7 +5,7 @@ import style from './cell.module.css'
 
 const numRows = 50
 const numCols = 50
-const intervalTime = 100 // 每隔1秒更新一次状态
+const intervalTime = 500 // 每隔1秒更新一次状态
 
 function GenerateCell() {
   const [matrix, setMatrix] = useState<Array<boolean>[]>(() =>

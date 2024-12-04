@@ -81,6 +81,11 @@ const baseRoutes = {
           element: lazyLoad(() => import('@view/MyCollect/GenerateCell')),
         },
         {
+          path: '/myCollect/cell-spread',
+          label: '元胞扩散',
+          element: lazyLoad(() => import('@view/MyCollect/cell-spread')),
+        },
+        {
           path: '/myCollect/svg-demo',
           label: 'svgDemo',
           element: lazyLoad(() => import('@view/MyCollect/svg-demo')),
