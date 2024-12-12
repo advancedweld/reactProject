@@ -1,3 +1,25 @@
 .wrap {
-  border: 1px solid red;
+  .cellWrap {
+    border: 1px solid red;
+    padding-bottom: 20px;
+    .row {
+      display: flex;
+      column-gap: 1px;
+      margin-top: 1px;
+      /* border: 1px solid red; */
+      .cell {
+        /* background-color: aqua; */
+        user-select: none;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+      }
+      .live {
+        background-color: red;
+      }
+      .dead {
+        background-color: aliceblue;
+      }
+    }
+  }
 }

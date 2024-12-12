@@ -2,7 +2,7 @@
  * @Author: xiangshangzhi xiangshangzhi@163.com
  * @Date: 2023-04-03 19:13:51
  * @LastEditors: xiangshangzhi xiangshangzhi@163.com
- * @LastEditTime: 2024-08-05 14:16:07
+ * @LastEditTime: 2024-12-12 14:39:50
  * @FilePath: \reactProject\src\App\Dashboard\index.tsx
  * @Description: xiangshangzhi写的文件
  *
@@ -63,7 +63,7 @@ function Dashboard() {
       <div className={styles.dashboardWrap}>
         <XMenu></XMenu>
         <div className={styles.content}>
-          <div>content刷新次数：{refreshCountRef.current}</div>
+          <div style={{ userSelect: 'none' }}>content刷新次数：{refreshCountRef.current}</div>
 
           <ErrorBoundary fallbackRender={fallbackRender}>
             <Outlet />
