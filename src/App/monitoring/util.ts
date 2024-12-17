@@ -1,10 +1,17 @@
+type Fps = {
+  // 帧数
+  value: number
+  url: string
+  timeStamp: number
+}
+
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 type Performance = {
   // 页面加载性能指标
   networkDelay: any[]
   // 接口请求延时
   apiLatency: any[]
-  fps: any[]
+  fps: Fps[]
   error: any[]
 }
 
@@ -12,6 +19,7 @@ type PerformanceKeys = keyof Performance
 
 /** 缓存数据类 */
 const MAX_CACHE_SIZE = 100
+
 export class MonitoringCache {
   private data: Performance = {
     networkDelay: [],
@@ -20,11 +28,15 @@ export class MonitoringCache {
     error: [],
   }
 
-  addData(type: PerformanceKeys, data: any) {
+  addData<T extends PerformanceKeys>(type: T, data: Performance[T][number]): void {
     const curData = this.data[type] || []
-    if (curData?.length === MAX_CACHE_SIZE) {
+
+    // 如果当前数据已达到最大缓存大小，则删除最旧的元素
+    if (curData.length === MAX_CACHE_SIZE) {
       this.data[type].shift()
     }
+
+    // 向对应类型的数组中添加数据
     this.data[type].push(data)
   }
 
@@ -88,7 +100,14 @@ export const startFpsMonitor = (cache: MonitoringCache) => {
       frameCount += 1
       // 统计一秒内的fps
       if (gap > 1000) {
-        cache.addData('fps', frameCount)
+        const fpsData = {
+          value: frameCount,
+          url: window.location.href,
+          timeStamp: Date.now(),
+        }
+        if (frameCount < 45) {
+          cache.addData('fps', fpsData)
+        }
         frameCount = 0
         timeStamp = Date.now()
       }
