@@ -67,24 +67,27 @@ const sendDataToServerWithFetch = (data: Performance, monitorApi: string) => {
   })
 }
 
-export const sendDataToServer = (data: Performance, monitorApi: string, retry = 3) => {
+export const sendDataToServer = (data: Performance, monitorApi: string, onSucess: () => void, retry = 3) => {
   if (!retry) return
   // 不支持sendbeacon，用fetch
+  // todo  数据上报成功后需要清空缓存
   if (!navigator.sendBeacon) {
     sendDataToServerWithFetch(data, monitorApi)
       .then((res) => {
         console.log('@@@@@sendDataToServer', res)
+        onSucess()
       })
       .catch((error) => {
         console.error('Error sending data:', error)
-        sendDataToServer(data, monitorApi, retry - 1)
+        sendDataToServer(data, monitorApi, onSucess, retry - 1)
       })
   } else {
     const success = navigator.sendBeacon(monitorApi, JSON.stringify(data))
+    onSucess()
     console.log('@@@@@sendDataToServer', success)
     if (!success) {
       console.log('Failed to send data to server retry', retry)
-      sendDataToServer(data, monitorApi, retry - 1)
+      sendDataToServer(data, monitorApi, onSucess, retry - 1)
     }
   }
 }

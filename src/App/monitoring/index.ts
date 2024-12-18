@@ -85,7 +85,7 @@ class Eagle {
   uploadData(data: any) {
     // return
     // sendDataToServer(data)
-    sendDataToServer(data, this.monitorApi)
+    sendDataToServer(data, this.monitorApi, () => this.cache.clearData())
   }
 
   static getInstance() {
